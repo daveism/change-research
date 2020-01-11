@@ -1,2 +1,2 @@
-# distance-research
-Research project investigating how people perceive distance on maps
+# change-research
+Research project investigating how people perceive change on maps
