@@ -1,0 +1,219 @@
+// Your variable overrides
+
+@mixin box_shadowmd ($level) {
+    @if $level == 1 {
+        box-shadow:0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    } @else if $level == 2 {
+        box-shadow:0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    } @else if $level == 3 {
+        box-shadow:0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    } @else if $level == 4 {
+        box-shadow:0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    } @else if $level == 5 {
+        box-shadow:0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    }
+}
+
+.h-80 {
+  height: 80% !important;
+}
+
+.btn-light {
+  background-color: $body-color !important;
+  color: $body-background-color !important;
+  height: $default-control-height !important;
+  @include border-radius($round-radius, $round-radius);
+  // @include box_shadowmd(1);
+  &:focus {
+    outline: none !important;
+    border-width: 0px !important;
+    // box-shadow: unset !important;
+  }
+  &:hover {
+    background-color: darken($body-color, 20) !important;
+  }
+  &.disabled {
+    background-color: darken($body-color, 20) !important;
+  }
+}
+
+.btn-aggreement {
+  // width: 200px !important;
+  min-width: 100px !important;
+}
+
+.btn-xlight {
+  $xlight: darken($body-background-color, 20);
+  background-color: $xlight !important;
+  color: $body-color !important;
+  height: $default-control-height !important;
+  @include border-radius($round-radius, $round-radius);
+  // @include box_shadowmd(1);
+  &:focus {
+    outline: none !important;
+    border-width: 0px !important;
+    box-shadow: unset !important;
+  }
+  &:hover {
+    background-color: lighten($xlight, 10) !important;
+  }
+  &.disabled {
+    background-color: lighten($xlight, 10) !important;
+  }
+}
+
+.btn {
+  cursor: pointer;
+  text-align: start !important;
+  @include box_shadowmd(3);
+  &:focus {
+    outline: none !important;
+    border-width: 0px !important;
+    @include box_shadowmd(5);
+  }
+  &:hover {
+    @include box_shadowmd(5);
+  }
+}
+
+.mapboxgl-ctrl-geocoder {
+  max-width: unset !important;
+}
+
+.mapboxgl-ctrl-geocoder--input {
+  background-color: $body-color !important;
+  color: $body-background-color !important;
+  height: $default-control-height !important;
+  @include border-radius($default-radius, $default-radius);
+}
+
+.mapboxgl-ctrl-geocoder .suggestions{
+  background-color: $body-color !important;
+  color: $body-background-color !important;
+}
+
+.mapboxgl-ctrl-geocoder .suggestions > li > a:hover {
+  background-color: darken($body-color, 12) !important;
+  color: $body-background-color !important;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.mapboxgl-ctrl-geocoder--button {
+  background-color: $body-color !important;
+  color: $body-background-color !important;
+  &:focus {
+    outline: none !important;
+    border: unset !important;
+    box-shadow: unset !important;
+  }
+}
+
+.mapboxgl-ctrl-top-left {
+  z-index: 0 !important;
+}
+
+.suggestions-wrapper {
+  cursor: pointer;
+  background-color: $body-color !important;
+  color: $body-background-color !important;
+  z-index: 999 !important;
+}
+
+.suggestions {
+  z-index: 999 !important;
+}
+
+.mapbox-gl-draw_ctrl-draw-btn {
+  display: none !important;
+}
+
+.mapboxgl-ctrl-geocoder {
+  width: 100% !important;
+}
+
+.mapboxgl-ctrl-geocoder--icon-close {
+  @media only screen and (max-width: 450px) {
+    margin-top: 3px;
+  }
+}
+
+.mapboxgl-ctrl-geocoder--icon-search {
+  @media only screen and (max-width: 450px) {
+    top: 6px;
+  }
+}
+
+.bs-tooltip-top .arrow::before, .bs-tooltip-auto[x-placement^="top"] .arrow::before {
+  border-top-color: darken($body-color, 20) !important;
+}
+
+.arrow:before {
+  border-top-color: darken($body-color, 20) !important;
+}
+
+.tooltip .tooltip-inner {
+  background-color: darken($body-color, 20) !important;
+  color: $body-background-color !important;
+  padding: 12px !important;
+  min-width: 250px !important;
+  font-weight: 600 !important;
+}
+
+.h {
+  &-10 {
+    height: 10% !important;
+  }
+  &-20 {
+    height: 20% !important;
+  }
+  &-25 {
+    height: 25% !important;
+  }
+  &-30 {
+    height: 30% !important;
+  }
+  &-40 {
+    height: 40% !important;
+  }
+  &-50 {
+    height: 50% !important;
+  }
+  &-60 {
+    height: 60% !important;
+  }
+  &-70 {
+    height: 70% !important;
+  }
+  &-75 {
+    height: 75% !important;
+  }
+}
+
+.pb-3, .py-3 {
+  @media only screen and (max-width: 768px) {
+    padding-bottom: .25rem !important;
+  }
+}
+
+.pt-3, .py-3{
+  @media only screen and (max-width: 768px) {
+    padding-top: .25rem !important;
+  }
+}
+
+.mapboxgl-ctrl-geocoder--icon-search {
+  @media only screen and (max-width: 768px) {
+    @media only screen and (max-height: 376px) {
+      top: 7px !important;
+    }
+  }
+}
+
+.mapboxgl-ctrl-geocoder--button {
+  @media only screen and (max-width: 768px) {
+    @media only screen and (max-height: 376px) {
+      top: 0px !important;
+    }
+  }
+}
