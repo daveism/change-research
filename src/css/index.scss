@@ -34,18 +34,24 @@ html, body {
   color: $body-color;
 }
 
-#map-holder, #map {
+#map-holder-1, #map-1 {
   height: 100%;
   padding-right: $default-padding;
   @include border-radius($default-radius, $default-radius);
 }
 
+.start-step1, start-step2 {
+  height: auto;
+  padding-right: $default-padding;
+  @include border-radius($default-radius, $default-radius);
+
+}
 .start-height-actions, .start-height-map {
-  height: 90% !important;
+  // height: 90% !important;
 }
 
 .step-height-actions, .step-height-map {
-  height: 90% !important;
+  // height: 90% !important;
 }
 
 .start-height-actions {
@@ -73,11 +79,11 @@ html, body {
   }
 }
 
-#map-action-holder, #map-holder {
-  margin-top: 24px !important;
-  @media only screen and (max-width: 768px) {
-    margin-top: 12px !important;
-  }
+#map-action-holder, #map-holder-1 {
+  // margin-top: 12px !important;
+  // @media only screen and (max-width: 768px) {
+  //   margin-top: 12px !important;
+  // }
 }
 
 #map-action-holder {
@@ -87,9 +93,9 @@ html, body {
   }
 }
 
-#map-holder {
+#map-holder-1 {
   @media only screen and (max-width: 768px) {
-    margin-top: 12px !important;
+    // margin-top: 12px !important;
     padding-bottom: 12px !important;
   }
 }
@@ -123,9 +129,9 @@ html, body {
   padding-top: 0px !important;
 }
 
-
-.step-title {
+.page-title {
   font-size: 24px;
+  font-weight: 700;
   @media only screen and (max-width: 768px) {
     font-size: 22px;
     display: none !important;
@@ -133,7 +139,21 @@ html, body {
   @media only screen and (max-width: 321px) {
     font-size: 18px;
   }
+  &.disabled {
+    color: darken($body-color, 20) !important;
+  }
+}
+
+.step-title {
+  font-size: 20px;
   font-weight: 700;
+  @media only screen and (max-width: 768px) {
+    font-size: 22px;
+    display: none !important;
+  }
+  @media only screen and (max-width: 321px) {
+    font-size: 18px;
+  }
   &.disabled {
     color: darken($body-color, 20) !important;
   }
@@ -142,9 +162,13 @@ html, body {
 #study-agreement-all {
   @media only screen and (max-width: 768px) {
     @media only screen and (max-height: 376px) {
-      height: 60% !important;
+      height: 100% !important;
     }
   }
+}
+
+#study-agreement-title {
+  padding-bottom: 12px;
 }
 
 #study-dissaggree-title, #study-complete-title, #study-agreement-title {
@@ -259,6 +283,7 @@ html, body {
 }
 
 #submit-button, #circle-button2 {
+  width: 45% !important;
   @media only screen and (max-width: 768px) {
     width: 45% !important;
     padding-left: 6px !important;

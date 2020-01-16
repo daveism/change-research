@@ -24,22 +24,20 @@
 
   <div class="w-100 h-100 d-flex justify-content-center" id="main-content">
     <div class="row w-100 h-100 px-3">
+      <div class="col-12 start-height-actions h-100" id="map-action-holder">
 
-      <div class="col-12 col-sm-12 col-md-5 col-xl-5 start-height-actions" id="map-action-holder">
-        <!-- order-lg-1 order-md-1 order-sm-2 order-2 -->
-
-        <div id="study-agreement-all" class="py-0 h-70">
-          <div id="study-agreement-title" class="step-title">Study Participant Agreement</div>
-          <div id="study-agreement" class="w-100 h-80 align-self-center py-0" >
+        <div id="study-agreement-all" class="py-2">
+          <div id="study-agreement-title" class="step-title">Study Participation Agreement</div>
+          <div id="study-agreement" class="w-100 h-100 align-self-center py-0" >
             <div class="py-0 h-100">
               <div id="study-agreement-directions" class="step-directions">
                 Thank you for taking part in this study. By using the following website,
                 you agree to participate in a study about how people use web-presented maps.
-                We will collect information about your interactions with this site but not
-                any personally identifiable information. The only people with access to the
-                study data are the researchers. However, the data will be summarized, shared,
-                and disseminated in talks, blogs, and possibly research journals. There is
-                no cost to you to participate in this research study, and you will not be
+                We will collect information about your interactions with this site but not any
+                personally identifiable information. The only people with access to the study
+                data are the researchers. However, the data will be summarized, shared, and
+                disseminated in talks, blogs, and possibly research journals. There is no
+                cost to you to participate in this research study, and you will not be
                 compensated. There are no known risks in the following tasks.
                 <br /><br />
                 By agreeing to this, you have acknowledged that you have read the
@@ -48,8 +46,8 @@
               </div>
             </div>
           </div>
-          <div id="aggree-disaggre-wrapper" class="py-3">
-            <div id="study-agreement-sub" class="step-directions align-self-center py-2">Do you want to partipate?</div>
+          <div id="aggree-disaggre-wrapper" class="pt-5">
+            <div id="study-agreement-sub" class="step-directions align-self-center pb-4 py-2">Do you want to participate?</div>
             <button id="aggree-button" type="button" class="btn btn-light btn-aggreement w-40 align-self-end mr-3" >
               <i class="fas fa-check"></i>
               Yes
@@ -61,13 +59,75 @@
           </div>
         </div>
 
-        <div id="study-dissaggree" class="w-100 h-80 align-self-center d-none" >
-          <div id="study-dissaggree-title" class="step-title">Thanks anyway!</div>
-          <div id="study-dissaggree-directions" class="step-directions">Thank you for considering being a participant.</div>
+        <div id="study-progress-map-1" class="row py-3 h-90 w-100 d-none">
+          <!-- <div id="page-title" class="col-12 page-title">Whats Changed?</div> -->
+
+          <div class="pt-3 col-12 start-step1" id="">
+            <div id="step-1" class="steps" >
+              <div id="step1-title" class="step-title">Step 1 of 3</div>
+              <div id="step1-directions" class="step-directions">
+                Review the map using the horizontal bar by dragging the bar side to side to
+                reveal what’s changed. Then click on any box where you believe change
+                occurred between the two maps.
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-3 col-12 h-70 start-map" id="map-holder-1">
+            <div class="d-flex justify-content-center h-100">
+              <div id="map-1" ref="mapContainer-1" class="w-50 map-1"></div>
+            </div>
+          </div>
+
+          <div class="pt-3 col-12 start-step2" id="">
+            <div id="step-1" class="steps" >
+              <div id="step1-title" class="step-title">Step 2 of 3</div>
+              <div id="step1-directions" class="step-directions">
+                Submit the selected boxes (in green) as your answer to areas that have changed.
+              </div>
+              <div class="pt-3 pb-3 align-self-end step-button" >
+                <button id="submit-button" type="button" class="btn btn-light btn-draw-circle w-100 align-self-end" data-toggle="tooltip" data-html="true" title="Please search for location and draw a circle first!">
+                  Submit
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+<!--
+        <div id="study-progress-map-2" class="row h-100 w-100 d-none">
+          <div id="change-title" class="col-12 step-title">Whats Changed?</div>
+          <div class="col-12 col-sm-12 col-md-5 col-xl-5 start-height-map" id="map-holder-1">
+            <div id="step-1" class="steps py-3" >
+              <div id="step1-title" class="step-title">Step 1 of 3</div>
+              <div id="step1-directions" class="step-directions">
+                Review the map using the horizontal bar by dragging the bar side to side to
+                reveal what’s changed. Then click on any box where you believe change occurred.
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-7 col-xl-7 start-height-map" id="map-holder-1">
+            <div id="map-2" ref="mapContainer-2" class="map-2"></div>
+          </div>
         </div>
 
-        <div id="study-progress" class="d-none">
-          <div id="step-1" class="steps py-3" >
+        <div id="study-progress-map-3" class="row h-100 w-100 d-none">
+          <div id="change-title" class="col-12 step-title">Whats Changed?</div>
+          <div class="col-12 col-sm-12 col-md-5 col-xl-5 start-height-map" id="map-holder-1">
+            <div id="step-1" class="steps py-3" >
+              <div id="step1-title" class="step-title">Step 1 of 3</div>
+              <div id="step1-directions" class="step-directions">
+                Review the map using the horizontal bar by dragging the bar side to side to
+                reveal what’s changed. Then click on any box where you believe change occurred.
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-7 col-xl-7 start-height-map" id="map-holder-1">
+            <div id="map-3" ref="mapContainer-3" class="map-3"></div>
+          </div>
+        </div> -->
+        <!-- <div id="study-progress" class="d-none"> -->
+          <!-- <div id="step-1" class="steps py-3" >
             <div id="step1-title" class="step-title">Step 1</div>
             <div id="step-nav-1" class="row step-nav w-100 flex-row flex-nowrap" >
               <div id="step1-title" val="step-1" class="step-title-nav active">Step 1</div>
@@ -117,11 +177,11 @@
                 Draw circle
               </button>
             </div>
-          </div>
+          </div> -->
 
-        </div>
+        <!-- </div> -->
 
-        <div id="study-complete" class="w-100 h-80 align-self-center steps step-done d-none py-3" >
+        <!-- <div id="study-complete" class="w-100 h-80 align-self-center steps step-done d-none py-3" >
           <div id="study-complete-title" class="w-100 step-title">Study Complete</div>
           <div id="study-complete-directions" class="py-3 w-100 step-directions">Based on the average walking speed a five-minute walk is represented by a radius measuring ¼ miles, 1320 feet, or about 400 meters.</div>
           <div id="study-complete-directions" class="py-3 w-100 step-directions">Based on a <a href="https://www.gasbuddy.com/go/gasbuddy-reveals-u-s-states-with-the-most-aggressive-drivers/" target="_blank">study</a> of driving speeds in the U.S., the average driving speed is around 42 mph. At 42 mph a five-minute drive is represented by a radius measuring about 3.5 miles or 18,480 feet.</div>
@@ -138,14 +198,13 @@
 
           <div id="study-complete-title" class="pt-4 w-100 step-title">Thanks for participating in the study!</div>
 
-        </div>
+        </div> -->
 
-      </div>
+      <!-- </div> -->
 
-      <div class="col-12 col-md-7 col-xl-7 start-height-map " id="map-holder">
-        <!-- order-lg-2 order-md-2 order-sm-1 order-1 -->
+      <!-- <div class="col-12 col-md-7 col-xl-7 start-height-map d-none" id="map-holder">
         <div id="map" ref="mapContainer" class="map"></div>
-      </div>
+      </div> -->
     </div>
   </div>
 

@@ -14,8 +14,14 @@
     }
 }
 
+.h-90 {
+  height: 90% !important;
+}
 .h-80 {
   height: 80% !important;
+}
+.h-55 {
+  height: 55% !important;
 }
 
 .btn-light {
@@ -27,7 +33,6 @@
   &:focus {
     outline: none !important;
     border-width: 0px !important;
-    // box-shadow: unset !important;
   }
   &:hover {
     background-color: darken($body-color, 20) !important;
@@ -38,7 +43,6 @@
 }
 
 .btn-aggreement {
-  // width: 200px !important;
   min-width: 100px !important;
 }
 
