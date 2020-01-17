@@ -34,7 +34,7 @@ html, body {
   color: $body-color;
 }
 
-#map-holder-1, #map-1 {
+#map-holder-1, #map-1, #map-holder-2a, #map-holder-2b, #map-2a, #map-2b, #map-holder-3, #map-3 {
   height: 100%;
   padding-right: $default-padding;
   @include border-radius($default-radius, $default-radius);
@@ -148,8 +148,8 @@ html, body {
   font-size: 20px;
   font-weight: 700;
   @media only screen and (max-width: 768px) {
-    font-size: 22px;
-    display: none !important;
+    font-size: 18px;
+    // display: none !important;
   }
   @media only screen and (max-width: 321px) {
     font-size: 18px;

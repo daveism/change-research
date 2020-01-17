@@ -38,7 +38,7 @@ googleAnalytics.setEvent('data', 'mobile', isMobileDevice());
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiZGF2ZWlzbSIsImEiOiJCdjUxT0FzIn0.V9oIk_wUc4uZu7UBblR8mw';
 
-const map = new mapboxgl.Map({
+const map1 = new mapboxgl.Map({
   container: 'map-1',
   style: 'mapbox://styles/mapbox/streets-v11',
   // 'mapbox://styles/daveism/cjwrrdfd20uic1dnzsti2owlk', - dark
@@ -49,28 +49,67 @@ const map = new mapboxgl.Map({
   keybindings: true
 });
 
-const nav = new mapboxgl.NavigationControl();
-map.addControl(nav, 'top-left');
-
-map.on('zoomend', () => {
-  console.log('searchzoom', map.getZoom())
-  if (map.getZoom() > 10) {
-    const circleButtonElem = document.getElementById('circle-button');
-    if (circleButtonElem.classList.contains('disabled')) {
-      circleButtonElem.classList.remove('disabled');
-      $('#circle-button').tooltip({ trigger: 'manual' });
-      $('#circle-button').tooltip('hide');
-      $('#circle-button').tooltip('disable');
-      $('#circle-button').tooltip('dispose');
-      document.getElementById('step2-title').classList.remove('disabled');
-      document.getElementById('step2-directions').classList.remove('disabled');
-    }
-  }
+const map2a = new mapboxgl.Map({
+  container: 'map-2a',
+  style: 'mapbox://styles/mapbox/streets-v11',
+  // 'mapbox://styles/daveism/cjwrrdfd20uic1dnzsti2owlk', - dark
+  center: [-98, 38.88], // starting position [lng, lat]
+  zoom: 3, // starting zoom
+  showZoom: true,
+  touchEnabled: true,
+  keybindings: true
 });
+
+const map2b = new mapboxgl.Map({
+  container: 'map-2b',
+  style: 'mapbox://styles/mapbox/streets-v11',
+  // 'mapbox://styles/daveism/cjwrrdfd20uic1dnzsti2owlk', - dark
+  center: [-98, 38.88], // starting position [lng, lat]
+  zoom: 3, // starting zoom
+  showZoom: true,
+  touchEnabled: true,
+  keybindings: true
+});
+
+const map3= new mapboxgl.Map({
+  container: 'map-3',
+  style: 'mapbox://styles/mapbox/streets-v11',
+  // 'mapbox://styles/daveism/cjwrrdfd20uic1dnzsti2owlk', - dark
+  center: [-98, 38.88], // starting position [lng, lat]
+  zoom: 3, // starting zoom
+  showZoom: true,
+  touchEnabled: true,
+  keybindings: true
+});
+
+const nav = new mapboxgl.NavigationControl();
+map1.addControl(nav, 'top-left');
+map2a.addControl(nav, 'top-left');
+map2b.addControl(nav, 'top-left');
+map3.addControl(nav, 'top-left');
+
+// map.on('zoomend', () => {
+//   console.log('searchzoom', map.getZoom())
+//   if (map.getZoom() > 10) {
+//     const circleButtonElem = document.getElementById('circle-button');
+//     if (circleButtonElem.classList.contains('disabled')) {
+//       circleButtonElem.classList.remove('disabled');
+//       $('#circle-button').tooltip({ trigger: 'manual' });
+//       $('#circle-button').tooltip('hide');
+//       $('#circle-button').tooltip('disable');
+//       $('#circle-button').tooltip('dispose');
+//       document.getElementById('step2-title').classList.remove('disabled');
+//       document.getElementById('step2-directions').classList.remove('disabled');
+//     }
+//   }
+// });
 
 // function
 function handleAgreeClick() {
-  const studyVersion = 1; //Math.floor(Math.random() * (3 - 1 + 1) + 1);
+  const minOne = 0;
+  const maxOne = 2;
+  const studyVersion = Math.floor(Math.random() * (maxOne - minOne + 1) + minOne);
+  // const  = ; //Math.floor(Math.random() * (3 - 1 + 1) + 1);
 
   document.getElementById(`study-progress-map-${studyVersion}`).classList.remove('d-none');
   document.getElementById('study-agreement-all').classList.add('d-none');
@@ -86,7 +125,10 @@ function handleAgreeClick() {
   // document.getElementById('map-action-holder').classList.add('col-md-5');
   // document.getElementById('map-action-holder').classList.remove('col-xl-5');
   // document.getElementById('map-holder').classList.add('step-height-map');
-  map.resize();
+  map1.resize();
+  map2a.resize();
+  map2b.resize();
+  map3.resize();
   store.setStateItem('study-agreement', true);
   googleAnalytics.setEvent('data', 'study-agreement', true);
   return null;
