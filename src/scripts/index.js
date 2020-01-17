@@ -111,7 +111,8 @@ function handleAgreeClick() {
   const studyVersion = Math.floor(Math.random() * (maxOne - minOne + 1) + minOne);
   // const  = ; //Math.floor(Math.random() * (3 - 1 + 1) + 1);
 
-  document.getElementById(`study-progress-map-${studyVersion}`).classList.remove('d-none');
+  // document.getElementById(`study-progress-map-${studyVersion}`).classList.remove('d-none');
+  document.getElementById(`study-progress-sus`).classList.remove('d-none');
   document.getElementById('study-agreement-all').classList.add('d-none');
 
   // document.getElementById('study-dissaggree').remove();
