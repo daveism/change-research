@@ -71,8 +71,30 @@ const map2b = new mapboxgl.Map({
   keybindings: true
 });
 
-const map3= new mapboxgl.Map({
+const map3 = new mapboxgl.Map({
   container: 'map-3',
+  style: 'mapbox://styles/mapbox/streets-v11',
+  // 'mapbox://styles/daveism/cjwrrdfd20uic1dnzsti2owlk', - dark
+  center: [-98, 38.88], // starting position [lng, lat]
+  zoom: 3, // starting zoom
+  showZoom: true,
+  touchEnabled: true,
+  keybindings: true
+});
+
+const mapEnda = new mapboxgl.Map({
+  container: 'map-enda',
+  style: 'mapbox://styles/mapbox/streets-v11',
+  // 'mapbox://styles/daveism/cjwrrdfd20uic1dnzsti2owlk', - dark
+  center: [-98, 38.88], // starting position [lng, lat]
+  zoom: 3, // starting zoom
+  showZoom: true,
+  touchEnabled: true,
+  keybindings: true
+});
+
+const mapEndb = new mapboxgl.Map({
+  container: 'map-endb',
   style: 'mapbox://styles/mapbox/streets-v11',
   // 'mapbox://styles/daveism/cjwrrdfd20uic1dnzsti2owlk', - dark
   center: [-98, 38.88], // starting position [lng, lat]
@@ -87,6 +109,8 @@ map1.addControl(nav, 'top-left');
 map2a.addControl(nav, 'top-left');
 map2b.addControl(nav, 'top-left');
 map3.addControl(nav, 'top-left');
+mapEnda.addControl(nav, 'top-left');
+mapEndb.addControl(nav, 'top-left');
 
 // map.on('zoomend', () => {
 //   console.log('searchzoom', map.getZoom())
@@ -104,6 +128,22 @@ map3.addControl(nav, 'top-left');
 //   }
 // });
 
+
+function handleMapClick() {
+  document.getElementById(`study-progress-sus`).classList.remove('d-none');
+  document.getElementById('study-progress-map-0').classList.add('d-none');
+  document.getElementById('study-progress-map-1').classList.add('d-none');
+  document.getElementById('study-progress-map-2').classList.add('d-none');
+  document.getElementById('map-action-holder').classList.add('d-none');
+
+}
+
+function handleSUSClick() {
+  document.getElementById(`study-progress-end`).classList.remove('d-none');
+  document.getElementById('study-progress-sus').classList.add('d-none');
+}
+
+
 // function
 function handleAgreeClick() {
   const minOne = 0;
@@ -111,8 +151,8 @@ function handleAgreeClick() {
   const studyVersion = Math.floor(Math.random() * (maxOne - minOne + 1) + minOne);
   // const  = ; //Math.floor(Math.random() * (3 - 1 + 1) + 1);
 
-  // document.getElementById(`study-progress-map-${studyVersion}`).classList.remove('d-none');
-  document.getElementById(`study-progress-sus`).classList.remove('d-none');
+  document.getElementById(`study-progress-map-${studyVersion}`).classList.remove('d-none');
+  // document.getElementById(`study-progress-sus`).classList.remove('d-none');
   document.getElementById('study-agreement-all').classList.add('d-none');
 
   // document.getElementById('study-dissaggree').remove();
@@ -130,6 +170,8 @@ function handleAgreeClick() {
   map2a.resize();
   map2b.resize();
   map3.resize();
+  mapEnda.resize();
+  mapEndb.resize();
   store.setStateItem('study-agreement', true);
   googleAnalytics.setEvent('data', 'study-agreement', true);
   return null;
@@ -337,6 +379,26 @@ const dissaggreeButtonElement = document.getElementById('diaggree-button');
 if (dissaggreeButtonElement) {
   dissaggreeButtonElement.addEventListener('click', handleDissagreeClick);
 }
+
+const mapButtonElement1 = document.getElementById('submit-button-to-sus-0');
+if (mapButtonElement1) {
+  mapButtonElement1.addEventListener('click', handleMapClick);
+}
+
+const mapButtonElement2 = document.getElementById('submit-button-to-sus-1');
+if (mapButtonElement2) {
+  mapButtonElement2.addEventListener('click', handleMapClick);
+}
+
+const mapButtonElement3 = document.getElementById('submit-button-to-sus-2');
+if (mapButtonElement3) {
+  mapButtonElement3.addEventListener('click', handleMapClick);
+}
+const susButtonElement = document.getElementById('submit-button-to-end');
+if (susButtonElement) {
+  susButtonElement.addEventListener('click', handleSUSClick);
+}
+
 
 // const step2MinorDirectionsElement = document.getElementById('step2-minor-directions');
 // if (step2MinorDirectionsElement) {

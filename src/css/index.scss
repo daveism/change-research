@@ -34,13 +34,16 @@ html, body {
   color: $body-color;
 }
 
-#map-holder-1, #map-1, #map-holder-2a, #map-holder-2b, #map-2a, #map-2b, #map-holder-3, #map-3 {
+#map-holder-1, #map-1,
+#map-holder-2, #map-2a, #map-2b,
+#map-inner-holder-end, #map-enda, #map-endb,
+#map-holder-3, #map-3 {
   height: 100%;
   padding-right: $default-padding;
   @include border-radius($default-radius, $default-radius);
 }
 
-#map-holder-1, #map-holder-2, #map-holder-3 {
+#map-holder-1, #map-holder-2, #map-holder-3, #map-holder-end {
   @media only screen and (max-width: 768px) {
     height: 100% !important;
   }
@@ -52,7 +55,7 @@ html, body {
   }
 }
 
-#map-inner-holder-2 {
+#map-inner-holder-2, #map-inner-holder-end {
   @media only screen and (max-width: 768px) {
     flex-wrap: wrap;
     flex-flow: column;
@@ -66,11 +69,12 @@ html, body {
   }
 }
 
-#map-2a, #map-2b {
+#map-2a, #map-2b, #map-enda, #map-endb {
   @media only screen and (max-width: 768px) {
     width: 100% !important;
   }
 }
+
 .start-step1, start-step2 {
   height: auto;
   padding-right: $default-padding;
