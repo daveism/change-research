@@ -40,6 +40,31 @@ html, body {
   @include border-radius($default-radius, $default-radius);
 }
 
+#map-holder-2 {
+  @media only screen and (max-width: 768px) {
+    height: 100% !important;
+  }
+}
+
+#map-inner-holder-1, #map-inner-holder-2, #map-inner-holder-3 {
+  @media only screen and (max-width: 768px) {
+    flex-wrap: wrap;
+    flex-flow: column;
+    flex: 1 1 auto;
+  }
+}
+
+#map-1, #map-3 {
+  @media only screen and (max-width: 768px) {
+    width: 100% !important;
+  }
+}
+
+#map-2a, #map-2b {
+  @media only screen and (max-width: 768px) {
+    width: 100% !important;
+  }
+}
 .start-step1, start-step2 {
   height: auto;
   padding-right: $default-padding;
@@ -277,15 +302,15 @@ html, body {
   }
 }
 
-#submit-button {
+#submit-button-to-sus {
   font-weight: 700 !important;
   text-align: center !important;
 }
 
-#submit-button, #circle-button2 {
+#submit-button-to-sus, #circle-button2 {
   width: 45% !important;
   @media only screen and (max-width: 768px) {
-    width: 45% !important;
+    width: 100% !important;
     padding-left: 6px !important;
     padding-right: 6px !important;
   }
