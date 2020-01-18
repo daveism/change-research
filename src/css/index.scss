@@ -38,52 +38,39 @@ html, body {
 #map-holder-2, #map-2a, #map-2b,
 #map-inner-holder-end, #map-enda, #map-endb,
 #map-holder-3, #map-3 {
-  height: 100%;
   padding-right: $default-padding;
   @include border-radius($default-radius, $default-radius);
 }
 
-#map-holder-1, #map-holder-2, #map-holder-3, #map-holder-end {
+#map-inner-holder-1, #map-inner-holder-3, #map-enda, #map-endb{
+  height: 250px;
   @media only screen and (max-width: 768px) {
-    height: 100% !important;
-  }
-}
-
-#map-inner-holder-1, #map-inner-holder-3 {
-  @media only screen and (max-width: 768px) {
+    height: 200px;
     flex-flow: column;
   }
 }
 
-#map-inner-holder-2, #map-inner-holder-end {
+#map-inner-holder-2 {
+  height: 250px;
   @media only screen and (max-width: 768px) {
+    height: 500px;
     flex-wrap: wrap;
     flex-flow: column;
     flex: 1 1 auto;
   }
 }
 
-#map-1, #map-3 {
+#map-1, #map-3, #map-2a, #map-2b {
   @media only screen and (max-width: 768px) {
     width: 100% !important;
+    height: 100% !important
   }
 }
 
-#map-2a, #map-2b, #map-enda, #map-endb {
-  @media only screen and (max-width: 768px) {
-    width: 100% !important;
-  }
-}
-
- #map-enda, #map-endb {
-   height: 240px;
-   max-height: 240px;
- }
-
-.complete-map-n-description {
-  height: 325px;
-  max-height: 325px;
-}
+// .complete-map-n-description {
+//   height: 325px;
+//   max-height: 325px;
+// }
 
 .start-step1, start-step2 {
   height: auto;
@@ -91,45 +78,38 @@ html, body {
   @include border-radius($default-radius, $default-radius);
 
 }
-.start-height-actions, .start-height-map {
-  // height: 90% !important;
-}
+//
+// .start-height-actions {
+//   @media only screen and (max-width: 768px) {
+//     height: 60% !important;
+//     max-height: 60% !important;
+//   }
+// }
+//
+// .start-height-map {
+//   @media only screen and (max-width: 768px) {
+//     height: 35% !important;
+//   }
+// }
+//
+// .step-height-actions {
+//   @media only screen and (max-width: 768px) {
+//     height: 35% !important;
+//   }
+// }
+//
+// .step-height-map {
+//   @media only screen and (max-width: 768px) {
+//     height: 60% !important;
+//   }
+// }
 
-.step-height-actions, .step-height-map {
-  // height: 90% !important;
-}
-
-.start-height-actions {
-  @media only screen and (max-width: 768px) {
-    height: 60% !important;
-    max-height: 60% !important;
-  }
-}
-
-.start-height-map {
-  @media only screen and (max-width: 768px) {
-    height: 35% !important;
-  }
-}
-
-.step-height-actions {
-  @media only screen and (max-width: 768px) {
-    height: 35% !important;
-  }
-}
-
-.step-height-map {
-  @media only screen and (max-width: 768px) {
-    height: 60% !important;
-  }
-}
-
-#map-action-holder, #map-holder-1 {
-  // margin-top: 12px !important;
-  // @media only screen and (max-width: 768px) {
-  //   margin-top: 12px !important;
-  // }
-}
+// #map-action-holder, #map-holder-1 {
+//   // margin-top: 12px !important;
+//   // @media only screen and (max-width: 768px) {
+//   //   margin-top: 12px !important;
+//   // }
+// }
 
 #map-action-holder {
   @media only screen and (max-width: 768px) {
@@ -140,33 +120,7 @@ html, body {
 
 #map-holder-1 {
   @media only screen and (max-width: 768px) {
-    // margin-top: 12px !important;
     padding-bottom: 12px !important;
-  }
-}
-
-#geocoder {
-  width: 100% !important;
-  @include box_shadowmd(3);
-  @include border-radius(10px, 10px !important);
-  .mapboxgl-ctrl-geocoder {
-    @include border-radius(10px, 10px !important);
-  }
-
-  &.expand {
-    position: relative !important;
-    left: -12px !important;
-    width: 110%;
-    .mapboxgl-ctrl-geocoder--input {
-      width: 110% !important;
-      @media only screen and (max-height: 376px) {
-        width: 105% !important;
-      }
-      @include border-radius(10px, 10px !important);
-    }
-    .suggestions {
-      width: 110% !important;
-    }
   }
 }
 
