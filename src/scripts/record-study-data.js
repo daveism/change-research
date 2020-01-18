@@ -3,7 +3,7 @@ import { Store } from './store';
 const store = new Store({});
 const datapi = 'https://script.google.com/macros/s/AKfycbxRP9PVCSJ7Yo4_XYtqkzuSpHf0cOAn1noFKjdqnffBfS2ZEzw/exec';
 
-export class GoogleAnalytics {
+export class RecordStudyData {
   constructor() {
     this.foo = {};
   }
@@ -12,21 +12,15 @@ export class GoogleAnalytics {
     const uuid = store.getStateItem('uuid').toString();
     const date = new Date().toISOString();
     const data = label;
-
-    const fooObj = this.foo; // eslint-disable-line
-    gtag('event', uuid, {  // eslint-disable-line
-      event_category: category,
-      event_label: label,
-      value: `${value}`,
-      uuid
-    });
-
-    // since FF could be blocking ga writing data here as backup
+    const fooObj = this.foo;
+    
+    // study to JSON
     const jsondata = {
       uuid,
       category,
       data,
-      date
+      date,
+      fooObj
     };
 
     const dataAPIURL = new URL(datapi);

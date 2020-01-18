@@ -1,12 +1,18 @@
-import { GoogleAnalytics } from './ga';
+import { RecordStudyData } from './record-study-data';
 import { Store } from './store';
+import { Utility } from './utility';
 
-const googleAnalytics = new GoogleAnalytics();
+const recordStudyData = new RecordStudyData();
 const store = new Store({});
+const utility = new Utility();
 
 export class Handlers {
   constructor() {
     this.displayNoneClass = 'd-none';
+
+    // study aggreement
+    this.studyAggreementElementsAdd = ['study-progress-map-'];
+    this.studyAggreementElementsRemove = ['study-agreement-all'];
 
     // study questions map change
     this.studyQuestionElementsAdd = ['study-progress-sus'];
@@ -68,6 +74,42 @@ export class Handlers {
         });
       });
     }
+    return null
+  }
+
+  // adds handler for aggreeing to do study
+  //
+  // @param null
+  // @return null
+  addHandlerAgreeClick(elementID) {
+    const element = document.getElementById(elementID);
+    // ensure element exsists
+    if (element) {
+      element.addEventListener('click', () => {
+        const studyVersion = store.getStateItem('study-question');
+        const agreementTimeStamp = new Date().toISOString();
+
+        // add elements to UI
+        this.studyAggreementElementsAdd.forEach( elementUIID => {
+          document.getElementById(`${elementUIID}${studyVersion}`).classList.remove(this.displayNoneClass);
+        });
+
+        //  remove elements from UI
+        this.studyAggreementElementsRemove.forEach( elementUIID => {
+          // only add display none class if the class does not exsist
+          // ensure that duplicate classes are not added
+          if (!document.getElementById(elementUIID).classList.contains(this.displayNoneClass)) {
+            document.getElementById(elementUIID).classList.add(this.displayNoneClass);
+          }
+        });
+
+        utility.triggerEvent('aggree-clicked', 'handleAgreeClick')
+        store.setStateItem('study-agreement', true);
+        store.setStateItem('study-agreement-date', agreementTimeStamp);
+        recordStudyData.setEvent('data', 'study-agreement', true);
+      });
+    }
+    return null;
   }
 
 }

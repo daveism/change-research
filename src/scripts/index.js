@@ -1,22 +1,31 @@
 // import dependencies
+// to dos record data at end so its all in one row.... store it in store then get each element
 import { library, dom } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import mapboxgl from 'mapbox-gl';
 import { Store } from './store';
-import { GoogleAnalytics } from './ga';
+import { RecordStudyData } from './record-study-data';
 import { MapBoxConfig } from './map-config';
 import { Utility } from './utility';
 import { Handlers } from './handlers';
 
+import blockStudyAggreement from '../content-blocks/block-study-aggreement.html';
+import blockStudyDissaggree from '../content-blocks/block-study-dissaggree.html';
+import blockStudyQuestion1 from '../content-blocks/block-study-question-1.html';
+import blockStudyQuestion2 from '../content-blocks/block-study-question-2.html';
+import blockStudyQuestion3 from '../content-blocks/block-study-question-3.html';
+import blockStudySUS from '../content-blocks/block-study-sus.html';
+import blockStudyCompleted from '../content-blocks/block-study-completed.html';
+
 const store = new Store({});
-const googleAnalytics = new GoogleAnalytics();
+const recordStudyData = new RecordStudyData();
 const mapBoxConfig = new MapBoxConfig();
 const utility = new Utility();
 const handlers = new Handlers();
 
 if (!utility.checkValidObject(store.getStateItem('uuid'))) {
-  store.setStateItem('uuid', uuid().toString());
+  store.setStateItem('uuid', utility.uuid().toString());
 }
 
 // Kicks off the process of finding <i> tags and replacing with <svg>
@@ -24,6 +33,16 @@ if (!utility.checkValidObject(store.getStateItem('uuid'))) {
 library.add(fas, far);
 dom.watch();
 
+// study constraints number of questions starts with 0
+const studyMinOne = 0;
+const studyMaxOne = 2;
+const studyVersion = Math.floor(Math.random() * (studyMaxOne - studyMinOne + 1) + studyMinOne);
+store.setStateItem('study-question', studyVersion);
+recordStudyData.setEvent('data', 'study-question', studyVersion);
+
+
+// TODO only deal with map for study question
+// only load html block needed map objects will have generic names also
 function resizeAllMaps() {
   map1.resize();
   map2a.resize();
@@ -33,20 +52,33 @@ function resizeAllMaps() {
   mapEndb.resize();
 }
 
+
+document.addEventListener('aggree-clicked', () => {
+  resizeAllMaps();
+})
+
 const urlString = window.location.href;
 const url = new URL(urlString);
 const campaign = url.searchParams.get('campaign');
 
 // ga event action, category, label
-googleAnalytics.setEvent('data', 'study started', 'true');
+recordStudyData.setEvent('data', 'study started', 'true');
 
 // ga event action, category, label
-googleAnalytics.setEvent('data', 'campaign', campaign);
+recordStudyData.setEvent('data', 'campaign', campaign);
 
 // ga event action, category, label
-googleAnalytics.setEvent('data', 'mobile', utility.isMobileDevice());
+recordStudyData.setEvent('data', 'mobile', utility.isMobileDevice());
 
-mapboxgl.accessToken = 'pk.eyJ1IjoiZGF2ZWlzbSIsImEiOiJCdjUxT0FzIn0.V9oIk_wUc4uZu7UBblR8mw';
+// load all html blocks
+utility.loadHTMLBlock('block-study-aggreement-holder', blockStudyAggreement);
+utility.loadHTMLBlock('block-study-dissaggree-holder', blockStudyDissaggree)
+utility.loadHTMLBlock('block-study-question-1-holder', blockStudyQuestion1);
+utility.loadHTMLBlock('block-study-question-2-holder', blockStudyQuestion2);
+utility.loadHTMLBlock('block-study-question-3-holder', blockStudyQuestion3);
+utility.loadHTMLBlock('block-study-sus-holder', blockStudySUS);
+utility.loadHTMLBlock('block-study-completed-holder', blockStudyCompleted);;
+utility.loadHTMLBlock('block-study-completed-holder', blockStudyCompleted);;
 
 // create all the mapbox map objects
 const map1 = mapBoxConfig.makeMap('map-1');
@@ -68,6 +100,17 @@ map3.addControl(nav, 'top-left');
 mapEnda.addControl(nav, 'top-left');
 mapEndb.addControl(nav, 'top-left');
 
+
+// all the Aggreement change elements possible
+const aggrementChangeElements = ['aggree-button']
+
+// elements to add to UI after clicking on submit change
+// from one of three map questions
+aggrementChangeElements.forEach( elementUIID => {
+  handlers.addHandlerAgreeClick(elementUIID);
+});
+
+
 // all the submit change elements possible
 const submitChangeElements = ['submit-button-to-sus-0', 'submit-button-to-sus-1', 'submit-button-to-sus-2']
 
@@ -83,45 +126,38 @@ const susChangeElements = ['submit-button-to-end']
 // elements to add to UI after clicking on submit change
 // from one of three map questions
 susChangeElements.forEach( elementUIID => {
-  console.log('susChangeElements', elementUIID)
   handlers.addHandlerSubmitSUSClick(elementUIID);
 });
 
 
-// function
-function handleAgreeClick() {
-  const minOne = 0;
-  const maxOne = 2;
-  const studyVersion = Math.floor(Math.random() * (maxOne - minOne + 1) + minOne);
-  // const  = ; //Math.floor(Math.random() * (3 - 1 + 1) + 1);
-
-  document.getElementById(`study-progress-map-${studyVersion}`).classList.remove('d-none');
-  // document.getElementById(`study-progress-sus`).classList.remove('d-none');
-  document.getElementById('study-agreement-all').classList.add('d-none');
-
-
-  resizeAllMaps();
-  store.setStateItem('study-agreement', true);
-  googleAnalytics.setEvent('data', 'study-agreement', true);
-  return null;
-}
+// // function
+// function handleAgreeClick() {
+//   // const minOne = 0;
+//   // const maxOne = 2;
+//   // const studyVersion = Math.floor(Math.random() * (maxOne - minOne + 1) + minOne);
+//   // const  = ; //Math.floor(Math.random() * (3 - 1 + 1) + 1);
+//
+//   document.getElementById(`study-progress-map-${studyVersion}`).classList.remove('d-none');
+//   // document.getElementById(`study-progress-sus`).classList.remove('d-none');
+//   document.getElementById('study-agreement-all').classList.add('d-none');
+//
+//   utility.triggerEvent('aggree-clicked', 'handleAgreeClick')
+//   //
+//   store.setStateItem('study-agreement', true);
+//   const agreementTimeStamp = new Date().toISOString();
+//   store.setStateItem('study-agreement-date', agreementTimeStamp);
+//   recordStudyData.setEvent('data', 'study-agreement', true);
+//   return null;
+// }
 
 function handleDissagreeClick() {
-  document.getElementById('study-progress').classList.remove('d-none');
   document.getElementById('study-dissaggree').classList.remove('d-none');
   document.getElementById('study-agreement-all').classList.add('d-none');
-  document.getElementById('study-progress').remove();
   store.setStateItem('study-agreement', false);
   // ga event action, category, label
-  googleAnalytics.setEvent('data', 'study-agreement', false);
+  recordStudyData.setEvent('data', 'study-agreement', false);
 
   return null;
-}
-
-
-
-function uuid() {
-  return crypto.getRandomValues(new Uint32Array(4)).join('-');
 }
 
 // check study session state for completetion
@@ -172,10 +208,10 @@ if (studyCompleted) { // || studyAgrreed
   store.setStateItem('studycompleted', false);
 }
 
-const aggreeButtonElement = document.getElementById('aggree-button');
-if (aggreeButtonElement) {
-  aggreeButtonElement.addEventListener('click', handleAgreeClick);
-}
+// const aggreeButtonElement = document.getElementById('aggree-button');
+// if (aggreeButtonElement) {
+//   aggreeButtonElement.addEventListener('click', handleAgreeClick);
+// }
 
 const dissaggreeButtonElement = document.getElementById('diaggree-button');
 if (dissaggreeButtonElement) {

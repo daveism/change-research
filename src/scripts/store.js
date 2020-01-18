@@ -40,6 +40,7 @@ export class Store {
     const storeObj = { [key]: value };
     const newStateObj = { ...this.getState(), ...storeObj };
     this.setState(newStateObj);
+    return newStateObj;
   }
 
   // Gets the entire state object
@@ -57,7 +58,6 @@ export class Store {
     return this.storage.getItem(STATE_KEY);
   }
 
-  // G
   // Gets an item from the storage provider, primarily used later in the composed functions
   //
   // @param key | string
@@ -72,6 +72,7 @@ export class Store {
   // @param value | string
   setState(value = {}) {
     this.storage.setItem(STATE_KEY, JSON.stringify(value));
+    return this.checkStateExists() ? JSON.parse(this.getItem(STATE_KEY)) : {};;
   }
 
 
