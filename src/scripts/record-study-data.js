@@ -9,18 +9,18 @@ export class RecordStudyData {
   }
 
   setEvent(action = '', category = '', label = '', value = 0) {
-    const uuid = store.getStateItem('uuid').toString();
-    const date = new Date().toISOString();
-    const data = label;
-    const fooObj = this.foo;
-    
+    // get varriables for
+    this.uuid = store.getStateItem('uuid').toString();
+    this.date = new Date().toISOString();
+    this.data = label;
+    this.category = category;
+
     // study to JSON
     const jsondata = {
-      uuid,
-      category,
-      data,
-      date,
-      fooObj
+      uuid: this.uuid,
+      category: this.category,
+      data: this.data,
+      date: this.date
     };
 
     const dataAPIURL = new URL(datapi);

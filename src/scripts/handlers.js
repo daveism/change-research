@@ -19,12 +19,12 @@ export class Handlers {
     this.studyDisaggreementElementsRemove = ['study-agreement-all'];
 
     // study questions map change
-    this.studyQuestionElementsAdd = ['study-progress-sus'];
+    this.studyQuestionElementsAdd = ['study-progress-sus', 'block-study-sus-holder'];
     this.studyQuestionElementsRemove = ['study-progress-map-0', 'study-progress-map-1', 'study-progress-map-2', 'map-action-holder'];
 
     // SUS scores
-    this.studySUSElementsAdd = ['study-progress-end'];
-    this.studySUSElementsRemove = ['study-progress-sus'];
+    this.studySUSElementsAdd = ['study-progress-end', 'block-study-completed-holder'];
+    this.studySUSElementsRemove = ['study-progress-sus', 'block-study-sus-holder'];
   }
 
   // adds handler for submitting change data on map
@@ -38,12 +38,12 @@ export class Handlers {
     if (element) {
       element.addEventListener('click', () => {
         // add elements to UI
-        this.studyQuestionElementsAdd.forEach( elementUIID => {
+        this.studyQuestionElementsAdd.forEach((elementUIID) => {
           document.getElementById(elementUIID).classList.remove(this.displayNoneClass);
         });
 
         //  remove elements from UI
-        this.studyQuestionElementsRemove.forEach( elementUIID => {
+        this.studyQuestionElementsRemove.forEach((elementUIID) => {
           // only add display none class if the class does not exsist
           // ensure that duplicate classes are not added
           if (!document.getElementById(elementUIID).classList.contains(this.displayNoneClass)) {
@@ -64,12 +64,12 @@ export class Handlers {
     if (element) {
       element.addEventListener('click', () => {
         // add elements to UI
-        this.studySUSElementsAdd.forEach( elementUIID => {
+        this.studySUSElementsAdd.forEach((elementUIID) => {
           document.getElementById(elementUIID).classList.remove(this.displayNoneClass);
         });
 
         //  remove elements from UI
-        this.studySUSElementsRemove.forEach( elementUIID => {
+        this.studySUSElementsRemove.forEach((elementUIID) => {
           // only add display none class if the class does not exsist
           // ensure that duplicate classes are not added
           if (!document.getElementById(elementUIID).classList.contains(this.displayNoneClass)) {
@@ -78,7 +78,7 @@ export class Handlers {
         });
       });
     }
-    return null
+    return null;
   }
 
   // adds handler for aggreeing to do study
@@ -94,12 +94,12 @@ export class Handlers {
         const agreementTimeStamp = new Date().toISOString();
 
         // add elements to UI
-        this.studyAggreementElementsAdd.forEach( elementUIID => {
+        this.studyAggreementElementsAdd.forEach((elementUIID) => {
           document.getElementById(`${elementUIID}${studyVersion}`).classList.remove(this.displayNoneClass);
         });
 
         //  remove elements from UI
-        this.studyAggreementElementsRemove.forEach( elementUIID => {
+        this.studyAggreementElementsRemove.forEach((elementUIID) => {
           // only add display none class if the class does not exsist
           // ensure that duplicate classes are not added
           if (!document.getElementById(elementUIID).classList.contains(this.displayNoneClass)) {
@@ -107,7 +107,7 @@ export class Handlers {
           }
         });
 
-        utility.triggerEvent('aggree-clicked', 'handleAgreeClick')
+        utility.triggerEvent('aggree-clicked', 'handleAgreeClick');
         store.setStateItem('study-agreement', true);
         store.setStateItem('study-agreement-date', agreementTimeStamp);
         recordStudyData.setEvent('data', 'study-agreement', true);
@@ -125,16 +125,14 @@ export class Handlers {
     // ensure element exsists
     if (element) {
       element.addEventListener('click', () => {
-        const studyVersion = store.getStateItem('study-question');
         const agreementTimeStamp = new Date().toISOString();
-
         // add elements to UI
-        this.studyDisaggreementElementsAdd.forEach( elementUIID => {
+        this.studyDisaggreementElementsAdd.forEach((elementUIID) => {
           document.getElementById(elementUIID).classList.remove(this.displayNoneClass);
         });
 
         //  remove elements from UI
-        this.studyDisaggreementElementsRemove.forEach( elementUIID => {
+        this.studyDisaggreementElementsRemove.forEach((elementUIID) => {
           // only add display none class if the class does not exsist
           // ensure that duplicate classes are not added
           if (!document.getElementById(elementUIID).classList.contains(this.displayNoneClass)) {
@@ -142,7 +140,7 @@ export class Handlers {
           }
         });
 
-        utility.triggerEvent('aggree-clicked', 'handleAgreeClick')
+        utility.triggerEvent('disaggree-clicked', 'handleAgreeClick');
         store.setStateItem('study-agreement', false);
         store.setStateItem('study-agreement-date', agreementTimeStamp);
         recordStudyData.setEvent('data', 'study-agreement', false);

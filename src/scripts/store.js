@@ -64,7 +64,6 @@ export class Store {
   // @return string
   getStateItem(key = '') {
     return this.checkItem(key) ? this.getState()[key] : {};
-    // this.storage.getItem(key);
   }
 
   // Sets a new state object state
@@ -72,9 +71,8 @@ export class Store {
   // @param value | string
   setState(value = {}) {
     this.storage.setItem(STATE_KEY, JSON.stringify(value));
-    return this.checkStateExists() ? JSON.parse(this.getItem(STATE_KEY)) : {};;
+    return this.checkStateExists() ? JSON.parse(this.getItem(STATE_KEY)) : {};
   }
-
 
   // Checks if the state exists in the storage provider
   checkStateExists() {

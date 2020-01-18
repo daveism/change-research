@@ -3,7 +3,6 @@
 import { library, dom } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
-import mapboxgl from 'mapbox-gl';
 import { Store } from './store';
 import { RecordStudyData } from './record-study-data';
 import { MapBoxConfig } from './map-config';
@@ -33,52 +32,14 @@ if (!utility.checkValidObject(store.getStateItem('uuid'))) {
 library.add(fas, far);
 dom.watch();
 
-// study constraints number of questions starts with 0
-const studyMinOne = 0;
-const studyMaxOne = 2;
-const studyVersion = Math.floor(Math.random() * (studyMaxOne - studyMinOne + 1) + studyMinOne);
-store.setStateItem('study-question', studyVersion);
-recordStudyData.setEvent('data', 'study-question', studyVersion);
-
-
-// TODO only deal with map for study question
-// only load html block needed map objects will have generic names also
-function resizeAllMaps() {
-  map1.resize();
-  map2a.resize();
-  map2b.resize();
-  map3.resize();
-  mapEnda.resize();
-  mapEndb.resize();
-}
-
-
-document.addEventListener('aggree-clicked', () => {
-  resizeAllMaps();
-})
-
-const urlString = window.location.href;
-const url = new URL(urlString);
-const campaign = url.searchParams.get('campaign');
-
-// ga event action, category, label
-recordStudyData.setEvent('data', 'study started', 'true');
-
-// ga event action, category, label
-recordStudyData.setEvent('data', 'campaign', campaign);
-
-// ga event action, category, label
-recordStudyData.setEvent('data', 'mobile', utility.isMobileDevice());
-
 // load all html blocks
 utility.loadHTMLBlock('block-study-aggreement-holder', blockStudyAggreement);
-utility.loadHTMLBlock('block-study-dissaggree-holder', blockStudyDissaggree)
+utility.loadHTMLBlock('block-study-dissaggree-holder', blockStudyDissaggree);
 utility.loadHTMLBlock('block-study-question-1-holder', blockStudyQuestion1);
 utility.loadHTMLBlock('block-study-question-2-holder', blockStudyQuestion2);
 utility.loadHTMLBlock('block-study-question-3-holder', blockStudyQuestion3);
 utility.loadHTMLBlock('block-study-sus-holder', blockStudySUS);
-utility.loadHTMLBlock('block-study-completed-holder', blockStudyCompleted);;
-utility.loadHTMLBlock('block-study-completed-holder', blockStudyCompleted);;
+utility.loadHTMLBlock('block-study-completed-holder', blockStudyCompleted);
 
 // create all the mapbox map objects
 const map1 = mapBoxConfig.makeMap('map-1');
@@ -100,51 +61,80 @@ map3.addControl(nav, 'top-left');
 mapEnda.addControl(nav, 'top-left');
 mapEndb.addControl(nav, 'top-left');
 
+// study constraints number of questions starts with 0
+const studyMinOne = 0;
+const studyMaxOne = 2;
+const studyVersion = Math.floor(Math.random() * (studyMaxOne - studyMinOne + 1) + studyMinOne);
+store.setStateItem('study-question', studyVersion);
+recordStudyData.setEvent('data', 'study-question', studyVersion);
+
+// TODO only deal with map for study question
+// only load html block needed map objects will have generic names also
+function resizeAllMaps() {
+  map1.resize();
+  map2a.resize();
+  map2b.resize();
+  map3.resize();
+  mapEnda.resize();
+  mapEndb.resize();
+}
+
+document.addEventListener('aggree-clicked', () => {
+  resizeAllMaps();
+});
+
+document.addEventListener('disaggree-clicked', () => {
+  resizeAllMaps();
+});
+
+const urlString = window.location.href;
+const url = new URL(urlString);
+const campaign = url.searchParams.get('campaign');
+
+// ga event action, category, label
+recordStudyData.setEvent('data', 'study started', 'true');
+
+// ga event action, category, label
+recordStudyData.setEvent('data', 'campaign', campaign);
+
+// ga event action, category, label
+recordStudyData.setEvent('data', 'mobile', utility.isMobileDevice());
+
 // all the Aggreement change elements possible
-const aggrementChangeElements = ['aggree-button']
+const aggrementChangeElements = ['aggree-button'];
 
 // elements to add to UI after clicking on aggree to
 // particpate in study
-aggrementChangeElements.forEach( elementUIID => {
+aggrementChangeElements.forEach((elementUIID) => {
   handlers.addHandlerAgreeClick(elementUIID);
 });
 
 // all the Disaggreement change elements possible
-const disaggrementChangeElements = ['diaggree-button']
+const disaggrementChangeElements = ['diaggree-button'];
 
 // elements to add to UI after clicking on aggree to
 // particpate in study
-disaggrementChangeElements.forEach( elementUIID => {
+disaggrementChangeElements.forEach((elementUIID) => {
   handlers.addHandlerDisagreeClick(elementUIID);
 });
 
 // all the submit change elements possible
-const submitChangeElements = ['submit-button-to-sus-0', 'submit-button-to-sus-1', 'submit-button-to-sus-2']
+const submitChangeElements = ['submit-button-to-sus-0', 'submit-button-to-sus-1', 'submit-button-to-sus-2'];
 
 // elements to add to UI after clicking on submit change
 // from one of three map questions
-submitChangeElements.forEach( elementUIID => {
+submitChangeElements.forEach((elementUIID) => {
   handlers.addHandlerSubmitChangeClick(elementUIID);
 });
 
 // all the SUS change elements possible
-const susChangeElements = ['submit-button-to-end']
+const susChangeElements = ['submit-button-to-end'];
 
 // elements to add to UI after clicking on submit change
 // from one of three map questions
-susChangeElements.forEach( elementUIID => {
+susChangeElements.forEach((elementUIID) => {
   handlers.addHandlerSubmitSUSClick(elementUIID);
 });
-
-function handleDissagreeClick() {
-  document.getElementById('study-dissaggree').classList.remove('d-none');
-  document.getElementById('study-agreement-all').classList.add('d-none');
-  store.setStateItem('study-agreement', false);
-  // ga event action, category, label
-  recordStudyData.setEvent('data', 'study-agreement', false);
-
-  return null;
-}
 
 // check study session state for completetion
 const isStudycompleted = store.getStateItem('studycompleted');
@@ -170,13 +160,8 @@ if (studyAgrreed) {
 }
 
 // hide study
-if (studyCompleted) { // || studyAgrreed
-
-  const distancekm = store.getStateItem('distancekm');
-  const distancemeters = store.getStateItem('distancemeters');
-  const distancefeet = store.getStateItem('distancefeet');
-  const distancemiles = store.getStateItem('distancemiles');
-  const studydistancequestion = store.getStateItem('studydistancequestion');
+if (studyCompleted) { //
+  store.setStateItem('studycompleted', true);
 } else {
   store.setStateItem('studycompleted', false);
 }
