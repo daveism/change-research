@@ -14,6 +14,10 @@ export class Handlers {
     this.studyAggreementElementsAdd = ['study-progress-map-'];
     this.studyAggreementElementsRemove = ['study-agreement-all'];
 
+    // study disaggreement
+    this.studyDisaggreementElementsAdd = ['study-dissaggree'];
+    this.studyDisaggreementElementsRemove = ['study-agreement-all'];
+
     // study questions map change
     this.studyQuestionElementsAdd = ['study-progress-sus'];
     this.studyQuestionElementsRemove = ['study-progress-map-0', 'study-progress-map-1', 'study-progress-map-2', 'map-action-holder'];
@@ -112,4 +116,38 @@ export class Handlers {
     return null;
   }
 
+  // adds handler for DISaggreeing to do study
+  //
+  // @param null
+  // @return null
+  addHandlerDisagreeClick(elementID) {
+    const element = document.getElementById(elementID);
+    // ensure element exsists
+    if (element) {
+      element.addEventListener('click', () => {
+        const studyVersion = store.getStateItem('study-question');
+        const agreementTimeStamp = new Date().toISOString();
+
+        // add elements to UI
+        this.studyDisaggreementElementsAdd.forEach( elementUIID => {
+          document.getElementById(elementUIID).classList.remove(this.displayNoneClass);
+        });
+
+        //  remove elements from UI
+        this.studyDisaggreementElementsRemove.forEach( elementUIID => {
+          // only add display none class if the class does not exsist
+          // ensure that duplicate classes are not added
+          if (!document.getElementById(elementUIID).classList.contains(this.displayNoneClass)) {
+            document.getElementById(elementUIID).classList.add(this.displayNoneClass);
+          }
+        });
+
+        utility.triggerEvent('aggree-clicked', 'handleAgreeClick')
+        store.setStateItem('study-agreement', false);
+        store.setStateItem('study-agreement-date', agreementTimeStamp);
+        recordStudyData.setEvent('data', 'study-agreement', false);
+      });
+    }
+    return null;
+  }
 }

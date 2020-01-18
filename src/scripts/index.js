@@ -100,16 +100,23 @@ map3.addControl(nav, 'top-left');
 mapEnda.addControl(nav, 'top-left');
 mapEndb.addControl(nav, 'top-left');
 
-
 // all the Aggreement change elements possible
 const aggrementChangeElements = ['aggree-button']
 
-// elements to add to UI after clicking on submit change
-// from one of three map questions
+// elements to add to UI after clicking on aggree to
+// particpate in study
 aggrementChangeElements.forEach( elementUIID => {
   handlers.addHandlerAgreeClick(elementUIID);
 });
 
+// all the Disaggreement change elements possible
+const disaggrementChangeElements = ['diaggree-button']
+
+// elements to add to UI after clicking on aggree to
+// particpate in study
+disaggrementChangeElements.forEach( elementUIID => {
+  handlers.addHandlerDisagreeClick(elementUIID);
+});
 
 // all the submit change elements possible
 const submitChangeElements = ['submit-button-to-sus-0', 'submit-button-to-sus-1', 'submit-button-to-sus-2']
@@ -128,27 +135,6 @@ const susChangeElements = ['submit-button-to-end']
 susChangeElements.forEach( elementUIID => {
   handlers.addHandlerSubmitSUSClick(elementUIID);
 });
-
-
-// // function
-// function handleAgreeClick() {
-//   // const minOne = 0;
-//   // const maxOne = 2;
-//   // const studyVersion = Math.floor(Math.random() * (maxOne - minOne + 1) + minOne);
-//   // const  = ; //Math.floor(Math.random() * (3 - 1 + 1) + 1);
-//
-//   document.getElementById(`study-progress-map-${studyVersion}`).classList.remove('d-none');
-//   // document.getElementById(`study-progress-sus`).classList.remove('d-none');
-//   document.getElementById('study-agreement-all').classList.add('d-none');
-//
-//   utility.triggerEvent('aggree-clicked', 'handleAgreeClick')
-//   //
-//   store.setStateItem('study-agreement', true);
-//   const agreementTimeStamp = new Date().toISOString();
-//   store.setStateItem('study-agreement-date', agreementTimeStamp);
-//   recordStudyData.setEvent('data', 'study-agreement', true);
-//   return null;
-// }
 
 function handleDissagreeClick() {
   document.getElementById('study-dissaggree').classList.remove('d-none');
@@ -185,35 +171,12 @@ if (studyAgrreed) {
 
 // hide study
 if (studyCompleted) { // || studyAgrreed
-  handleAgreeClick();
 
   const distancekm = store.getStateItem('distancekm');
   const distancemeters = store.getStateItem('distancemeters');
   const distancefeet = store.getStateItem('distancefeet');
   const distancemiles = store.getStateItem('distancemiles');
   const studydistancequestion = store.getStateItem('studydistancequestion');
-
-  document.getElementById('study-complete-question').innerHTML = `${studydistancequestion}`;
-  document.getElementById('study-complete-miles').innerHTML = `${distancemiles.toFixed(2)} miles or`;
-  document.getElementById('study-complete-feet').innerHTML = `${distancefeet.toFixed(2)} feet or`;
-  document.getElementById('study-complete-km').innerHTML = `${distancekm.toFixed(2)} kilometers or`;
-  document.getElementById('study-complete-meters').innerHTML = `${distancemeters.toFixed(2)} meters.`;
-
-  document.getElementById('study-complete').classList.remove('d-none');
-  document.getElementById('study-progress').remove();
-  document.getElementById('map-holder').remove();
-  document.getElementById('study-agreement-all').remove();
-  document.getElementById('map-action-holder').className ='col-12'; // eslint-disable-line
 } else {
   store.setStateItem('studycompleted', false);
-}
-
-// const aggreeButtonElement = document.getElementById('aggree-button');
-// if (aggreeButtonElement) {
-//   aggreeButtonElement.addEventListener('click', handleAgreeClick);
-// }
-
-const dissaggreeButtonElement = document.getElementById('diaggree-button');
-if (dissaggreeButtonElement) {
-  dissaggreeButtonElement.addEventListener('click', handleDissagreeClick);
 }
