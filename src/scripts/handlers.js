@@ -1,10 +1,12 @@
 import { RecordStudyData } from './record-study-data';
 import { Store } from './store';
 import { Utility } from './utility';
+import { MapBoxConfig } from './map-config';
 
 const recordStudyData = new RecordStudyData();
 const store = new Store({});
 const utility = new Utility();
+const mapBoxConfig = new MapBoxConfig();
 
 export class Handlers {
   constructor() {
@@ -78,6 +80,7 @@ export class Handlers {
         });
       });
     }
+    
     return null;
   }
 
