@@ -136,6 +136,54 @@ susChangeElements.forEach((elementUIID) => {
   handlers.addHandlerSubmitSUSClick(elementUIID);
 });
 
+const susBtnGroupElements = ['btn-group-sus-1',
+                           'btn-group-sus-2',
+                           'btn-group-sus-3',
+                           'btn-group-sus-4',
+                           'btn-group-sus-5',
+                           'btn-group-sus-6',
+                           'btn-group-sus-7',
+                           'btn-group-sus-8',
+                           'btn-group-sus-9',
+                           'btn-group-sus-10'
+                         ];
+
+
+susBtnGroupElements.forEach((elementUIID) => {
+  const element = document.getElementById(elementUIID);
+  const selectedClass = 'selected';
+
+  // ensure element exsists
+  if (element) {
+    // click a sus question handler
+    element.addEventListener('click', (e) => {
+      // unselect the group if
+      const parentBtnGroup = document.getElementById(e.target.id).parentElement;
+      const children = parentBtnGroup.childNodes;
+      if (!utility.checkValidObject(children)) { return false; }
+      if (children.length > 0) {
+        const childrenArray = [...children];
+        childrenArray.forEach((childItem) => {
+          if(childItem.classList) {
+            childItem.classList.remove(selectedClass);
+          }
+        });
+      }
+
+      // setup record question and answer but hold off on writting to api
+      // untill user clicks submit
+      const questionText = parentBtnGroup.id.replace('btn-group-sus-', 'sus-question-');
+      store.setStateItem(questionText, e.target.innerText);
+      // recordStudyData.setEvent('data', questionText, e.target.innerText);
+
+      if (!document.getElementById(e.target.id).classList.contains(selectedClass)) {
+        document.getElementById(e.target.id).classList.add(selectedClass);
+      }
+    });
+  }
+ // handlers.addHandlerSubmitSUSClick(elementUIID);
+});
+
 // check study session state for completetion
 const isStudycompleted = store.getStateItem('studycompleted');
 let studyCompleted = false;

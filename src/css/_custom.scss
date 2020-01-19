@@ -14,6 +14,10 @@
     }
 }
 
+a {
+  color: $a-darker-color !important;
+}
+
 .h-90 {
   height: 90% !important;
 }
@@ -68,9 +72,8 @@
 }
 
 .btn-xlight {
-  $xlight: darken($body-background-color, 20);
-  background-color: $xlight !important;
-  color: $body-color !important;
+  background-color: $body-background-daker-color;
+  color: $btn-darker-color !important;
   height: $default-control-height !important;
   @include border-radius($round-radius, $round-radius);
   // @include box_shadowmd(1);
@@ -80,10 +83,10 @@
     box-shadow: unset !important;
   }
   &:hover {
-    background-color: lighten($xlight, 10) !important;
+    background-color: lighten($body-background-daker-color, 10) !important;
   }
   &.disabled {
-    background-color: lighten($xlight, 10) !important;
+    background-color: lighten($body-background-daker-color, 10) !important;
   }
 }
 
@@ -107,14 +110,16 @@
   height: $default-control-height !important;
   box-shadow: unset !important;
 
-  &:focus, &:hover {
+  &:focus, &:hover, &.selected {
     outline: none !important;
     border-width: 1px !important;
-    background-color: darken($body-color, 20) !important;
+    background-color: $btn-sus-select !important;
+    color: $body-color !important;
   }
 
   &.disabled {
     background-color: darken($body-color, 20) !important;
+    color: darken($body-color, 20) !important;
   }
 }
 

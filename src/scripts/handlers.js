@@ -27,6 +27,17 @@ export class Handlers {
     // SUS scores
     this.studySUSElementsAdd = ['study-progress-end', 'block-study-completed-holder'];
     this.studySUSElementsRemove = ['study-progress-sus', 'block-study-sus-holder'];
+    this.susStorageKeys = ['sus-question-1',
+                         'sus-question-2',
+                         'sus-question-3',
+                         'sus-question-4',
+                         'sus-question-5',
+                         'sus-question-6',
+                         'sus-question-7',
+                         'sus-question-8',
+                         'sus-question-9',
+                         'sus-question-10',
+                       ]
   }
 
   // adds handler for submitting change data on map
@@ -78,9 +89,14 @@ export class Handlers {
             document.getElementById(elementUIID).classList.add(this.displayNoneClass);
           }
         });
+
+        this.susStorageKeys.forEach((key) => {
+          const questionAnswer = store.getStateItem(key);
+          recordStudyData.setEvent('data', key, questionAnswer);
+        })
       });
     }
-    
+
     return null;
   }
 
