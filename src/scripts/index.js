@@ -45,7 +45,7 @@ utility.loadHTMLBlock('block-study-completed-holder', blockStudyCompleted);
 const map1 = mapBoxConfig.makeMap('map-1');
 const map2a = mapBoxConfig.makeMap('map-2a');
 const map2b = mapBoxConfig.makeMap('map-2b');
-const map3 = mapBoxConfig.makeMap('map-3');
+const map3 = mapBoxConfig.makeCompareMap('map-3a', 'map-3b', 'compare-wrapper');
 const mapEnda = mapBoxConfig.makeMap('map-enda');
 const mapEndb = mapBoxConfig.makeMap('map-endb');
 
@@ -57,9 +57,13 @@ const nav = mapBoxConfig.addNav();
 map1.addControl(nav, 'top-left');
 map2a.addControl(nav, 'top-left');
 map2b.addControl(nav, 'top-left');
-map3.addControl(nav, 'top-left');
+// map3.addControl(nav, 'top-left');
 mapEnda.addControl(nav, 'top-left');
 mapEndb.addControl(nav, 'top-left');
+
+// sync maps
+mapBoxConfig.synMaps(map2a, map2b);
+mapBoxConfig.synMaps(mapEnda, mapEndb);
 
 // study constraints number of questions starts with 0
 const studyMinOne = 0;
@@ -72,9 +76,9 @@ recordStudyData.setEvent('data', 'study-question', studyVersion);
 // only load html block needed map objects will have generic names also
 function resizeAllMaps() {
   map1.resize();
-  map2a.resize();
-  map2b.resize();
-  map3.resize();
+  // map2a.resize();
+  // map2b.resize();
+  // map3.resize();
   mapEnda.resize();
   mapEndb.resize();
 }
