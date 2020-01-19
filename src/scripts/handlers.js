@@ -49,7 +49,7 @@ export class Handlers {
 
     // ensure element exsists
     if (element) {
-      element.addEventListener('click', () => {
+      element.addEventListener('click', (e) => {
         // add elements to UI
         this.studyQuestionElementsAdd.forEach((elementUIID) => {
           document.getElementById(elementUIID).classList.remove(this.displayNoneClass);
@@ -75,7 +75,7 @@ export class Handlers {
     const element = document.getElementById(elementID);
     // ensure element exsists
     if (element) {
-      element.addEventListener('click', () => {
+      element.addEventListener('click', (e) => {
         // add elements to UI
         this.studySUSElementsAdd.forEach((elementUIID) => {
           document.getElementById(elementUIID).classList.remove(this.displayNoneClass);
@@ -108,7 +108,7 @@ export class Handlers {
     const element = document.getElementById(elementID);
     // ensure element exsists
     if (element) {
-      element.addEventListener('click', () => {
+      element.addEventListener('click', (e) => {
         const studyVersion = store.getStateItem('study-question');
         const agreementTimeStamp = new Date().toISOString();
 
@@ -143,7 +143,7 @@ export class Handlers {
     const element = document.getElementById(elementID);
     // ensure element exsists
     if (element) {
-      element.addEventListener('click', () => {
+      element.addEventListener('click', (e) => {
         const agreementTimeStamp = new Date().toISOString();
         // add elements to UI
         this.studyDisaggreementElementsAdd.forEach((elementUIID) => {
@@ -167,4 +167,85 @@ export class Handlers {
     }
     return null;
   }
+
+
+  // adds handler for individual sus score questions to local storage
+  //
+  // @param elementID - HTML element ID
+  // @return null
+  addHandlerSUSQuestionClick(elementID) {
+    const element = document.getElementById(elementID);
+    const selectedClass = 'selected';
+
+    // ensure element exsists
+    if (element) {
+      element.addEventListener('click', (e) => {
+
+        // get parent element which is button group
+        const parentBtnGroup = document.getElementById(e.target.id).parentElement;
+        Handlers.toggleButtonGroupButttonsOff(parentBtnGroup, selectedClass);
+
+        const questionText = parentBtnGroup.id.replace('btn-group-sus-', 'sus-question-');
+        store.setStateItem(questionText, e.target.innerText);
+
+        // add sus question answer to selected to class
+        if (!document.getElementById(e.target.id).classList.contains(selectedClass)) {
+          document.getElementById(e.target.id).classList.add(selectedClass);
+        }
+      });
+    }
+
+    return null;
+  }
+
+  // removes the selected class "unslects" all the buttons
+  //  in a button group
+  //
+  // @param btnGroup - HTML element
+  // @return null
+  static toggleButtonGroupButttonsOff(btnGroup, selectedClass) {
+      const children = btnGroup.childNodes;
+      // make sure children is valiud object
+      if (!utility.checkValidObject(children)) { return false; }
+      // make sure there are childeren buttons
+      if (children.length > 0) {
+        const childrenArray = [...children];
+        childrenArray.forEach((childItem) => {
+          if(childItem.classList) {
+            childItem.classList.remove(selectedClass);
+          }
+        });
+      }
+  }
+  // const element = document.getElementById(elementUIID);
+  // const selectedClass = 'selected';
+  //
+  // // ensure element exsists
+  // if (element) {
+  //   // click a sus question handler
+  //   element.addEventListener('click', (e) => {
+  //     // unselect the group if
+  //     const parentBtnGroup = document.getElementById(e.target.id).parentElement;
+  //     const children = parentBtnGroup.childNodes;
+  //     if (!utility.checkValidObject(children)) { return false; }
+  //     if (children.length > 0) {
+  //       const childrenArray = [...children];
+  //       childrenArray.forEach((childItem) => {
+  //         if(childItem.classList) {
+  //           childItem.classList.remove(selectedClass);
+  //         }
+  //       });
+  //     }
+  //
+  //     // setup record question and answer but hold off on writting to api
+  //     // untill user clicks submit
+  //     const questionText = parentBtnGroup.id.replace('btn-group-sus-', 'sus-question-');
+  //     store.setStateItem(questionText, e.target.innerText);
+  //     // recordStudyData.setEvent('data', questionText, e.target.innerText);
+  //
+  //     if (!document.getElementById(e.target.id).classList.contains(selectedClass)) {
+  //       document.getElementById(e.target.id).classList.add(selectedClass);
+  //     }
+  //   });
+  // }
 }

@@ -150,38 +150,12 @@ const susBtnGroupElements = ['btn-group-sus-1',
 
 
 susBtnGroupElements.forEach((elementUIID) => {
-  const element = document.getElementById(elementUIID);
-  const selectedClass = 'selected';
+  // make sure local storage is set
+  const questionText = elementUIID.replace('btn-group-sus-', 'sus-question-');
+  store.setStateItem(questionText, 0);
 
-  // ensure element exsists
-  if (element) {
-    // click a sus question handler
-    element.addEventListener('click', (e) => {
-      // unselect the group if
-      const parentBtnGroup = document.getElementById(e.target.id).parentElement;
-      const children = parentBtnGroup.childNodes;
-      if (!utility.checkValidObject(children)) { return false; }
-      if (children.length > 0) {
-        const childrenArray = [...children];
-        childrenArray.forEach((childItem) => {
-          if(childItem.classList) {
-            childItem.classList.remove(selectedClass);
-          }
-        });
-      }
-
-      // setup record question and answer but hold off on writting to api
-      // untill user clicks submit
-      const questionText = parentBtnGroup.id.replace('btn-group-sus-', 'sus-question-');
-      store.setStateItem(questionText, e.target.innerText);
-      // recordStudyData.setEvent('data', questionText, e.target.innerText);
-
-      if (!document.getElementById(e.target.id).classList.contains(selectedClass)) {
-        document.getElementById(e.target.id).classList.add(selectedClass);
-      }
-    });
-  }
- // handlers.addHandlerSubmitSUSClick(elementUIID);
+  // add question handler
+  handlers.addHandlerSUSQuestionClick(elementUIID);
 });
 
 // check study session state for completetion
