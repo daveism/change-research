@@ -88,11 +88,6 @@ html, body {
   }
 }
 
-#block-study-aggreement-holder {
-  .page-title {
-    padding-left: 0px;
-  }
-}
 .step-title {
   font-size: 20px;
   font-weight: 700;
@@ -107,48 +102,14 @@ html, body {
   }
 }
 
-#study-agreement-all {
-  @media only screen and (max-width: 768px) {
-    @media only screen and (max-height: 376px) {
-      height: 100% !important;
-    }
-  }
-}
-
-#study-agreement-title {
-  padding-bottom: 12px;
-}
-
-#study-dissaggree-title, #study-complete-title, #study-agreement-title {
-  &.step-title {
-    display: flex !important;
-  }
-}
-
-#study-agreement-sub {
-  @media only screen and (max-width: 321px) {
-    padding-top: 0px !important;
-  }
-}
-
-#aggree-disaggre-wrapper {
-  @media only screen and (max-width: 768px) {
-    padding-bottom: 0px !important;
-  }
-}
-
-#step-1, #step-2, #step-3 {
-  @media only screen and (max-width: 768px) {
-    padding-top: 0rem !important;
-  }
-}
-
 .step-directions {
   font-size: 16px;
+  font-weight: 500;
+
   @media only screen and (max-width: 768px) {
     font-size: 14px;
   }
-  font-weight: 500;
+
   &.disabled {
     color: darken($body-color, 20) !important;
   }
@@ -168,7 +129,7 @@ html, body {
   }
 }
 
-#step-2 .step-button{
+.step-button {
   @media only screen and (max-width: 768px) {
     display: flex;
     justify-content: center !important;
@@ -229,6 +190,7 @@ html, body {
   font-weight: 700 !important;
   text-align: center !important;
 }
+
 #submit-button-to-end {
   width: 90% !important;
   text-align: center !important;
