@@ -152,13 +152,19 @@ const susBtnGroupElements = ['btn-group-sus-1',
 
 
 susBtnGroupElements.forEach((elementUIID) => {
-  // make sure local storage is set
-  const questionText = elementUIID.replace('btn-group-sus-', 'sus-question-');
-  store.setStateItem(questionText, 0);
-
   // add question handler
   handlers.addHandlerSUSQuestionClick(elementUIID);
 });
+
+// sus question state items
+const susName = 'sus-question-';
+const susIterations = 10;
+utility.setStateForGroup(susName, 10);
+
+// add grid box state items
+const gridIterations = 42;
+const gridName = 'grid-box-';
+utility.setStateForGroup(gridName, gridIterations);
 
 // check study session state for completetion
 const isStudycompleted = store.getStateItem('studycompleted');

@@ -198,15 +198,16 @@ export class MapBoxConfig {
       // const col = e.features[0].properties.col.toString();
       // const id = e.features[0].properties.id.toString();
       const id = parseInt(e.features[0].properties.id);
+      const gridName = 'grid-box-';
+      console.log('exists', store.getStateItem(`${gridName}${id}`) );
 
-      console.log('exists', store.isStateItemExist(`grid-box-${id}`) );
-      
-      // remove "toggle off" if grid id exists state item
-      if(store.isStateItemExist(`grid-box-${id}`)) {
-        store.deleteStateItem(`grid-box-${id}`)
-      // add "toggle on" if no state item
+      // zero out "toggle off" if grid id exists state item
+      if(store.getStateItem(`${gridName}-${id}`) > 0) {
+        store.setStateItem(`${gridName}${id}`, 0);
+        // store.deleteStateItem(`grid-box-${id}`)
+      // add "toggle on" if  state item > 0 or not selected
       } else {
-        store.setStateItem(`grid-box-${id}`, parseInt(id));
+        store.setStateItem(`${gridName}${id}`, parseInt(id));
       }
     });
       // const popupMessage = `row - ${row} | col - ${col}`;

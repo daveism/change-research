@@ -1,3 +1,6 @@
+import { Store } from './store';
+const store = new Store({});
+
 export class Utility {
   constructor() {
     this.foo = {};
@@ -68,4 +71,19 @@ export class Utility {
     this.event = new window.CustomEvent(eventName, { detail });
     document.dispatchEvent(this.event);
   }
+
+  // iterates x number of iterations and writes a
+  // a default zero value state key
+  //
+  // @param eventName - string event name for a listner to listen too
+  // @param detail - object details for event
+  // @return null
+  setStateForGroup(statetext, iterations) {
+    console.log(`${statetext}${iterations}`)
+    store.setStateItem(`${statetext}${iterations}`, 0);
+    if (iterations > 0) {
+      const nextIteration = iterations - 1;
+      this.setStateForGroup(statetext, nextIteration);
+    }
+  };
 }
