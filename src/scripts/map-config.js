@@ -1,5 +1,7 @@
 import mapboxgl from 'mapbox-gl';
 import MapboxCompare from 'mapbox-gl-compare';
+// import syncMove from 'mapbox-gl-sync-move';
+import squareGrid from '@turf/square-grid';
 
 export class MapBoxConfig {
   constructor() {
@@ -14,6 +16,7 @@ export class MapBoxConfig {
     this.quiet = true;
     this.map1 = null;
     this.map2 = null;
+    this.defaultGreyBox = '#555555';
   }
 
   // Sets an individual mapbox map
@@ -32,6 +35,7 @@ export class MapBoxConfig {
     });
 
     map.on('load', (e) => {
+      map.addLayer(this.makeGridLayer());
       map.resize();
     });
 
@@ -132,5 +136,29 @@ export class MapBoxConfig {
     // and applies them to the other map.
     map.setCenter(e.target.getCenter());
     map.setZoom(e.target.getZoom());
+  }
+  // makes change grid layer on map
+  //
+  // @param null
+  // @return null
+  makeGridLayer() {
+    const bbox = [-95, 30 ,-85, 40];
+    const cellSide = 50;
+    const options = {units: 'miles'};
+    const squareGridGeoJSON = squareGrid(bbox, cellSide, options);
+
+    return {
+      'id': 'change-grid',
+      'type': 'fill',
+      'source': {
+        'type': 'geojson',
+        'data': squareGridGeoJSON
+      },
+      'layout': {},
+      'paint': {
+        'fill-color': this.defaultGreyBox,
+        'fill-opacity': 0.8
+      }
+    };
   }
 }
