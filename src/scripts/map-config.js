@@ -194,15 +194,10 @@ export class MapBoxConfig {
     // When a click event occurs on a feature in the states layer, open a popup at the
     // location of the click, with description HTML from its properties.
     map.on('click', 'change-grid', (e) => {
-      // const row = e.features[0].properties.row.toString();
-      // const col = e.features[0].properties.col.toString();
-      // const id = e.features[0].properties.id.toString();
       const id = parseInt(e.features[0].properties.id);
       const gridName = 'grid-box-';
-      console.log('exists', store.getStateItem(`${gridName}${id}`) );
-
       // zero out "toggle off" if grid id exists state item
-      if(store.getStateItem(`${gridName}-${id}`) > 0) {
+      if(store.getStateItem(`${gridName}${id}`) > 0) {
         store.setStateItem(`${gridName}${id}`, 0);
         // store.deleteStateItem(`grid-box-${id}`)
       // add "toggle on" if  state item > 0 or not selected
@@ -210,27 +205,5 @@ export class MapBoxConfig {
         store.setStateItem(`${gridName}${id}`, parseInt(id));
       }
     });
-      // const popupMessage = `row - ${row} | col - ${col}`;
-      // console.log('popupMessage', popupMessage)
-
-    //   new mapboxgl.Popup()
-    //   .setLngLat(e.lngLat)
-    //   .setText(popupMessage)
-    //   .addTo(map);
-    // });
-    //
-    // // Change the cursor to a pointer when the mouse is over the states layer.
-    // map.on('mouseenter', 'change-grid', (e) => {
-    //   map.getCanvas().style.cursor = 'pointer';
-    // });
-    //
-    // // Change it back to a pointer when it leaves.
-    // map.on('mouseleave', 'change-grid', (e) => {
-    //   map.getCanvas().style.cursor = '';
-    // });
   }
 }
-
-  // makeGridLayer() {
-  //
-  // }

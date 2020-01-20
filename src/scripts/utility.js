@@ -79,7 +79,6 @@ export class Utility {
   // @param detail - object details for event
   // @return null
   setStateForGroup(statetext, iterations) {
-    console.log(`${statetext}${iterations}`)
     store.setStateItem(`${statetext}${iterations}`, 0);
     if (iterations > 0) {
       const nextIteration = iterations - 1;
