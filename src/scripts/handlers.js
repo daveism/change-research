@@ -1,16 +1,15 @@
 import { RecordStudyData } from './record-study-data';
 import { Store } from './store';
 import { Utility } from './utility';
-import { MapBoxConfig } from './map-config';
 
 const recordStudyData = new RecordStudyData();
 const store = new Store({});
 const utility = new Utility();
-const mapBoxConfig = new MapBoxConfig();
 
 export class Handlers {
   constructor() {
     this.displayNoneClass = 'd-none';
+    this.selectedClass = 'selected';
 
     // study aggreement
     this.studyAggreementElementsAdd = ['study-progress-map-'];
@@ -28,16 +27,15 @@ export class Handlers {
     this.studySUSElementsAdd = ['study-progress-end', 'block-study-completed-holder'];
     this.studySUSElementsRemove = ['study-progress-sus', 'block-study-sus-holder'];
     this.susStorageKeys = ['sus-question-1',
-                         'sus-question-2',
-                         'sus-question-3',
-                         'sus-question-4',
-                         'sus-question-5',
-                         'sus-question-6',
-                         'sus-question-7',
-                         'sus-question-8',
-                         'sus-question-9',
-                         'sus-question-10',
-                       ]
+      'sus-question-2',
+      'sus-question-3',
+      'sus-question-4',
+      'sus-question-5',
+      'sus-question-6',
+      'sus-question-7',
+      'sus-question-8',
+      'sus-question-9',
+      'sus-question-10'];
   }
 
   // adds handler for submitting change data on map
@@ -93,7 +91,7 @@ export class Handlers {
         this.susStorageKeys.forEach((key) => {
           const questionAnswer = store.getStateItem(key);
           recordStudyData.setEvent('data', key, questionAnswer);
-        })
+        });
       });
     }
 
@@ -168,33 +166,30 @@ export class Handlers {
     return null;
   }
 
-
   // adds handler for individual sus score questions to local storage
   //
   // @param elementID - HTML element ID
   // @return null
   addHandlerSUSQuestionClick(elementID) {
     const element = document.getElementById(elementID);
-    const selectedClass = 'selected';
+    this.selectedClass = 'selected';
 
     // ensure element exsists
     if (element) {
       element.addEventListener('click', (e) => {
-
         // get parent element which is button group
         const parentBtnGroup = document.getElementById(e.target.id).parentElement;
-        Handlers.toggleButtonGroupButttonsOff(parentBtnGroup, selectedClass);
+        Handlers.toggleButtonGroupButttonsOff(parentBtnGroup, this.selectedClass);
 
         const questionText = parentBtnGroup.id.replace('btn-group-sus-', 'sus-question-');
-        store.setStateItem(questionText, e.target.innerText);
+        store.setStateItem(questionText, parseInt(e.target.innerText));
 
         // add sus question answer to selected to class
-        if (!document.getElementById(e.target.id).classList.contains(selectedClass)) {
-          document.getElementById(e.target.id).classList.add(selectedClass);
+        if (!document.getElementById(e.target.id).classList.contains(this.selectedClass)) {
+          document.getElementById(e.target.id).classList.add(this.selectedClass);
         }
       });
     }
-
     return null;
   }
 
@@ -204,48 +199,18 @@ export class Handlers {
   // @param btnGroup - HTML element
   // @return null
   static toggleButtonGroupButttonsOff(btnGroup, selectedClass) {
-      const children = btnGroup.childNodes;
-      // make sure children is valiud object
-      if (!utility.checkValidObject(children)) { return false; }
-      // make sure there are childeren buttons
-      if (children.length > 0) {
-        const childrenArray = [...children];
-        childrenArray.forEach((childItem) => {
-          if(childItem.classList) {
-            childItem.classList.remove(selectedClass);
-          }
-        });
-      }
+    const children = btnGroup.childNodes;
+    // make sure children is valiud object
+    if (!utility.checkValidObject(children)) { return false; }
+    // make sure there are childeren buttons
+    if (children.length > 0) {
+      const childrenArray = [...children];
+      childrenArray.forEach((childItem) => {
+        if (childItem.classList) {
+          childItem.classList.remove(selectedClass);
+        }
+      });
+    }
+    return null;
   }
-  // const element = document.getElementById(elementUIID);
-  // const selectedClass = 'selected';
-  //
-  // // ensure element exsists
-  // if (element) {
-  //   // click a sus question handler
-  //   element.addEventListener('click', (e) => {
-  //     // unselect the group if
-  //     const parentBtnGroup = document.getElementById(e.target.id).parentElement;
-  //     const children = parentBtnGroup.childNodes;
-  //     if (!utility.checkValidObject(children)) { return false; }
-  //     if (children.length > 0) {
-  //       const childrenArray = [...children];
-  //       childrenArray.forEach((childItem) => {
-  //         if(childItem.classList) {
-  //           childItem.classList.remove(selectedClass);
-  //         }
-  //       });
-  //     }
-  //
-  //     // setup record question and answer but hold off on writting to api
-  //     // untill user clicks submit
-  //     const questionText = parentBtnGroup.id.replace('btn-group-sus-', 'sus-question-');
-  //     store.setStateItem(questionText, e.target.innerText);
-  //     // recordStudyData.setEvent('data', questionText, e.target.innerText);
-  //
-  //     if (!document.getElementById(e.target.id).classList.contains(selectedClass)) {
-  //       document.getElementById(e.target.id).classList.add(selectedClass);
-  //     }
-  //   });
-  // }
 }

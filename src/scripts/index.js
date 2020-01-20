@@ -45,7 +45,7 @@ utility.loadHTMLBlock('block-study-completed-holder', blockStudyCompleted);
 const map1 = mapBoxConfig.makeMap('map-1');
 const map2a = mapBoxConfig.makeMap('map-2a');
 const map2b = mapBoxConfig.makeMap('map-2b');
-const map3Compare = mapBoxConfig.makeCompareMap('map-3a', 'map-3b', 'compare-wrapper');
+mapBoxConfig.makeCompareMap('map-3a', 'map-3b', 'compare-wrapper');
 const mapEnda = mapBoxConfig.makeMap('map-enda');
 const mapEndb = mapBoxConfig.makeMap('map-endb');
 
@@ -140,16 +140,15 @@ susChangeElements.forEach((elementUIID) => {
 });
 
 const susBtnGroupElements = ['btn-group-sus-1',
-                           'btn-group-sus-2',
-                           'btn-group-sus-3',
-                           'btn-group-sus-4',
-                           'btn-group-sus-5',
-                           'btn-group-sus-6',
-                           'btn-group-sus-7',
-                           'btn-group-sus-8',
-                           'btn-group-sus-9',
-                           'btn-group-sus-10'
-                         ];
+  'btn-group-sus-2',
+  'btn-group-sus-3',
+  'btn-group-sus-4',
+  'btn-group-sus-5',
+  'btn-group-sus-6',
+  'btn-group-sus-7',
+  'btn-group-sus-8',
+  'btn-group-sus-9',
+  'btn-group-sus-10'];
 
 
 susBtnGroupElements.forEach((elementUIID) => {

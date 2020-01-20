@@ -9,7 +9,7 @@ export class MapBoxConfig {
     this.defaultMapContainer = 'map';
     this.darkMapStyle = 'mapbox://styles/daveism/cjwrrdfd20uic1dnzsti2owlk';
     this.mapboxgl = mapboxgl;
-    this.mapboxCompare = MapboxCompare;
+    this.MapboxCompare = MapboxCompare;
     this.mapboxgl.accessToken = 'pk.eyJ1IjoiZGF2ZWlzbSIsImEiOiJCdjUxT0FzIn0.V9oIk_wUc4uZu7UBblR8mw';
     this.quiet = true;
     this.map1 = null;
@@ -33,13 +33,13 @@ export class MapBoxConfig {
 
     map.on('load', (e) => {
       map.resize();
-    })
+    });
 
     window.onload = (e) => {
       map.resize();
     };
 
-    return map
+    return map;
   }
 
   // makeCompareMap Sets an comparing map "swiping" mapbox map
@@ -66,31 +66,23 @@ export class MapBoxConfig {
       touchEnabled: true,
       keybindings: true
     });
-
-    const wrapperSelector = `#${mapCompareWrapperID}`;
-    const compareOptions = {
-      mousemove: false,
-      orientation: 'horizontal'
-    };
-
-    const compare = new this.mapboxCompare(beforeMap, afterMap, wrapperSelector);
+    const compare = new this.MapboxCompare(beforeMap, afterMap, `#${mapCompareWrapperID}`);
 
     beforeMap.on('load', (e) => {
       beforeMap.resize();
       compare.setSlider(150);
-    })
+    });
 
     afterMap.on('load', (e) => {
       afterMap.resize();
       compare.setSlider(150);
-    })
+    });
 
     window.onload = (e) => {
       afterMap.resize();
       beforeMap.resize();
       compare.setSlider(150);
     };
-
     return compare;
   }
 
@@ -121,7 +113,7 @@ export class MapBoxConfig {
       if (e.target === map1) MapBoxConfig.sync(map2, e);
       if (e.target === map2) MapBoxConfig.sync(map1, e);
       this.quiet = false;
-    }
+    };
 
     // when either map finishes moving, trigger an update on the other one.
     this.quiet = false;

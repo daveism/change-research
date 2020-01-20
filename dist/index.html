@@ -9,145 +9,36 @@
   <!-- <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" /> -->
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-47315207-3"></script>
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-47315207-3"></script>
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-    gtag('config', 'UA-47315207-3');
+  gtag('config', 'UA-47315207-3');
   </script>
+ -->
 
+<link href="vendors~bootstrap.style.07da3e9ba3c883e00c2b.css?45f2a734bcd4ec70aa94" rel="stylesheet"><link href="style.ddd92dde58b8eea39bd4.css?45f2a734bcd4ec70aa94" rel="stylesheet"></head>
+<body class="w-100 h-auto">
 
-<link href="vendors~bootstrap.style.cbf6fc4972f303751516.css?ebc42de940eff5cad48d" rel="stylesheet"><link href="style.b807eee0e8f2991e6210.css?ebc42de940eff5cad48d" rel="stylesheet"></head>
-<body class="w-100 h-100">
+  <div class="w-100 h-auto d-flex justify-content-center" id="main-content">
+    <div class="row w-100 h-auto px-3">
+      <div class="col-12 start-height-actions h-auto" id="map-action-holder">
 
-  <div class="w-100 h-100 d-flex justify-content-center" id="main-content">
-    <div class="row w-100 h-100 px-3">
-
-      <div class="col-12 col-sm-12 col-md-5 col-xl-5 start-height-actions" id="map-action-holder">
-        <!-- order-lg-1 order-md-1 order-sm-2 order-2 -->
-
-        <div id="study-agreement-all" class="py-0 h-70">
-          <div id="study-agreement-title" class="step-title">Study Participant Agreement</div>
-          <div id="study-agreement" class="w-100 h-80 align-self-center py-0" >
-            <div class="py-0 h-100">
-              <div id="study-agreement-directions" class="step-directions">
-                Thank you for taking part in this study. By using the following website,
-                you agree to participate in a study about how people use web-presented maps.
-                We will collect information about your interactions with this site but not
-                any personally identifiable information. The only people with access to the
-                study data are the researchers. However, the data will be summarized, shared,
-                and disseminated in talks, blogs, and possibly research journals. There is
-                no cost to you to participate in this research study, and you will not be
-                compensated. There are no known risks in the following tasks.
-                <br /><br />
-                By agreeing to this, you have acknowledged that you have read the
-                contents of this consent, are an adult over 18 years of age, and
-                you are giving consent to participate in this study.
-              </div>
-            </div>
-          </div>
-          <div id="aggree-disaggre-wrapper" class="py-3">
-            <div id="study-agreement-sub" class="step-directions align-self-center py-2">Do you want to partipate?</div>
-            <button id="aggree-button" type="button" class="btn btn-light btn-aggreement w-40 align-self-end mr-3" >
-              <i class="fas fa-check"></i>
-              Yes
-            </button>
-            <button id="diaggree-button" type="button" class="btn btn-xlight btn-aggreement w-40 align-self-end" >
-              <i class="fas fa-times-circle"></i>
-              No
-            </button>
-          </div>
-        </div>
-
-        <div id="study-dissaggree" class="w-100 h-80 align-self-center d-none" >
-          <div id="study-dissaggree-title" class="step-title">Thanks anyway!</div>
-          <div id="study-dissaggree-directions" class="step-directions">Thank you for considering being a participant.</div>
-        </div>
-
-        <div id="study-progress" class="d-none">
-          <div id="step-1" class="steps py-3" >
-            <div id="step1-title" class="step-title">Step 1</div>
-            <div id="step-nav-1" class="row step-nav w-100 flex-row flex-nowrap" >
-              <div id="step1-title" val="step-1" class="step-title-nav active">Step 1</div>
-              <div id="step1-title" val="step-2" class="step-title-nav">Step 2</div>
-              <div id="step1-title" val="step-3" class="step-title-nav">Step 3</div>
-            </div>
-            <div id="step1-directions" class="step-directions">Search for a place that you want to find about crime</div>
-            <div class="py-3 align-self-end step-button" >
-              <div id='geocoder' class='geocoder'></div>
-            </div>
-          </div>
-
-          <div id="step-2" class="py-3 step-not-vis" >
-            <div id="step2-title" class="step-title disabled">Step 2</div>
-            <div id="step-nav-2" class="row step-nav w-100 flex-row flex-nowrap" >
-              <div id="step2-title" val="step-1" class="step-title-nav">Step 1</div>
-              <div id="step2-title" val="step-2" class="step-title-nav active">Step 2</div>
-              <div id="step2-title" val="step-3" class="step-title-nav">Step 3</div>
-            </div>
-            <div id="step2-directions" class="step-directions disabled">Draw a circle that represents 1 mile from the location</div>
-            <div id="step2-minor-directions" class="step-minor-directions disabled">
-              Click on the "Draw a circle" button. Then click on the map to establish the center of the circle.
-              Move your mouse over the map, when the radius of the circle best represents the distance, click on the map again.
-            </div>
-            <div class="py-3 align-self-center step-button" >
-              <button id="circle-button" type="button" class="btn btn-light btn-draw-circle disabled w-100 align-self-center w-50"  data-toggle="tooltip" data-html="true" title="Please seach for a location or zoom in first!">
-                <i class="far fa-dot-circle"></i>
-                Draw a circle
-              </button>
-            </div>
-          </div>
-
-          <div id="step-3" class="py-3 step-not-vis" >
-            <div id="step3-title" class="step-title disabled">Step 3</div>
-            <div id="step-nav-3" class="row step-nav w-100 flex-row flex-nowrap" >
-              <div id="step3-title" val="step-1" class="step-title-nav">Step 1</div>
-              <div id="step3-title" val="step-2" class="step-title-nav">Step 2</div>
-              <div id="step3-title" val="step-3" class="step-title-nav active">Step 3</div>
-            </div>
-            <div id="step3-directions" class="step-directions disabled">Submit the current circle as your answer, or redraw the circle <span class="minor-text">by clicking on the "Draw a circle" button.</span></div>
-            <div class="py-3 align-self-end step-button" >
-              <button id="submit-button" type="button" class="btn btn-light btn-draw-circle disabled w-100 align-self-end" data-toggle="tooltip" data-html="true" title="Please search for location and draw a circle first!">
-                Submit
-              </button>
-              <button id="circle-button2" type="button" class="btn btn-light btn-redraw-circle disabled w-100 align-self-end"  data-toggle="tooltip" data-html="true" title="Please search for location and draw a circle first!">
-                <i class="far fa-dot-circle"></i>
-                Draw circle
-              </button>
-            </div>
-          </div>
-
-        </div>
-
-        <div id="study-complete" class="w-100 h-80 align-self-center steps step-done d-none py-3" >
-          <div id="study-complete-title" class="w-100 step-title">Study Complete</div>
-          <div id="study-complete-directions" class="py-3 w-100 step-directions">Based on the average walking speed a five-minute walk is represented by a radius measuring ¼ miles, 1320 feet, or about 400 meters.</div>
-          <div id="study-complete-directions" class="py-3 w-100 step-directions">Based on a <a href="https://www.gasbuddy.com/go/gasbuddy-reveals-u-s-states-with-the-most-aggressive-drivers/" target="_blank">study</a> of driving speeds in the U.S., the average driving speed is around 42 mph. At 42 mph a five-minute drive is represented by a radius measuring about 3.5 miles or 18,480 feet.</div>
-
-
-          <div id="study-complete-title" class="pt-4 w-100 step-title">We asked you to:</div>
-          <div id="study-complete-question" class="w-100 step-directions"></div>
-
-          <div id="study-complete-title" class="pt-4 w-100 step-title">The radius of the circle you submitted was:</div>
-          <div id="study-complete-miles" class="w-100 step-directions"></div>
-          <div id="study-complete-feet" class="w-100 step-directions"></div>
-          <div id="study-complete-km" class="w-100 step-directions"></div>
-          <div id="study-complete-meters" class="w-100 step-directions"></div>
-
-          <div id="study-complete-title" class="pt-4 w-100 step-title">Thanks for participating in the study!</div>
-
-        </div>
+        <span id="block-study-aggreement-holder" class="w-100 m-3" ></span>
+        <span id="block-study-dissaggree-holder" class="w-100 m-3" ></span>
+        <span id="block-study-question-1-holder" class="w-100 m-3" ></span>
+        <span id="block-study-question-2-holder" class="w-100 m-3" ></span>
+        <span id="block-study-question-3-holder" class="w-100 m-3" ></span>
 
       </div>
 
-      <div class="col-12 col-md-7 col-xl-7 start-height-map " id="map-holder">
-        <!-- order-lg-2 order-md-2 order-sm-1 order-1 -->
-        <div id="map" ref="mapContainer" class="map"></div>
-      </div>
+      <span id="block-study-sus-holder" class="w-100 m-3 d-none"></span>
+      <span id="block-study-completed-holder" class="w-100 m-3 d-none"></span>
+
     </div>
   </div>
 
-<script type="text/javascript" src="vendors~index.app.bundle.js?ebc42de940eff5cad48d"></script><script type="text/javascript" src="index.app.bundle.js?ebc42de940eff5cad48d"></script><script type="text/javascript" src="vendors~bootstrap.app.bundle.js?ebc42de940eff5cad48d"></script><script type="text/javascript" src="bootstrap.app.bundle.js?ebc42de940eff5cad48d"></script><script type="text/javascript" src="store.app.bundle.js?ebc42de940eff5cad48d"></script></body>
+<script type="text/javascript" src="vendors~index.app.bundle.js?45f2a734bcd4ec70aa94"></script><script type="text/javascript" src="index.app.bundle.js?45f2a734bcd4ec70aa94"></script><script type="text/javascript" src="vendors~bootstrap.app.bundle.js?45f2a734bcd4ec70aa94"></script><script type="text/javascript" src="bootstrap.app.bundle.js?45f2a734bcd4ec70aa94"></script><script type="text/javascript" src="store.app.bundle.js?45f2a734bcd4ec70aa94"></script></body>
 </html>
