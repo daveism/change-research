@@ -73,12 +73,14 @@ export class MapBoxConfig {
     const compare = new this.MapboxCompare(beforeMap, afterMap, `#${mapCompareWrapperID}`);
 
     beforeMap.on('load', (e) => {
+      beforeMap.addLayer(this.makeGridLayer());
       beforeMap.resize();
       compare.setSlider(150);
     });
 
     afterMap.on('load', (e) => {
       afterMap.resize();
+      afterMap.addLayer(this.makeGridLayer());
       compare.setSlider(150);
     });
 
