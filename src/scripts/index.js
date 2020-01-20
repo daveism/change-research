@@ -1,5 +1,8 @@
 // import dependencies
-// to dos record data at end so its all in one row.... store it in store then get each element
+// TODOS
+//   record data at end so its all in one row.... store it in store then get each element
+//    record progress in state so when particpatant comes back or hist back button
+//            they are back at state they left the study
 import { library, dom } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';

@@ -1,5 +1,7 @@
 import mapboxgl from 'mapbox-gl';
 import MapboxCompare from 'mapbox-gl-compare';
+import { featureEach } from '@turf/meta';
+import { polygon, featureCollection } from '@turf/helpers';
 // import squareGrid from '@turf/square-grid';
 import { Store } from './store';
 import SquareGridGeoJSON from './square-grid-geojson.json';
@@ -22,6 +24,7 @@ export class MapBoxConfig {
     this.map2 = null;
     this.defaultGreyBox = '#555555';
     this.squareGridGeoJSON = SquareGridGeoJSON; // squareGridGeoJSON.getSquareGridGeoJSON();
+    store.setStateItem('squareGridGeoJSON', this.squareGridGeoJSON);
   }
 
   // Sets an individual mapbox map
@@ -47,7 +50,7 @@ export class MapBoxConfig {
 
     map.on('load', (e) => {
       map.addLayer(this.makeGridLayer());
-      MapBoxConfig.addGridClick(map);
+      this.addGridClick(map);
       map.resize();
     });
 
@@ -86,7 +89,7 @@ export class MapBoxConfig {
 
     beforeMap.on('load', (e) => {
       beforeMap.addLayer(this.makeGridLayer());
-      MapBoxConfig.addGridClick(beforeMap);
+      this.addGridClick(beforeMap);
       beforeMap.resize();
       compare.setSlider(150);
     });
@@ -94,7 +97,7 @@ export class MapBoxConfig {
     afterMap.on('load', (e) => {
       afterMap.resize();
       afterMap.addLayer(this.makeGridLayer());
-      MapBoxConfig.addGridClick(afterMap);
+      this.addGridClick(afterMap);
       compare.setSlider(150);
     });
 
@@ -170,6 +173,7 @@ export class MapBoxConfig {
     // const options = {units: 'miles'};
     // const squareGridGeoJSON = squareGrid(bbox, cellSide, options);
     // console.log('squareGridGeoJSON', JSON.stringify(squareGridGeoJSON))
+    console.log(this.squareGridGeoJSON);
     return {
       id: 'change-grid',
       type: 'fill',
@@ -179,7 +183,12 @@ export class MapBoxConfig {
       },
       layout: {},
       paint: {
-        'fill-color': this.defaultGreyBox,
+        'fill-color': [
+          'match',
+          ['get', 'selected'],
+          1, '#fbb03b',
+          /* other */ this.defaultGreyBox
+        ],
         'fill-opacity': 0.5
       }
     };
@@ -191,12 +200,64 @@ export class MapBoxConfig {
   //
   // @param map = mapbox map object to update zoom and center to
   // @return null
-  static addGridClick(map) {
+  addGridClick(map) {
+    // const makeGridLayer = this.makeGridLayer();
     // When a click event occurs on a feature in the states layer, open a popup at the
     // location of the click, with description HTML from its properties.
     map.on('click', 'change-grid', (e) => {
       const id = Number(e.features[0].properties.id);
+      const selected = Number(e.features[0].properties.selected);
       const gridName = 'grid-box-';
+
+      e.features[0].properties.selected = 1;
+      // console.log(e.features[0].geometry)
+      // console.log(e.features[0].properties)
+
+      const selectedFeatures = featureCollection([
+        polygon(e.features[0].geometry.coordinates, e.features[0].properties),
+      ]);
+
+      console.log(e.features[0].geometry.coordinates)
+      // const combine = featureCollection([...SquareGridGeoJSON.features,...selectedFeatures.features]);
+      // const resultFeatures = Object.values(featuresObj);
+      // const result = turf.featureCollection(resultFeatures);
+      const currentSquareGridGeoJSON = store.getStateItem('squareGridGeoJSON');
+      const currentFeatureIds = selectedFeatures.features.map(feature => feature.properties.id);
+      const newSquareGridGeoJSON = featureCollection(selectedFeatures.features.concat(currentSquareGridGeoJSON.features.filter(feature => !currentFeatureIds.includes(feature.properties.id))));
+      newSquareGridGeoJSON.name = 'square-grid-geojson';
+      this.squareGridGeoJSON = newSquareGridGeoJSON;
+      store.setStateItem('squareGridGeoJSON', newSquareGridGeoJSON);
+      console.log(JSON.stringify(newSquareGridGeoJSON))
+      if (map.getLayer('change-grid')) map.removeLayer('change-grid');
+      if (map.getSource('change-grid')) map.removeSource('change-grid');
+      map.addLayer(this.makeGridLayer());
+
+      // map.getSource('change-grid').setData(selectedFeatures);
+      // const match = [
+      //   'match',
+      //   ['get', 'selected'],
+      //   '1', '#fbb03b',
+      //   '0', '#555555',
+      //   /* other */ '#555555'
+      // ]
+
+
+    //   ["match",
+    //   input: InputType (number or string),
+    // label: InputType | [InputType, InputType, ...], output: OutputType,
+    // label: InputType | [InputType, InputType, ...], output: OutputType,
+    // fallback: OutputType
+    // ]
+      // map.setPaintProperty('change-grid', 'fill-color', '#fbb03b');
+      // map.setPaintProperty('change-grid', 'fill-color', match);
+
+      // map.setPaintProperty('change-grid', 'fill-color', [
+      //   'match',
+      //   ['get', 'id'],
+      //   e.features[0].properties.id, '#fbb03b',
+      //   /* other */ this.defaultGreyBox
+      // ]);
+
       // zero out "toggle off" if grid id exists state item
       if (store.getStateItem(`${gridName}${id}`) > 0) {
         store.setStateItem(`${gridName}${id}`, 0);
