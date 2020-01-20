@@ -2,7 +2,10 @@ import mapboxgl from 'mapbox-gl';
 import MapboxCompare from 'mapbox-gl-compare';
 import SquareGridGeoJSON from './square-grid-geojson.json';
 import squareGrid from '@turf/square-grid';
+import { Store } from './store';
 // import syncMove from 'mapbox-gl-sync-move';
+
+const store = new Store({});
 
 export class MapBoxConfig {
   constructor() {
@@ -44,6 +47,7 @@ export class MapBoxConfig {
 
     map.on('load', (e) => {
       map.addLayer(this.makeGridLayer());
+      MapBoxConfig.addGridClick(map);
       map.resize();
     });
 
@@ -82,6 +86,7 @@ export class MapBoxConfig {
 
     beforeMap.on('load', (e) => {
       beforeMap.addLayer(this.makeGridLayer());
+      MapBoxConfig.addGridClick(beforeMap);
       beforeMap.resize();
       compare.setSlider(150);
     });
@@ -89,6 +94,7 @@ export class MapBoxConfig {
     afterMap.on('load', (e) => {
       afterMap.resize();
       afterMap.addLayer(this.makeGridLayer());
+      MapBoxConfig.addGridClick(afterMap);
       compare.setSlider(150);
     });
 
@@ -147,6 +153,7 @@ export class MapBoxConfig {
     map.setCenter(e.target.getCenter());
     map.setZoom(e.target.getZoom());
   }
+
   // makes change grid layer on map
   //
   // @param null
@@ -176,4 +183,53 @@ export class MapBoxConfig {
       }
     };
   }
+
+  // adds click of grid box to capture which grid the user
+  // thinks change happend in orginal from:
+  // https://docs.mapbox.com/mapbox-gl-js/example/polygon-popup-on-click/
+  //
+  // @param map = mapbox map object to update zoom and center to
+  // @return null
+  static addGridClick(map) {
+    // When a click event occurs on a feature in the states layer, open a popup at the
+    // location of the click, with description HTML from its properties.
+    map.on('click', 'change-grid', (e) => {
+      // const row = e.features[0].properties.row.toString();
+      // const col = e.features[0].properties.col.toString();
+      // const id = e.features[0].properties.id.toString();
+      const id = parseInt(e.features[0].properties.id);
+
+      console.log('exists', store.isStateItemExist(`grid-box-${id}`) );
+      
+      // remove "toggle off" if grid id exists state item
+      if(store.isStateItemExist(`grid-box-${id}`)) {
+        store.deleteStateItem(`grid-box-${id}`)
+      // add "toggle on" if no state item
+      } else {
+        store.setStateItem(`grid-box-${id}`, parseInt(id));
+      }
+    });
+      // const popupMessage = `row - ${row} | col - ${col}`;
+      // console.log('popupMessage', popupMessage)
+
+    //   new mapboxgl.Popup()
+    //   .setLngLat(e.lngLat)
+    //   .setText(popupMessage)
+    //   .addTo(map);
+    // });
+    //
+    // // Change the cursor to a pointer when the mouse is over the states layer.
+    // map.on('mouseenter', 'change-grid', (e) => {
+    //   map.getCanvas().style.cursor = 'pointer';
+    // });
+    //
+    // // Change it back to a pointer when it leaves.
+    // map.on('mouseleave', 'change-grid', (e) => {
+    //   map.getCanvas().style.cursor = '';
+    // });
+  }
 }
+
+  // makeGridLayer() {
+  //
+  // }

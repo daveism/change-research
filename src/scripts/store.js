@@ -43,6 +43,17 @@ export class Store {
     return newStateObj;
   }
 
+  // Delete an item from the storage provider, primarily used later in the composed functions
+  // !// WARNING: only does a shallow delete
+  // @param key | string
+  // @return string
+  deleteStateItem(key = '') {
+    const storeObj = this.getState();
+    delete storeObj[key];
+    this.setState(storeObj);
+    return storeObj;
+  }
+
   // Gets the entire state object
   //
   // @return object
