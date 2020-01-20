@@ -182,7 +182,7 @@ export class Handlers {
         Handlers.toggleButtonGroupButttonsOff(parentBtnGroup, this.selectedClass);
 
         const questionText = parentBtnGroup.id.replace('btn-group-sus-', 'sus-question-');
-        store.setStateItem(questionText, parseInt(e.target.innerText));
+        store.setStateItem(questionText, Number(e.target.innerText));
 
         // add sus question answer to selected to class
         if (!document.getElementById(e.target.id).classList.contains(this.selectedClass)) {

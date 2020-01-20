@@ -1,4 +1,5 @@
 import { Store } from './store';
+
 const store = new Store({});
 
 export class Utility {
@@ -84,5 +85,5 @@ export class Utility {
       const nextIteration = iterations - 1;
       this.setStateForGroup(statetext, nextIteration);
     }
-  };
+  }
 }

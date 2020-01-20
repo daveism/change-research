@@ -1,8 +1,8 @@
 import mapboxgl from 'mapbox-gl';
 import MapboxCompare from 'mapbox-gl-compare';
-import SquareGridGeoJSON from './square-grid-geojson.json';
-import squareGrid from '@turf/square-grid';
+// import squareGrid from '@turf/square-grid';
 import { Store } from './store';
+import SquareGridGeoJSON from './square-grid-geojson.json';
 // import syncMove from 'mapbox-gl-sync-move';
 
 const store = new Store({});
@@ -10,7 +10,7 @@ const store = new Store({});
 export class MapBoxConfig {
   constructor() {
     this.defaultMapStyle = 'mapbox://styles/mapbox/streets-v11';
-    this.defaultMapCenter = [-82.570, 35.560] // starting position [lng, lat]
+    this.defaultMapCenter = [-82.570, 35.560]; // starting position [lng, lat]
     this.defaultMapZoom = 10; // starting zoom
     this.defaultMapContainer = 'map';
     this.darkMapStyle = 'mapbox://styles/daveism/cjwrrdfd20uic1dnzsti2owlk';
@@ -21,7 +21,7 @@ export class MapBoxConfig {
     this.map1 = null;
     this.map2 = null;
     this.defaultGreyBox = '#555555';
-    this.squareGridGeoJSON = SquareGridGeoJSON; //squareGridGeoJSON.getSquareGridGeoJSON();
+    this.squareGridGeoJSON = SquareGridGeoJSON; // squareGridGeoJSON.getSquareGridGeoJSON();
   }
 
   // Sets an individual mapbox map
@@ -159,8 +159,9 @@ export class MapBoxConfig {
   // @param null
   // @return null
   makeGridLayer() {
-
-    // {"_sw":{"lng":-82.69918436136798,"lat":35.5006993752381},"_ne":{"lng":-82.43593385567635,"lat":35.61967467603169}}
+    // {"_sw":{"lng":-82.69918436136798,"lat":35.5006993752381},
+    // "_ne":{"lng":-82.43593385567635,"lat":35.61967467603169}
+    // }
     // const bbox = [-82.650, 35.508 ,-82.485, 35.623]; // side to side fits small
 
     // uncomment if need to redoo the qrid
@@ -170,14 +171,14 @@ export class MapBoxConfig {
     // const squareGridGeoJSON = squareGrid(bbox, cellSide, options);
     // console.log('squareGridGeoJSON', JSON.stringify(squareGridGeoJSON))
     return {
-      'id': 'change-grid',
-      'type': 'fill',
-      'source': {
-        'type': 'geojson',
-        'data': this.squareGridGeoJSON
+      id: 'change-grid',
+      type: 'fill',
+      source: {
+        type: 'geojson',
+        data: this.squareGridGeoJSON
       },
-      'layout': {},
-      'paint': {
+      layout: {},
+      paint: {
         'fill-color': this.defaultGreyBox,
         'fill-opacity': 0.5
       }
@@ -194,15 +195,15 @@ export class MapBoxConfig {
     // When a click event occurs on a feature in the states layer, open a popup at the
     // location of the click, with description HTML from its properties.
     map.on('click', 'change-grid', (e) => {
-      const id = parseInt(e.features[0].properties.id);
+      const id = Number(e.features[0].properties.id);
       const gridName = 'grid-box-';
       // zero out "toggle off" if grid id exists state item
-      if(store.getStateItem(`${gridName}${id}`) > 0) {
+      if (store.getStateItem(`${gridName}${id}`) > 0) {
         store.setStateItem(`${gridName}${id}`, 0);
         // store.deleteStateItem(`grid-box-${id}`)
       // add "toggle on" if  state item > 0 or not selected
       } else {
-        store.setStateItem(`${gridName}${id}`, parseInt(id));
+        store.setStateItem(`${gridName}${id}`, Number(id));
       }
     });
   }
