@@ -1,6 +1,6 @@
 import mapboxgl from 'mapbox-gl';
 import MapboxCompare from 'mapbox-gl-compare';
-import { featureEach } from '@turf/meta';
+// import { featureEach } from '@turf/meta';
 import { polygon, featureCollection } from '@turf/helpers';
 // import squareGrid from '@turf/square-grid';
 import { Store } from './store';
@@ -207,15 +207,15 @@ export class MapBoxConfig {
       const feature = e.features[0];
       const id = Number(feature.properties.id);
 
-      // udpartes selected geojson properites.selected 0 or 1 depeneding
+      // udpates selected geojson properites.selected 0 or 1 depeneding
       // if user selected polygon
       const newFeature = MapBoxConfig.toggleSelectedFeature(feature);
 
       // create a new feature collection from selected feature
-      const selectedFeatures = MapBoxConfig.makeSelectedFeatureGeoJSON(feature);
+      const selectedFeatures = MapBoxConfig.makeSelectedFeatureGeoJSON(newFeature);
 
       // updates squareGridGeoJSON with new geojson
-      const newSquareGridGeoJSON =  this.updateSquareGridWithSelectedFeatures(selectedFeatures);
+      const newSquareGridGeoJSON = MapBoxConfig.updateSquareGridWithSelectedFeatures(selectedFeatures); // eslint-disable-line
 
       // store new square grid with slected boxes
       this.storeSquareGrid(newSquareGridGeoJSON);
@@ -229,11 +229,12 @@ export class MapBoxConfig {
   }
 
   static toggleSelectedFeature(feature) {
-    if ( feature.properties.selected === 0) {
-      return feature.properties.selected = 1;
+    if (feature.properties.selected === 0) {
+      feature.properties.selected = 1; // eslint-disable-line
     } else {
-      return feature.properties.selected = 0;
+      feature.properties.selected = 0; // eslint-disable-line
     }
+    return feature;
   }
 
   static storeSelectedFeature(id) {
@@ -251,15 +252,15 @@ export class MapBoxConfig {
     return featureCollection([polygon(feature.geometry.coordinates, feature.properties)]);
   }
 
-  updateSquareGridWithSelectedFeatures(selectedFeatures) {
+  static updateSquareGridWithSelectedFeatures(selectedFeatures) {
     const currentSquareGridGeoJSON = store.getStateItem('squareGridGeoJSON');
     const currentFeatureIds = selectedFeatures.features.map(feature => feature.properties.id);
-    return featureCollection(selectedFeatures.features.concat(currentSquareGridGeoJSON.features.filter(feature => !currentFeatureIds.includes(feature.properties.id))));
+    return featureCollection(selectedFeatures.features.concat(currentSquareGridGeoJSON.features.filter(feature => !currentFeatureIds.includes(feature.properties.id)))); // eslint-disable-line
   }
 
-  storeSquareGrid(SquareGridGeoJSON) {
-    this.squareGridGeoJSON = SquareGridGeoJSON;
-    store.setStateItem('squareGridGeoJSON', SquareGridGeoJSON);
+  storeSquareGrid(NewSquareGridGeoJSON) {
+    this.squareGridGeoJSON = NewSquareGridGeoJSON;
+    store.setStateItem('squareGridGeoJSON', NewSquareGridGeoJSON);
     return null;
   }
 }
