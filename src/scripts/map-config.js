@@ -1,13 +1,14 @@
 import mapboxgl from 'mapbox-gl';
 import MapboxCompare from 'mapbox-gl-compare';
-// import syncMove from 'mapbox-gl-sync-move';
+import SquareGridGeoJSON from './square-grid-geojson.json';
 import squareGrid from '@turf/square-grid';
+// import syncMove from 'mapbox-gl-sync-move';
 
 export class MapBoxConfig {
   constructor() {
     this.defaultMapStyle = 'mapbox://styles/mapbox/streets-v11';
-    this.defaultMapCenter = [-98, 38.88]; // starting position [lng, lat]
-    this.defaultMapZoom = 3; // starting zoom
+    this.defaultMapCenter = [-82.567559108525, 35.56020910231783] // starting position [lng, lat]
+    this.defaultMapZoom = 10; // starting zoom
     this.defaultMapContainer = 'map';
     this.darkMapStyle = 'mapbox://styles/daveism/cjwrrdfd20uic1dnzsti2owlk';
     this.mapboxgl = mapboxgl;
@@ -17,6 +18,7 @@ export class MapBoxConfig {
     this.map1 = null;
     this.map2 = null;
     this.defaultGreyBox = '#555555';
+    this.squareGridGeoJSON = SquareGridGeoJSON; //squareGridGeoJSON.getSquareGridGeoJSON();
   }
 
   // Sets an individual mapbox map
@@ -33,6 +35,12 @@ export class MapBoxConfig {
       touchEnabled: true,
       keybindings: true
     });
+
+    // map.on('moveend', () => {
+    //   console.log( JSON.stringify(map.getBounds()) );
+    //   console.log( JSON.stringify(map.getCenter()) );
+    //   console.log( JSON.stringify(map.getZoom()) );
+    // });
 
     map.on('load', (e) => {
       map.addLayer(this.makeGridLayer());
@@ -144,22 +152,25 @@ export class MapBoxConfig {
   // @param null
   // @return null
   makeGridLayer() {
-    const bbox = [-95, 30 ,-85, 40];
-    const cellSide = 50;
-    const options = {units: 'miles'};
-    const squareGridGeoJSON = squareGrid(bbox, cellSide, options);
+    // {"_sw":{"lng":-82.69918436136798,"lat":35.5006993752381},"_ne":{"lng":-82.43593385567635,"lat":35.61967467603169}}
+    // const bbox = [-82.650, 35.508 ,-82.485, 35.623]; // side to side fits small
 
+    // const bbox = [-82.650, 35.505 ,-82.485, 35.615];
+    // const cellSide = 0.6;
+    // const options = {units: 'miles'};
+    // const squareGridGeoJSON = squareGrid(bbox, cellSide, options);
+    // console.log('squareGridGeoJSON', JSON.stringify(squareGridGeoJSON))
     return {
       'id': 'change-grid',
       'type': 'fill',
       'source': {
         'type': 'geojson',
-        'data': squareGridGeoJSON
+        'data': this.squareGridGeoJSON
       },
       'layout': {},
       'paint': {
         'fill-color': this.defaultGreyBox,
-        'fill-opacity': 0.8
+        'fill-opacity': 0.5
       }
     };
   }
