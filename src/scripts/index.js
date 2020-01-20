@@ -45,7 +45,7 @@ utility.loadHTMLBlock('block-study-completed-holder', blockStudyCompleted);
 const map1 = mapBoxConfig.makeMap('map-1');
 const map2a = mapBoxConfig.makeMap('map-2a');
 const map2b = mapBoxConfig.makeMap('map-2b');
-const map3 = mapBoxConfig.makeCompareMap('map-3a', 'map-3b', 'compare-wrapper');
+const map3Compare = mapBoxConfig.makeCompareMap('map-3a', 'map-3b', 'compare-wrapper');
 const mapEnda = mapBoxConfig.makeMap('map-enda');
 const mapEndb = mapBoxConfig.makeMap('map-endb');
 
@@ -57,7 +57,6 @@ const nav = mapBoxConfig.addNav();
 map1.addControl(nav, 'top-left');
 map2a.addControl(nav, 'top-left');
 map2b.addControl(nav, 'top-left');
-// map3.addControl(nav, 'top-left');
 mapEnda.addControl(nav, 'top-left');
 mapEndb.addControl(nav, 'top-left');
 
@@ -72,23 +71,23 @@ const studyVersion = Math.floor(Math.random() * (studyMaxOne - studyMinOne + 1) 
 store.setStateItem('study-question', studyVersion);
 recordStudyData.setEvent('data', 'study-question', studyVersion);
 
-// TODO only deal with map for study question
-// only load html block needed map objects will have generic names also
-function resizeAllMaps() {
-  map1.resize();
-  // map2a.resize();
-  // map2b.resize();
-  // map3.resize();
-  mapEnda.resize();
-  mapEndb.resize();
-}
+// // TODO only deal with map for study question
+// // only load html block needed map objects will have generic names also
+// function resizeAllMaps() {
+//   map1.resize();
+//   map3Compare.setSlider(150);
+//   map2a.resize();
+//   map2b.resize();
+//   mapEnda.resize();
+//   mapEndb.resize();
+// }
 
 document.addEventListener('aggree-clicked', () => {
-  resizeAllMaps();
+  // resizeAllMaps();
 });
 
 document.addEventListener('disaggree-clicked', () => {
-  resizeAllMaps();
+  // resizeAllMaps();
 });
 
 const urlString = window.location.href;

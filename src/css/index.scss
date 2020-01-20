@@ -12,6 +12,12 @@ $round-radius:            36px;
 $default-radius:          10px;
 $default-padding:         10px;
 $roboto:                  Roboto, Helvetica, 'Helvetica Nue', Arial, sans-serif;
+$mapHeight:               250px;
+$mapSmallHeight:          200px;
+$mapWidth:                450px;
+$mapMediumWidth:          325px;
+$mapSmallWidth:           250px;
+$mapFullWidth:            100%;
 
 @import "~bootstrap/scss/bootstrap";
 @import "_custom";
@@ -37,60 +43,80 @@ html, body {
   height: 100%;
   background-color: $body-background-color;
   color: $body-color;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 #map-inner-holder-1,
-#map-inner-holder-2,
 #map-inner-holder-3,
+#map-inner-holder-2,
 #map-inner-holder-end {
-  height: 250px;
-  width: 100%;
+  height: $mapHeight;
+  width: $mapFullWidth;
   @include border-radius($default-radius, $default-radius);
+
+  @media only screen and (max-width: 992px) {
+    width: $mapFullWidth;
+  }
+
   @media only screen and (max-width: 768px) {
-    height: 200px;
-    width: 100%;
+    height: $mapSmallHeight;
+    width: $mapFullWidth;
     flex-flow: column;
   }
 }
 
 #map-1, #map-3a, #map-3b, #map-2a, #map-2b, #map-enda, #map-endb {
-  width: 350px;
-  height: 250px;
+  height: $mapHeight;
+  width: $mapWidth;
   @include border-radius($default-radius, $default-radius);
 
+  @media only screen and (max-width: 992px) {
+    width: $mapMediumWidth;
+  }
+
   @media only screen and (max-width: 768px) {
-    width: 100%;
-    height: 200px;
-    width: 250px;
+    height: $mapSmallHeight;
+    width: $mapFullWidth;
   }
 }
 
-// #map-2a, #map-2b, #map-enda, #map-endb {
-//   width: 300px;
-//
-// }
+#map-3a {
+  position: relative;
+  left: -6px;
+}
 
 #map-3b {
   position: absolute;
   top: 0px;
-  height: 250px;
-  width: 350px;
+  height: $mapHeight;
+  width: $mapWidth;
+
+  @media only screen and (max-width: 992px) {
+    width: $mapMediumWidth;
+  }
 
   @media only screen and (max-width: 768px) {
-    width: 250px;
-    height: 200px
+    height: $mapSmallHeight;
+    width: $mapFullWidth;
   }
 }
 
 #compare-wrapper {
-  width: 100%;
   position: relative;
-  height: 250px !important;
-  width: 350px;
+  height: $mapHeight !important;
+  width: $mapWidth+12;
+
+  @media only screen and (max-width: 992px) {
+    width: $mapMediumWidth+12;
+  }
 
   @media only screen and (max-width: 768px) {
-    height: 200px !important;
-    width: 250px;
+    height: $mapSmallHeight !important;
+    width: $mapFullWidth;
   }
 
 }

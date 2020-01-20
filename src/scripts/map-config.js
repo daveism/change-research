@@ -21,7 +21,7 @@ export class MapBoxConfig {
   // @param mapContainer - string
   // @return new mapbox map object
   makeMap(mapContainer = this.defaultMapContainer) {
-    return new this.mapboxgl.Map({
+    const map = new this.mapboxgl.Map({
       container: mapContainer,
       style: this.defaultMapStyle,
       center: this.defaultMapCenter,
@@ -30,6 +30,16 @@ export class MapBoxConfig {
       touchEnabled: true,
       keybindings: true
     });
+
+    map.on('load', (e) => {
+      map.resize();
+    })
+
+    window.onload = (e) => {
+      map.resize();
+    };
+
+    return map
   }
 
   // makeCompareMap Sets an comparing map "swiping" mapbox map
@@ -63,11 +73,25 @@ export class MapBoxConfig {
       orientation: 'horizontal'
     };
 
-    return new this.mapboxCompare(beforeMap, afterMap, wrapperSelector);
-    // compare.setSlider(150);
-    // beforeMap.resize();
-    // afterMap.resize();
-    // return compare
+    const compare = new this.mapboxCompare(beforeMap, afterMap, wrapperSelector);
+
+    beforeMap.on('load', (e) => {
+      beforeMap.resize();
+      compare.setSlider(150);
+    })
+
+    afterMap.on('load', (e) => {
+      afterMap.resize();
+      compare.setSlider(150);
+    })
+
+    window.onload = (e) => {
+      afterMap.resize();
+      beforeMap.resize();
+      compare.setSlider(150);
+    };
+
+    return compare;
   }
 
   // instantiates a navigation bar on the map
