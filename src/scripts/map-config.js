@@ -173,7 +173,6 @@ export class MapBoxConfig {
     // const options = {units: 'miles'};
     // const squareGridGeoJSON = squareGrid(bbox, cellSide, options);
     // console.log('squareGridGeoJSON', JSON.stringify(squareGridGeoJSON))
-    console.log(this.squareGridGeoJSON);
     return {
       id: 'change-grid',
       type: 'fill',
@@ -205,67 +204,62 @@ export class MapBoxConfig {
     // When a click event occurs on a feature in the states layer, open a popup at the
     // location of the click, with description HTML from its properties.
     map.on('click', 'change-grid', (e) => {
-      const id = Number(e.features[0].properties.id);
-      const selected = Number(e.features[0].properties.selected);
-      const gridName = 'grid-box-';
+      const feature = e.features[0];
+      const id = Number(feature.properties.id);
 
-      e.features[0].properties.selected = 1;
-      // console.log(e.features[0].geometry)
-      // console.log(e.features[0].properties)
+      // udpartes selected geojson properites.selected 0 or 1 depeneding
+      // if user selected polygon
+      const newFeature = MapBoxConfig.toggleSelectedFeature(feature);
 
-      const selectedFeatures = featureCollection([
-        polygon(e.features[0].geometry.coordinates, e.features[0].properties),
-      ]);
+      // create a new feature collection from selected feature
+      const selectedFeatures = MapBoxConfig.makeSelectedFeatureGeoJSON(feature);
 
-      console.log(e.features[0].geometry.coordinates)
-      // const combine = featureCollection([...SquareGridGeoJSON.features,...selectedFeatures.features]);
-      // const resultFeatures = Object.values(featuresObj);
-      // const result = turf.featureCollection(resultFeatures);
-      const currentSquareGridGeoJSON = store.getStateItem('squareGridGeoJSON');
-      const currentFeatureIds = selectedFeatures.features.map(feature => feature.properties.id);
-      const newSquareGridGeoJSON = featureCollection(selectedFeatures.features.concat(currentSquareGridGeoJSON.features.filter(feature => !currentFeatureIds.includes(feature.properties.id))));
-      newSquareGridGeoJSON.name = 'square-grid-geojson';
-      this.squareGridGeoJSON = newSquareGridGeoJSON;
-      store.setStateItem('squareGridGeoJSON', newSquareGridGeoJSON);
-      console.log(JSON.stringify(newSquareGridGeoJSON))
-      if (map.getLayer('change-grid')) map.removeLayer('change-grid');
-      if (map.getSource('change-grid')) map.removeSource('change-grid');
-      map.addLayer(this.makeGridLayer());
+      // updates squareGridGeoJSON with new geojson
+      const newSquareGridGeoJSON =  this.updateSquareGridWithSelectedFeatures(selectedFeatures);
 
-      // map.getSource('change-grid').setData(selectedFeatures);
-      // const match = [
-      //   'match',
-      //   ['get', 'selected'],
-      //   '1', '#fbb03b',
-      //   '0', '#555555',
-      //   /* other */ '#555555'
-      // ]
+      // store new square grid with slected boxes
+      this.storeSquareGrid(newSquareGridGeoJSON);
 
+      // only updates one map how do get every map
+      map.getSource('change-grid').setData(newSquareGridGeoJSON);
 
-    //   ["match",
-    //   input: InputType (number or string),
-    // label: InputType | [InputType, InputType, ...], output: OutputType,
-    // label: InputType | [InputType, InputType, ...], output: OutputType,
-    // fallback: OutputType
-    // ]
-      // map.setPaintProperty('change-grid', 'fill-color', '#fbb03b');
-      // map.setPaintProperty('change-grid', 'fill-color', match);
-
-      // map.setPaintProperty('change-grid', 'fill-color', [
-      //   'match',
-      //   ['get', 'id'],
-      //   e.features[0].properties.id, '#fbb03b',
-      //   /* other */ this.defaultGreyBox
-      // ]);
-
-      // zero out "toggle off" if grid id exists state item
-      if (store.getStateItem(`${gridName}${id}`) > 0) {
-        store.setStateItem(`${gridName}${id}`, 0);
-        // store.deleteStateItem(`grid-box-${id}`)
-      // add "toggle on" if  state item > 0 or not selected
-      } else {
-        store.setStateItem(`${gridName}${id}`, Number(id));
-      }
+      // update state with selected feature
+      MapBoxConfig.storeSelectedFeature(id);
     });
+  }
+
+  static toggleSelectedFeature(feature) {
+    if ( feature.properties.selected === 0) {
+      return feature.properties.selected = 1;
+    } else {
+      return feature.properties.selected = 0;
+    }
+  }
+
+  static storeSelectedFeature(id) {
+    const gridName = 'grid-box-';
+    // zero out "toggle off" if grid id exists state item
+    if (store.getStateItem(`${gridName}${id}`) > 0) {
+      store.setStateItem(`${gridName}${id}`, 0);
+    // add "toggle on" if  state item > 0 or not selected
+    } else {
+      store.setStateItem(`${gridName}${id}`, Number(id));
+    }
+  }
+
+  static makeSelectedFeatureGeoJSON(feature) {
+    return featureCollection([polygon(feature.geometry.coordinates, feature.properties)]);
+  }
+
+  updateSquareGridWithSelectedFeatures(selectedFeatures) {
+    const currentSquareGridGeoJSON = store.getStateItem('squareGridGeoJSON');
+    const currentFeatureIds = selectedFeatures.features.map(feature => feature.properties.id);
+    return featureCollection(selectedFeatures.features.concat(currentSquareGridGeoJSON.features.filter(feature => !currentFeatureIds.includes(feature.properties.id))));
+  }
+
+  storeSquareGrid(SquareGridGeoJSON) {
+    this.squareGridGeoJSON = SquareGridGeoJSON;
+    store.setStateItem('squareGridGeoJSON', SquareGridGeoJSON);
+    return null;
   }
 }
