@@ -203,6 +203,14 @@ export class MapBoxConfig {
     // const makeGridLayer = this.makeGridLayer();
     // When a click event occurs on a feature in the states layer, open a popup at the
     // location of the click, with description HTML from its properties.
+    map.on('mouseenter', 'change-grid', (e) => {
+      map.getCanvas().style.cursor = 'pointer'; // eslint-disable-line
+    });
+
+    map.on('mouseleave', 'change-grid', (e) => {
+      map.getCanvas().style.cursor = ''; // eslint-disable-line
+    });
+
     map.on('click', 'change-grid', (e) => {
       const feature = e.features[0];
       const id = Number(feature.properties.id);

@@ -3,6 +3,9 @@
 //   record data at end so its all in one row.... store it in store then get each element
 //    record progress in state so when particpatant comes back or hist back button
 //            they are back at state they left the study
+//  multiple maps need selected box too
+// add change maps
+// completed needs expected map so people can see how they did
 import { library, dom } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
