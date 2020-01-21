@@ -3,7 +3,6 @@
 //   record data at end so its all in one row.... store it in store then get each element
 //    record progress in state so when particpatant comes back or hist back button
 //            they are back at state they left the study
-//  multiple maps need selected box too
 // add change maps
 // completed needs expected map so people can see how they did
 // figure out how only load and initailze maps needed.
@@ -53,7 +52,7 @@ utility.loadHTMLBlock('block-study-completed-holder', blockStudyCompleted);
 const map1 = mapBoxConfig.makeMap('map-1');
 const map2a = mapBoxConfig.makeMap('map-2a');
 const map2b = mapBoxConfig.makeMap('map-2b');
-mapBoxConfig.makeCompareMap('map-3a', 'map-3b', 'compare-wrapper');
+const map3Arr = mapBoxConfig.makeCompareMap('map-3a', 'map-3b', 'compare-wrapper');
 const mapEnda = mapBoxConfig.makeMap('map-enda');
 const mapEndb = mapBoxConfig.makeMap('map-endb');
 
@@ -65,6 +64,8 @@ const nav = mapBoxConfig.addNav();
 map1.addControl(nav, 'top-left');
 map2a.addControl(nav, 'top-left');
 map2b.addControl(nav, 'top-left');
+map3Arr[0].addControl(nav, 'top-left');
+map3Arr[1].addControl(nav, 'top-left');
 mapEnda.addControl(nav, 'top-left');
 mapEndb.addControl(nav, 'top-left');
 
@@ -81,21 +82,22 @@ recordStudyData.setEvent('data', 'study-question', studyVersion);
 
 // // TODO only deal with map for study question
 // // only load html block needed map objects will have generic names also
-// function resizeAllMaps() {
-//   map1.resize();
-//   map3Compare.setSlider(150);
-//   map2a.resize();
-//   map2b.resize();
-//   mapEnda.resize();
-//   mapEndb.resize();
-// }
+function resizeAllMaps() {
+  map1.resize();
+  map2a.resize();
+  map2b.resize();
+  map3Arr[0].resize();
+  map3Arr[1].resize();
+  mapEnda.resize();
+  mapEndb.resize();
+}
 
 document.addEventListener('aggree-clicked', () => {
-  // resizeAllMaps();
+  resizeAllMaps();
 });
 
 document.addEventListener('disaggree-clicked', () => {
-  // resizeAllMaps();
+  resizeAllMaps();
 });
 
 const urlString = window.location.href;
@@ -147,6 +149,18 @@ susChangeElements.forEach((elementUIID) => {
   handlers.addHandlerSubmitSUSClick(elementUIID);
 });
 
+// only updates one map how do get every map
+document.addEventListener('grid-update', () => {
+  const currentSquareGridGeoJSON = store.getStateItem('squareGridGeoJSON');
+  map1.getSource('change-grid').setData(currentSquareGridGeoJSON);
+  map2a.getSource('change-grid').setData(currentSquareGridGeoJSON);
+  map2b.getSource('change-grid').setData(currentSquareGridGeoJSON);
+  map3Arr[0].getSource('change-grid').setData(currentSquareGridGeoJSON);
+  map3Arr[1].getSource('change-grid').setData(currentSquareGridGeoJSON);
+  mapEnda.getSource('change-grid').setData(currentSquareGridGeoJSON);
+  mapEndb.getSource('change-grid').setData(currentSquareGridGeoJSON);
+});
+
 const susBtnGroupElements = ['btn-group-sus-1',
   'btn-group-sus-2',
   'btn-group-sus-3',
@@ -157,7 +171,6 @@ const susBtnGroupElements = ['btn-group-sus-1',
   'btn-group-sus-8',
   'btn-group-sus-9',
   'btn-group-sus-10'];
-
 
 susBtnGroupElements.forEach((elementUIID) => {
   // add question handler

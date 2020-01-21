@@ -1,13 +1,15 @@
 import mapboxgl from 'mapbox-gl';
 import MapboxCompare from 'mapbox-gl-compare';
-// import { featureEach } from '@turf/meta';
 import { polygon, featureCollection } from '@turf/helpers';
+import { Utility } from './utility';
 // import squareGrid from '@turf/square-grid';
 import { Store } from './store';
 import SquareGridGeoJSON from './square-grid-geojson.json';
-// import syncMove from 'mapbox-gl-sync-move';
+
+const syncMove = require('@mapbox/mapbox-gl-sync-move');
 
 const store = new Store({});
+const utility = new Utility();
 
 export class MapBoxConfig {
   constructor() {
@@ -23,11 +25,12 @@ export class MapBoxConfig {
     this.map1 = null;
     this.map2 = null;
     this.defaultGreyBox = '#555555';
-    this.squareGridGeoJSON = SquareGridGeoJSON; // squareGridGeoJSON.getSquareGridGeoJSON();
+    this.selectedBox = '#FBB03B';
+    this.squareGridGeoJSON = SquareGridGeoJSON;
     store.setStateItem('squareGridGeoJSON', this.squareGridGeoJSON);
   }
 
-  // Sets an individual mapbox map
+  // Sets an individual mapbox map test
   //
   // @param mapContainer - string
   // @return new mapbox map object
@@ -64,7 +67,7 @@ export class MapBoxConfig {
   // makeCompareMap Sets an comparing map "swiping" mapbox map
   //
   // @param mapContainer - string
-  // @return new mapbox map object
+  // @return array of maps new mapbox map object
   makeCompareMap(mapBeforeContainer, mapAfterContainer, mapCompareWrapperID) {
     const beforeMap = new this.mapboxgl.Map({
       container: mapBeforeContainer,
@@ -106,7 +109,7 @@ export class MapBoxConfig {
       beforeMap.resize();
       compare.setSlider(150);
     };
-    return compare;
+    return [beforeMap, afterMap];
   }
 
   // instantiates a navigation bar on the map
@@ -123,38 +126,8 @@ export class MapBoxConfig {
   // @param map1 = first mapbox map object
   // @param map2  = second mapbox map object
   // @return null
-  synMaps(map1, map2) {
-    // follow calback
-    const follow = (e) => {
-      // https://docs.mapbox.com/mapbox.js/example/v1.0.0/sync-layer-movement/
-      // quiet is a cheap and dirty way of avoiding a problem in which one map
-      // syncing to another leads to the other map syncing to it, and so on
-      // ad infinitum. this says that while we are calling sync, do not try to
-      // loop again and sync other maps
-      if (this.quiet) return;
-      this.quiet = true;
-      if (e.target === map1) MapBoxConfig.sync(map2, e);
-      if (e.target === map2) MapBoxConfig.sync(map1, e);
-      this.quiet = false;
-    };
-
-    // when either map finishes moving, trigger an update on the other one.
-    this.quiet = false;
-    map1.on('moveend', follow).on('zoomend', follow);
-    map2.on('moveend', follow).on('zoomend', follow);
-  }
-
-  // sync event callback
-  // https://docs.mapbox.com/mapbox.js/example/v1.0.0/sync-layer-movement/
-  //
-  // @param map = mapbox map object to update zoom and center to
-  // @param e = event from follow called after zoomend (pan/zoom) completes
-  // @return null
-  static sync(map, e) {
-    // sync simply steals the settings from the moved map (e.target)
-    // and applies them to the other map.
-    map.setCenter(e.target.getCenter());
-    map.setZoom(e.target.getZoom());
+  synMaps(map1, map2) { // eslint-disable-line
+    syncMove(map1, map2);
   }
 
   // makes change grid layer on map
@@ -185,7 +158,7 @@ export class MapBoxConfig {
         'fill-color': [
           'match',
           ['get', 'selected'],
-          1, '#fbb03b',
+          1, this.selectedBox,
           /* other */ this.defaultGreyBox
         ],
         'fill-opacity': 0.5
@@ -228,11 +201,11 @@ export class MapBoxConfig {
       // store new square grid with slected boxes
       this.storeSquareGrid(newSquareGridGeoJSON);
 
-      // only updates one map how do get every map
-      map.getSource('change-grid').setData(newSquareGridGeoJSON);
-
       // update state with selected feature
       MapBoxConfig.storeSelectedFeature(id);
+
+      // tigger event so all data sources update
+      utility.triggerEvent('grid-update', id);
     });
   }
 
