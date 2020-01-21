@@ -1,6 +1,8 @@
 import { Store } from './store';
+import { RecordStudyData } from './record-study-data';
 
 const store = new Store({});
+const recordStudyData = new RecordStudyData();
 
 export class Utility {
   constructor() {
@@ -84,6 +86,24 @@ export class Utility {
     if (iterations > 0) {
       const nextIteration = iterations - 1;
       this.setStateForGroup(statetext, nextIteration);
+    }
+  }
+
+  // iterates x number of iterations and writes to the API
+  //
+  // @param eventName - string event name for a listner to listen too
+  // @param detail - object details for event
+  // @return null
+  setAPIForGroup(statetext, iterations) {
+    const value = store.getStateItem(`${statetext}${iterations}`);
+    recordStudyData.setEvent('data', `${statetext}${iterations}`, value);
+    if (iterations > 0) {
+      const nextIteration = iterations - 1;
+      // needs be an array not recored too much issues with api and to long
+      // to be written as a column
+      setTimeout(() => { // yes a hack but the api (google) throttles it otherwise
+        this.setAPIForGroup(statetext, nextIteration);
+      }, 250);
     }
   }
 }

@@ -61,6 +61,10 @@ export class Handlers {
             document.getElementById(elementUIID).classList.add(this.displayNoneClass);
           }
         });
+
+        const gridName = 'grid-box-';
+        const gridIterations = 42;
+        utility.setAPIForGroup(gridName, gridIterations);
       });
     }
   }
