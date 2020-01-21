@@ -6,6 +6,8 @@
 //  multiple maps need selected box too
 // add change maps
 // completed needs expected map so people can see how they did
+// figure out how only load and initailze maps needed.
+//      not all at the start so there is less lag at start
 import { library, dom } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';

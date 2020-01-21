@@ -236,6 +236,12 @@ export class MapBoxConfig {
     });
   }
 
+  // toggles value the properties (attribute) selected
+  //    when a user clicks the grid box > 0 when selected
+  //    0 when selecte
+  //
+  // @param feature = geojson feature (poperties and geom)
+  // @return feature = geojson feature
   static toggleSelectedFeature(feature) {
     if (feature.properties.selected === 0) {
       feature.properties.selected = 1; // eslint-disable-line
@@ -245,6 +251,11 @@ export class MapBoxConfig {
     return feature;
   }
 
+  // sets the selected feature in state > 0 when selected
+  //    0 when selecte
+  //
+  // @param id = number which represents the feature id
+  // @return null
   static storeSelectedFeature(id) {
     const gridName = 'grid-box-';
     // zero out "toggle off" if grid id exists state item
@@ -254,18 +265,35 @@ export class MapBoxConfig {
     } else {
       store.setStateItem(`${gridName}${id}`, Number(id));
     }
+    return null;
   }
 
+  // makes the selected feature a new feature collection
+  //
+  // @param feature = geojson feature (poperties and geom)
+  // @return featureCollection (from turf.js)
   static makeSelectedFeatureGeoJSON(feature) {
     return featureCollection([polygon(feature.geometry.coordinates, feature.properties)]);
   }
 
+  // updates the SquareGridGeoJSON after merging and reconciling
+  //    with the selected feautures
+  //
+  // @param selectedFeatures = geojson featurecollecton representing the selected
+  //        features (poperties and geom)
+  // @return featureCollection (from turf.js)
   static updateSquareGridWithSelectedFeatures(selectedFeatures) {
     const currentSquareGridGeoJSON = store.getStateItem('squareGridGeoJSON');
     const currentFeatureIds = selectedFeatures.features.map(feature => feature.properties.id);
     return featureCollection(selectedFeatures.features.concat(currentSquareGridGeoJSON.features.filter(feature => !currentFeatureIds.includes(feature.properties.id)))); // eslint-disable-line
   }
 
+  // updates state with the new version of SquareGridGeoJSON
+  //    contains selected features also (if any selected)
+  //
+  // @param NewSquareGridGeoJSON = geojson featurecollecton representing
+  //                the new features (poperties and geom)
+  // @return null
   storeSquareGrid(NewSquareGridGeoJSON) {
     this.squareGridGeoJSON = NewSquareGridGeoJSON;
     store.setStateItem('squareGridGeoJSON', NewSquareGridGeoJSON);
