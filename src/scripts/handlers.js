@@ -92,10 +92,12 @@ export class Handlers {
           }
         });
 
+        const susValueArray = [];
         this.susStorageKeys.forEach((key) => {
           const questionAnswer = store.getStateItem(key);
-          recordStudyData.setEvent('data', key, questionAnswer);
+          susValueArray.push({key, questionAnswer});
         });
+        recordStudyData.setEvent('data', 'susanswers', JSON.stringify(susValueArray));
       });
     }
 

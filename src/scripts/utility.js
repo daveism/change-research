@@ -94,16 +94,18 @@ export class Utility {
   // @param eventName - string event name for a listner to listen too
   // @param detail - object details for event
   // @return null
-  setAPIForGroup(statetext, iterations) {
+  setAPIForGroup(statetext, iterations, valueArray = []) {
+    const key = `${statetext}${iterations}`;
     const value = store.getStateItem(`${statetext}${iterations}`);
-    recordStudyData.setEvent('data', `${statetext}${iterations}`, value);
+    // capture in array so we can write complted array to api
+    valueArray.push({key, value});
     if (iterations > 0) {
       const nextIteration = iterations - 1;
-      // needs be an array not recored too much issues with api and to long
-      // to be written as a column
-      setTimeout(() => { // yes a hack but the api (google) throttles it otherwise
-        this.setAPIForGroup(statetext, nextIteration);
-      }, 250);
+      this.setAPIForGroup(statetext, nextIteration, valueArray);
+      return null;
     }
+    // write complted array to api
+    recordStudyData.setEvent('data', 'gridanswers', JSON.stringify(valueArray));
+    return null;
   }
 }
