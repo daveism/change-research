@@ -98,7 +98,7 @@ export class Utility {
     const key = `${statetext}${iterations}`;
     const value = store.getStateItem(`${statetext}${iterations}`);
     // capture in array so we can write complted array to api
-    valueArray.push({key, value});
+    valueArray.push({ key, value });
     if (iterations > 0) {
       const nextIteration = iterations - 1;
       this.setAPIForGroup(statetext, nextIteration, valueArray);
