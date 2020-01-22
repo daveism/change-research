@@ -105,6 +105,8 @@ export class Utility {
       return null;
     }
     // write complted array to api
+    // const squareGridGeoJSON = store.getStateItem('squareGridGeoJSON'); // to big to write :(
+    // recordStudyData.setEvent('data', 'girdgeojson', JSON.stringify(squareGridGeoJSON));
     recordStudyData.setEvent('data', 'gridanswers', JSON.stringify(valueArray));
     store.setStateItem('gridanswers', valueArray);
     return null;
