@@ -9,6 +9,9 @@
 // completed needs expected map so people can see how they did
 // figure out how only load and initailze maps needed.
 //      not all at the start so there is less lag at start
+// On the completed map disable map click of adding removing selecte grids
+// Back to grid button when on sus? maybe or use navgo to create page
+// play pause on animation
 import { library, dom } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
