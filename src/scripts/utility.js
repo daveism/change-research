@@ -106,6 +106,7 @@ export class Utility {
     }
     // write complted array to api
     recordStudyData.setEvent('data', 'gridanswers', JSON.stringify(valueArray));
+    store.setStateItem('gridanswers', valueArray);
     return null;
   }
 }

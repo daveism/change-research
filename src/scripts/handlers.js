@@ -98,6 +98,7 @@ export class Handlers {
           susValueArray.push({ key, questionAnswer });
         });
         recordStudyData.setEvent('data', 'susanswers', JSON.stringify(susValueArray));
+        store.setStateItem('susanswers', susValueArray);
       });
     }
 
