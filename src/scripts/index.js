@@ -3,7 +3,9 @@
 //   record data at end so its all in one row.... store it in store then get each element
 //    record progress in state so when particpatant comes back or hist back button
 //            they are back at state they left the study ---- this really has to happen sine
-//            G limits writes...  maybe put answer grid into an array MIGH NOT BE ABLE TO DO THIS
+//            G limits writes...  maybe put answer grid into an array
+//    MIGHT NOT BE ABLE TO DO THIS
+//
 // add change maps
 // completed needs expected map so people can see how they did
 // figure out how only load and initailze maps needed.
