@@ -17,7 +17,8 @@ export class MapBoxConfig {
     this.defaultMapCenter = [-82.570, 35.560]; // starting position [lng, lat]
     this.defaultMapZoom = 10; // starting zoom
     this.defaultMapContainer = 'map';
-    this.darkMapStyle = 'mapbox://styles/daveism/cjwrrdfd20uic1dnzsti2owlk';
+    this.darkMapStyle = 'mapbox://styles/mapbox/dark-v10';
+    this.lightMapStyle = 'mapbox://styles/mapbox/light-v10';
     this.mapboxgl = mapboxgl;
     this.MapboxCompare = MapboxCompare;
     this.mapboxgl.accessToken = 'pk.eyJ1IjoiZGF2ZWlzbSIsImEiOiJCdjUxT0FzIn0.V9oIk_wUc4uZu7UBblR8mw';
@@ -41,7 +42,7 @@ export class MapBoxConfig {
   makeMap(mapContainer = this.defaultMapContainer, mapIndex = 0) {
     const map = new this.mapboxgl.Map({
       container: mapContainer,
-      style: this.defaultMapStyle,
+      style: this.lightMapStyle,
       center: this.defaultMapCenter,
       zoom: this.defaultMapZoom,
       showZoom: true,
@@ -71,7 +72,7 @@ export class MapBoxConfig {
   makeAnimateMap(mapContainer = this.defaultMapContainer) {
     const map = new this.mapboxgl.Map({
       container: mapContainer,
-      style: this.defaultMapStyle,
+      style: this.lightMapStyle,
       center: this.defaultMapCenter,
       zoom: this.defaultMapZoom,
       showZoom: true,
@@ -117,7 +118,7 @@ export class MapBoxConfig {
   makeCompareMap(mapBeforeContainer, mapAfterContainer, mapCompareWrapperID) {
     const beforeMap = new this.mapboxgl.Map({
       container: mapBeforeContainer,
-      style: this.defaultMapStyle,
+      style: this.lightMapStyle,
       center: this.defaultMapCenter,
       zoom: this.defaultMapZoom,
       showZoom: true,
@@ -127,7 +128,7 @@ export class MapBoxConfig {
 
     const afterMap = new this.mapboxgl.Map({
       container: mapAfterContainer,
-      style: this.defaultMapStyle,
+      style: this.lightMapStyle,
       center: this.defaultMapCenter,
       zoom: this.defaultMapZoom,
       showZoom: true,
@@ -194,7 +195,7 @@ export class MapBoxConfig {
            'bounds': [ -82.647,-82.498,35.507,35.612 ]
          },
           'paint': {
-          'raster-fade-duration': 0
+            'raster-fade-duration': 0
           }
        };
   }
