@@ -15,7 +15,7 @@ export class MapBoxConfig {
   constructor() {
     this.defaultMapStyle = 'mapbox://styles/mapbox/streets-v11';
     this.defaultMapCenter = [-82.570, 35.560]; // starting position [lng, lat]
-    this.maxBounds = [-82.702, 35.463 ,-82.442, 35.657];
+    this.maxBounds = [-82.702, 35.463, -82.442, 35.657];
     this.defaultMapZoom = 10; // starting zoom
     this.defaultMapContainer = 'map';
     this.darkMapStyle = 'mapbox://styles/mapbox/dark-v10';
@@ -49,7 +49,7 @@ export class MapBoxConfig {
       showZoom: true,
       touchEnabled: true,
       keybindings: true,
-      maxBounds: this.maxBounds,
+      maxBounds: this.maxBounds
     });
 
     map.on('load', (e) => {
@@ -81,7 +81,7 @@ export class MapBoxConfig {
       showZoom: true,
       touchEnabled: true,
       keybindings: true,
-      maxBounds: this.maxBounds,
+      maxBounds: this.maxBounds
     });
 
     map.on('load', (e) => {
@@ -127,7 +127,7 @@ export class MapBoxConfig {
       showZoom: true,
       touchEnabled: true,
       keybindings: true,
-      maxBounds: this.maxBounds,
+      maxBounds: this.maxBounds
     });
 
     const afterMap = new this.mapboxgl.Map({
@@ -138,7 +138,7 @@ export class MapBoxConfig {
       showZoom: true,
       touchEnabled: true,
       keybindings: true,
-      maxBounds: this.maxBounds,
+      maxBounds: this.maxBounds
     });
     const compare = new this.MapboxCompare(beforeMap, afterMap, `#${mapCompareWrapperID}`);
 
@@ -374,7 +374,7 @@ export class MapBoxConfig {
   }
 
   static fitMyBounds(map) {
-    const bounds =  [-82.647, 35.507 ,-82.498, 35.612];
+    const bounds = [-82.647, 35.507, -82.498, 35.612];
     map.fitBounds(bounds, { padding: 20 });
   }
 }
