@@ -29,7 +29,7 @@ export class MapBoxConfig {
     this.squareGridGeoJSON = SquareGridGeoJSON;
     this.mapChangeLayersOne = [
       'https://daveism.github.io/change-research/dist/maps/nlcd-2011/{z}/{x}/{y}.png',
-      'https://daveism.github.io/change-research/dist/maps/nlcd-2008/{z}/{x}/{y}.png'
+      'https://daveism.github.io/change-research/dist/maps/nlcd-2001/{z}/{x}/{y}.png'
     ];
     store.setStateItem('squareGridGeoJSON', this.squareGridGeoJSON);
   }
