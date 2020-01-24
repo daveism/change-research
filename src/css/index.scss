@@ -11,15 +11,23 @@ $default-control-height:  36px;
 $round-radius:            36px;
 $default-radius:          10px;
 $default-padding:         10px;
-$roboto:                  Roboto, Helvetica, 'Helvetica Nue', Arial, sans-serif;
-$mapHeight:               250px;
-$mapSmallHeight:          200px;
-$mapWidth:                400px;
-$mapHeight:               400px;
+$roboto:                  Montserrat, Roboto, Helvetica, 'Helvetica Nue', Arial, sans-serif;
+
+$mapWidth:                500px;
+$mapHeight:               425px;
+
+$mapBigWidth:             400px;
+$mapBigHeight:            325px;
+
 $mapMediumWidth:          325px;
 $mapMediumHeight:         325px;
+
 $mapSmallWidth:           250px;
 $mapSmallHeight:          250px;
+
+$mapTinyWidth:           100%;
+$mapTinyHeight:          250px;
+
 $mapFullWidth:            100%;
 
 @import "~bootstrap/scss/bootstrap";
@@ -47,12 +55,24 @@ html, body {
   width: $mapFullWidth;
   @include border-radius($default-radius, $default-radius);
 
+  @media only screen and (max-width: 1200px) {
+    height: $mapBigHeight;
+    width: $mapFullWidth;
+  }
+
   @media only screen and (max-width: 992px) {
+    height: $mapMediumWidth;
     width: $mapFullWidth;
   }
 
   @media only screen and (max-width: 768px) {
     height: $mapSmallHeight;
+    width: $mapFullWidth;
+    flex-flow: column;
+  }
+
+  @media only screen and (max-width: 599px) {
+    height: $mapTinyHeight;
     width: $mapFullWidth;
     flex-flow: column;
   }
@@ -63,6 +83,12 @@ html, body {
   width: $mapWidth;
   @include border-radius($default-radius, $default-radius);
 
+
+  @media only screen and (max-width: 1200px) {
+    width: $mapBigWidth;
+    height: $mapBigHeight;
+  }
+
   @media only screen and (max-width: 992px) {
     width: $mapMediumWidth;
     height: $mapMediumHeight;
@@ -70,7 +96,13 @@ html, body {
 
   @media only screen and (max-width: 768px) {
     height: $mapSmallHeight;
-    width: $mapFullWidth;
+    width: $mapSmallWidth;
+  }
+
+  @media only screen and (max-width: 599px) {
+    height: $mapTinyHeight;
+    width: $mapTinyWidth;
+    flex-flow: column;
   }
 }
 
@@ -85,6 +117,11 @@ html, body {
   height: $mapHeight;
   width: $mapWidth;
 
+  @media only screen and (max-width: 1200px) {
+    width: $mapBigWidth;
+    height: $mapBigHeight;
+  }
+
   @media only screen and (max-width: 992px) {
     width: $mapMediumWidth;
     height: $mapMediumHeight;
@@ -92,28 +129,68 @@ html, body {
 
   @media only screen and (max-width: 768px) {
     height: $mapSmallHeight;
-    width: $mapFullWidth;
+    width: $mapSmallWidth;
+
+    @media only screen and (max-width: 599px) {
+      height: $mapTinyHeight;
+      width: $mapTinyWidth;
+      flex-flow: column;
+    }
   }
 }
 
 .dualmaps {
   padding: 0px !important;
   margin-right: 0px !important;
+  height: $mapHeight;
+  width: $mapWidth;
+
+  @media only screen and (max-width: 1200px) {
+    width: $mapBigWidth;
+    height: $mapBigHeight;
+  }
+
+  @media only screen and (max-width: 992px) {
+    width: $mapMediumWidth;
+    height: $mapMediumHeight;
+  }
+
+  @media only screen and (max-width: 768px) {
+    height: $mapSmallHeight;
+    width: $mapSmallWidth;
+
+    @media only screen and (max-width: 599px) {
+      height: $mapTinyHeight;
+      width: $mapTinyWidth;
+      flex-flow: column;
+    }
+  }
 }
 
 #compare-wrapper {
   position: relative;
-  height: $mapHeight !important;
-  width: $mapWidth+12;
+  height: $mapHeight;
+  width: $mapWidth;
+
+  @media only screen and (max-width: 1200px) {
+    width: $mapBigWidth;
+    height: $mapBigHeight;
+  }
 
   @media only screen and (max-width: 992px) {
-    width: $mapMediumWidth+12;
-    height: $mapMediumHeight+12;
+    width: $mapMediumWidth;
+    height: $mapMediumHeight;
   }
 
   @media only screen and (max-width: 768px) {
     height: $mapSmallHeight !important;
-    width: $mapFullWidth;
+    width: $mapSmallWidth;
+  }
+
+  @media only screen and (max-width: 599px) {
+    height: $mapTinyHeight;
+    width: $mapTinyWidth;
+    flex-flow: column;
   }
 
 }

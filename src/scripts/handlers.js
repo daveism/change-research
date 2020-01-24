@@ -13,11 +13,11 @@ export class Handlers {
 
     // study aggreement
     this.studyAggreementElementsAdd = ['study-progress-map-'];
-    this.studyAggreementElementsRemove = ['study-agreement-all'];
+    this.studyAggreementElementsRemove = ['block-study-aggreement-holder'];
 
     // study disaggreement
     this.studyDisaggreementElementsAdd = ['study-dissaggree'];
-    this.studyDisaggreementElementsRemove = ['study-agreement-all'];
+    this.studyDisaggreementElementsRemove = ['block-study-aggreement-holder'];
 
     // study questions map change
     this.studyQuestionElementsAdd = ['study-progress-sus', 'block-study-sus-holder'];
