@@ -49,14 +49,8 @@ export class MapBoxConfig {
       keybindings: true
     });
 
-    // map.on('moveend', () => {
-    //   console.log( JSON.stringify(map.getBounds()) );
-    //   console.log( JSON.stringify(map.getCenter()) );
-    //   console.log( JSON.stringify(map.getZoom()) );
-    // });
-    console.log('makeMap', mapIndex)
     map.on('load', (e) => {
-      map.addLayer(this.makeTMSLayer(mapIndex));
+      map.addLayer(this.makeTMSLayer(this.mapChangeLayersOne, mapIndex));
       map.addLayer(this.makeGridOutLineLayer());
       map.addLayer(this.makeGridLayer());
       this.addGridClick(map);
@@ -70,6 +64,52 @@ export class MapBoxConfig {
     return map;
   }
 
+  // Sets an individual mapbox map test
+  //
+  // @param mapContainer - string
+  // @return new mapbox map object
+  makeAnimateMap(mapContainer = this.defaultMapContainer) {
+    const map = new this.mapboxgl.Map({
+      container: mapContainer,
+      style: this.defaultMapStyle,
+      center: this.defaultMapCenter,
+      zoom: this.defaultMapZoom,
+      showZoom: true,
+      touchEnabled: true,
+      keybindings: true
+    });
+
+    map.on('load', (e) => {
+      map.addLayer(this.makeTMSLayer(this.mapChangeLayersOne, 0));
+      map.addLayer(this.makeTMSLayer(this.mapChangeLayersOne, 1));
+      map.addLayer(this.makeGridOutLineLayer());
+      map.addLayer(this.makeGridLayer());
+      this.addGridClick(map);
+      map.resize();
+
+
+      var indexCount = 2;
+      let index = 0;
+
+      setInterval(() => {
+        index = (index + 1) % indexCount;
+        if(index === 1) {
+          map.setLayoutProperty(`map-change-1`, 'visibility', 'visible');
+          map.setLayoutProperty(`map-change-0`, 'visibility', 'none');
+        } else {
+          map.setLayoutProperty(`map-change-0`, 'visibility', 'visible');
+          map.setLayoutProperty(`map-change-1`, 'visibility', 'none');
+        }
+      }, 1000);
+
+    });
+
+    window.onload = (e) => {
+      map.resize();
+    };
+
+    return map;
+  }
   // makeCompareMap Sets an comparing map "swiping" mapbox map
   //
   // @param mapContainer - string
@@ -97,7 +137,7 @@ export class MapBoxConfig {
     const compare = new this.MapboxCompare(beforeMap, afterMap, `#${mapCompareWrapperID}`);
 
     beforeMap.on('load', (e) => {
-      beforeMap.addLayer(this.makeTMSLayer(1));
+      beforeMap.addLayer(this.makeTMSLayer(this.mapChangeLayersOne, 1));
       beforeMap.addLayer(this.makeGridOutLineLayer());
       beforeMap.addLayer(this.makeGridLayer());
       this.addGridClick(beforeMap);
@@ -106,7 +146,7 @@ export class MapBoxConfig {
     });
 
     afterMap.on('load', (e) => {
-      afterMap.addLayer(this.makeTMSLayer(0));
+      afterMap.addLayer(this.makeTMSLayer(this.mapChangeLayersOne, 0));
       afterMap.addLayer(this.makeGridOutLineLayer());
       afterMap.addLayer(this.makeGridLayer());
       this.addGridClick(afterMap);
@@ -140,19 +180,22 @@ export class MapBoxConfig {
     syncMove(map1, map2);
   }
 
-  makeTMSLayer(mapIndex) {
+  makeTMSLayer(mapChange, mapIndex) {
     return {
-      'id': 'NCLD2008',
+      'id': `map-change-${mapIndex}`,
       'type': 'raster',
       'source': {
           'type': 'raster',
-          'tiles': [this.mapChangeLayersOne[mapIndex]],
+          'tiles': [mapChange[mapIndex]],
           'minzoom': 1,
           'maxzoom': 14,
           'scheme': 'tms',
           'tileSize': 256,
            'bounds': [ -82.647,-82.498,35.507,35.612 ]
-         }
+         },
+          'paint': {
+          'raster-fade-duration': 0
+          }
        };
   }
 

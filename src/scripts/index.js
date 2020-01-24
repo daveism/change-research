@@ -55,7 +55,7 @@ utility.loadHTMLBlock('block-study-sus-holder', blockStudySUS);
 utility.loadHTMLBlock('block-study-completed-holder', blockStudyCompleted);
 
 // create all the mapbox map objects
-const map1 = mapBoxConfig.makeMap('map-1', 0);
+const map1 = mapBoxConfig.makeAnimateMap('map-1', 0);
 const map2a = mapBoxConfig.makeMap('map-2a', 0);
 const map2b = mapBoxConfig.makeMap('map-2b', 1);
 const map3Arr = mapBoxConfig.makeCompareMap('map-3a', 'map-3b', 'compare-wrapper');
