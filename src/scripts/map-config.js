@@ -30,7 +30,7 @@ export class MapBoxConfig {
     this.mapChangeLayersOne = [
       'https://daveism.github.io/change-research/dist/maps/nlcd-2008/{z}/{x}/{y}.png',
       'https://daveism.github.io/change-research/dist/maps/nlcd-2001/{z}/{x}/{y}.png'
-    ]
+    ];
     store.setStateItem('squareGridGeoJSON', this.squareGridGeoJSON);
   }
 
@@ -38,7 +38,7 @@ export class MapBoxConfig {
   //
   // @param mapContainer - string
   // @return new mapbox map object
-  makeMap(mapContainer = this.defaultMapContainer) {
+  makeMap(mapContainer = this.defaultMapContainer, mapIndex = 0) {
     const map = new this.mapboxgl.Map({
       container: mapContainer,
       style: this.defaultMapStyle,
@@ -54,10 +54,9 @@ export class MapBoxConfig {
     //   console.log( JSON.stringify(map.getCenter()) );
     //   console.log( JSON.stringify(map.getZoom()) );
     // });
-
+    console.log('makeMap', mapIndex)
     map.on('load', (e) => {
-
-      map.addLayer(MapBoxConfig.makeTMSLayer());
+      map.addLayer(this.makeTMSLayer(mapIndex));
       map.addLayer(this.makeGridOutLineLayer());
       map.addLayer(this.makeGridLayer());
       this.addGridClick(map);
@@ -88,7 +87,7 @@ export class MapBoxConfig {
 
     const afterMap = new this.mapboxgl.Map({
       container: mapAfterContainer,
-      style: this.darkMapStyle,
+      style: this.defaultMapStyle,
       center: this.defaultMapCenter,
       zoom: this.defaultMapZoom,
       showZoom: true,
@@ -98,6 +97,8 @@ export class MapBoxConfig {
     const compare = new this.MapboxCompare(beforeMap, afterMap, `#${mapCompareWrapperID}`);
 
     beforeMap.on('load', (e) => {
+      beforeMap.addLayer(this.makeTMSLayer(1));
+      beforeMap.addLayer(this.makeGridOutLineLayer());
       beforeMap.addLayer(this.makeGridLayer());
       this.addGridClick(beforeMap);
       beforeMap.resize();
@@ -105,9 +106,11 @@ export class MapBoxConfig {
     });
 
     afterMap.on('load', (e) => {
-      afterMap.resize();
+      afterMap.addLayer(this.makeTMSLayer(0));
+      afterMap.addLayer(this.makeGridOutLineLayer());
       afterMap.addLayer(this.makeGridLayer());
       this.addGridClick(afterMap);
+      afterMap.resize();
       compare.setSlider(150);
     });
 
@@ -137,13 +140,13 @@ export class MapBoxConfig {
     syncMove(map1, map2);
   }
 
-  static makeTMSLayer() {
+  makeTMSLayer(mapIndex) {
     return {
       'id': 'NCLD2008',
       'type': 'raster',
       'source': {
           'type': 'raster',
-          'tiles': [],
+          'tiles': [this.mapChangeLayersOne[mapIndex]],
           'minzoom': 1,
           'maxzoom': 14,
           'scheme': 'tms',

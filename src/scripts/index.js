@@ -55,12 +55,12 @@ utility.loadHTMLBlock('block-study-sus-holder', blockStudySUS);
 utility.loadHTMLBlock('block-study-completed-holder', blockStudyCompleted);
 
 // create all the mapbox map objects
-const map1 = mapBoxConfig.makeMap('map-1');
-const map2a = mapBoxConfig.makeMap('map-2a');
-const map2b = mapBoxConfig.makeMap('map-2b');
+const map1 = mapBoxConfig.makeMap('map-1', 0);
+const map2a = mapBoxConfig.makeMap('map-2a', 0);
+const map2b = mapBoxConfig.makeMap('map-2b', 1);
 const map3Arr = mapBoxConfig.makeCompareMap('map-3a', 'map-3b', 'compare-wrapper');
-const mapEnda = mapBoxConfig.makeMap('map-enda');
-const mapEndb = mapBoxConfig.makeMap('map-endb');
+const mapEnda = mapBoxConfig.makeMap('map-enda', 0);
+const mapEndb = mapBoxConfig.makeMap('map-endb', 1);
 
 // create mapbox navigation control instance
 const nav = mapBoxConfig.addNav();
@@ -85,6 +85,13 @@ const studyMaxOne = 2;
 const studyVersion = Math.floor(Math.random() * (studyMaxOne - studyMinOne + 1) + studyMinOne);
 store.setStateItem('study-question', studyVersion);
 recordStudyData.setEvent('data', 'study-question', studyVersion);
+
+// study constraints number of questions starts with 0
+const mapMinOne = 0;
+const mapMaxOne = 2;
+const mapVersion = Math.floor(Math.random() * (mapMaxOne - mapMinOne + 1) + mapMinOne);
+store.setStateItem('map-version', mapVersion);
+recordStudyData.setEvent('data', 'map-version', mapVersion);
 
 // // TODO only deal with map for study question
 // // only load html block needed map objects will have generic names also
