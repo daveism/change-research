@@ -29,8 +29,8 @@ export class MapBoxConfig {
     this.selectedBox = '#FBB03B';
     this.squareGridGeoJSON = SquareGridGeoJSON;
     this.mapChangeLayersOne = [
-      'https://daveism.github.io/change-research/dist/maps/nlcd-2011/{z}/{x}/{y}.png',
-      'https://daveism.github.io/change-research/dist/maps/nlcd-2001/{z}/{x}/{y}.png'
+      'https://daveism.github.io/change-research/dist/maps/nlcd-2016-120/{z}/{x}/{y}.png',
+      'https://daveism.github.io/change-research/dist/maps/nlcd-2001-120/{z}/{x}/{y}.png'
     ];
     store.setStateItem('squareGridGeoJSON', this.squareGridGeoJSON);
   }
