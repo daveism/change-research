@@ -29,8 +29,8 @@ export class MapBoxConfig {
     this.selectedBox = '#FBB03B';
     this.squareGridGeoJSON = SquareGridGeoJSON;
     this.mapChangeLayersOne = [
-      'https://daveism.github.io/change-research/dist/maps/nlcd-2016-120/{z}/{x}/{y}.png',
-      'https://daveism.github.io/change-research/dist/maps/nlcd-2001-120/{z}/{x}/{y}.png'
+      'https://daveism.github.io/change-research/dist/maps/nlcd-2016-30/{z}/{x}/{y}.png',
+      'https://daveism.github.io/change-research/dist/maps/nlcd-2001-30/{z}/{x}/{y}.png'
     ];
     store.setStateItem('squareGridGeoJSON', this.squareGridGeoJSON);
   }
@@ -51,7 +51,7 @@ export class MapBoxConfig {
     });
 
     map.on('load', (e) => {
-      map.addLayer(this.makeTMSLayer(this.mapChangeLayersOne, mapIndex));
+      map.addLayer(MapBoxConfig.makeTMSLayer(this.mapChangeLayersOne, mapIndex));
       map.addLayer(this.makeGridOutLineLayer());
       map.addLayer(this.makeGridLayer());
       this.addGridClick(map);
@@ -65,7 +65,7 @@ export class MapBoxConfig {
     return map;
   }
 
-  // Sets an individual mapbox map test
+  // Sets up animated map
   //
   // @param mapContainer - string
   // @return new mapbox map object
@@ -81,36 +81,34 @@ export class MapBoxConfig {
     });
 
     map.on('load', (e) => {
-      map.addLayer(this.makeTMSLayer(this.mapChangeLayersOne, 0));
-      map.addLayer(this.makeTMSLayer(this.mapChangeLayersOne, 1));
+      map.addLayer(MapBoxConfig.makeTMSLayer(this.mapChangeLayersOne, 0));
+      map.addLayer(MapBoxConfig.makeTMSLayer(this.mapChangeLayersOne, 1));
       map.addLayer(this.makeGridOutLineLayer());
       map.addLayer(this.makeGridLayer());
       this.addGridClick(map);
       map.resize();
 
-
-      var indexCount = 2;
+      const indexCount = 2;
       let index = 0;
 
       setInterval(() => {
         index = (index + 1) % indexCount;
-        if(index === 1) {
-          map.setLayoutProperty(`map-change-1`, 'visibility', 'visible');
-          map.setLayoutProperty(`map-change-0`, 'visibility', 'none');
+        if (index === 1) {
+          map.setLayoutProperty('map-change-1', 'visibility', 'visible');
+          map.setLayoutProperty('map-change-0', 'visibility', 'none');
         } else {
-          map.setLayoutProperty(`map-change-0`, 'visibility', 'visible');
-          map.setLayoutProperty(`map-change-1`, 'visibility', 'none');
+          map.setLayoutProperty('map-change-0', 'visibility', 'visible');
+          map.setLayoutProperty('map-change-1', 'visibility', 'none');
         }
       }, 1000);
-
     });
 
     window.onload = (e) => {
       map.resize();
     };
-
     return map;
   }
+
   // makeCompareMap Sets an comparing map "swiping" mapbox map
   //
   // @param mapContainer - string
@@ -138,7 +136,7 @@ export class MapBoxConfig {
     const compare = new this.MapboxCompare(beforeMap, afterMap, `#${mapCompareWrapperID}`);
 
     beforeMap.on('load', (e) => {
-      beforeMap.addLayer(this.makeTMSLayer(this.mapChangeLayersOne, 1));
+      beforeMap.addLayer(MapBoxConfig.makeTMSLayer(this.mapChangeLayersOne, 1));
       beforeMap.addLayer(this.makeGridOutLineLayer());
       beforeMap.addLayer(this.makeGridLayer());
       this.addGridClick(beforeMap);
@@ -147,7 +145,7 @@ export class MapBoxConfig {
     });
 
     afterMap.on('load', (e) => {
-      afterMap.addLayer(this.makeTMSLayer(this.mapChangeLayersOne, 0));
+      afterMap.addLayer(MapBoxConfig.makeTMSLayer(this.mapChangeLayersOne, 0));
       afterMap.addLayer(this.makeGridOutLineLayer());
       afterMap.addLayer(this.makeGridLayer());
       this.addGridClick(afterMap);
@@ -181,23 +179,23 @@ export class MapBoxConfig {
     syncMove(map1, map2);
   }
 
-  makeTMSLayer(mapChange, mapIndex) {
+  static makeTMSLayer(mapChange, mapIndex) {
     return {
-      'id': `map-change-${mapIndex}`,
-      'type': 'raster',
-      'source': {
-          'type': 'raster',
-          'tiles': [mapChange[mapIndex]],
-          'minzoom': 1,
-          'maxzoom': 14,
-          'scheme': 'tms',
-          'tileSize': 256,
-           'bounds': [ -82.647,-82.498,35.507,35.612 ]
-         },
-          'paint': {
-            'raster-fade-duration': 0
-          }
-       };
+      id: `map-change-${mapIndex}`,
+      type: 'raster',
+      source: {
+        type: 'raster',
+        tiles: [mapChange[mapIndex]],
+        minzoom: 1,
+        maxzoom: 14,
+        scheme: 'tms',
+        tileSize: 256,
+        bounds: [-82.647, -82.498, 35.507, 35.612]
+      },
+      paint: {
+        'raster-fade-duration': 0
+      }
+    };
   }
 
   // makes change grid layer on map
@@ -248,11 +246,11 @@ export class MapBoxConfig {
         type: 'geojson',
         data: this.squareGridGeoJSON
       },
-      'layout': {
+      layout: {
         'line-join': 'round',
         'line-cap': 'round'
       },
-      'paint': {
+      paint: {
         'line-color': this.defaultGreyBox,
         'line-width': 4
       }
