@@ -29,6 +29,7 @@ $mapTinyWidth:           100%;
 $mapTinyHeight:          250px;
 
 $mapFullWidth:            100%;
+$mapFullHeight:            100%;
 
 @import "~bootstrap/scss/bootstrap";
 @import "_custom";
@@ -47,33 +48,39 @@ html, body {
   user-select: none;
 }
 
+#study-progress-map-0,
+#study-progress-map-1,
+#study-progress-map-2 {
+  margin-top: -12px !important;
+}
+
 #map-inner-holder-1,
 #map-inner-holder-3,
 #map-inner-holder-2,
 #map-inner-holder-end {
-  height: $mapHeight;
-  width: $mapFullWidth;
+  height: $mapHeight+24;
+  width: $mapFullWidth+24;
   @include border-radius($default-radius, $default-radius);
 
   @media only screen and (max-width: 1200px) {
-    height: $mapBigHeight;
-    width: $mapFullWidth;
+    height: $mapBigHeight+24 !important;
+    width: $mapFullWidth+24 !important;
   }
 
   @media only screen and (max-width: 992px) {
-    height: $mapMediumWidth;
-    width: $mapFullWidth;
+    height: $mapMediumWidth+24 !important;
+    width: $mapFullWidth+24 !important;
   }
 
   @media only screen and (max-width: 768px) {
-    height: $mapSmallHeight;
-    width: $mapFullWidth;
+    height: $mapFullHeight !important;
+    width: $mapFullWidth !important;
     flex-flow: column;
   }
 
   @media only screen and (max-width: 599px) {
-    height: $mapTinyHeight;
-    width: $mapFullWidth;
+    height: $mapFullHeight !important;
+    width: $mapFullWidth !important;
     flex-flow: column;
   }
 }
