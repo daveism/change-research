@@ -27,6 +27,10 @@ export class MapBoxConfig {
     this.defaultGreyBox = '#555555';
     this.selectedBox = '#FBB03B';
     this.squareGridGeoJSON = SquareGridGeoJSON;
+    this.mapChangeLayersOne = [
+      'https://daveism.github.io/change-research/dist/maps/nlcd-2008/{z}/{x}/{y}.png',
+      'https://daveism.github.io/change-research/dist/maps/nlcd-2001/{z}/{x}/{y}.png'
+    ]
     store.setStateItem('squareGridGeoJSON', this.squareGridGeoJSON);
   }
 
@@ -52,22 +56,10 @@ export class MapBoxConfig {
     // });
 
     map.on('load', (e) => {
+
+      map.addLayer(MapBoxConfig.makeTMSLayer());
+      map.addLayer(this.makeGridOutLineLayer());
       map.addLayer(this.makeGridLayer());
-
-      map.addLayer({
-        'id': 'KEWX',
-        'type': 'raster',
-        'source': {
-            'type': 'raster',
-            'tiles': ['file://nlcd-2008/{z}/{x}/{y}.png'],
-            'minzoom': 1,
-            'maxzoom': 6,
-            'scheme': 'tms',
-            'tileSize': 256,
-             'bounds': [ -82.647,-82.498,35.507,35.612 ]
-           }
-         });
-
       this.addGridClick(map);
       map.resize();
     });
@@ -145,28 +137,20 @@ export class MapBoxConfig {
     syncMove(map1, map2);
   }
 
-  makeTMSLayer() {
-    //   style: { 'version': 8,
-    //   'sources': {
-    //     'raster-tiles': {
-    //       'type': 'raster',
-    //       'tiles': [
-    //         'https://stamen-tiles.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.jpg'
-    //       ],
-    //       'tileSize': 256,
-    //       'attribution':'test'
-    //     }
-    //   },
-    //   'layers': [
-    //     {
-    //       'id': 'simple-tiles',
-    //       'type': 'raster',
-    //       'source': 'raster-tiles',
-    //       'minzoom': 0,
-    //       'maxzoom': 22
-    //     }
-    //   ]
-    // }
+  static makeTMSLayer() {
+    return {
+      'id': 'NCLD2008',
+      'type': 'raster',
+      'source': {
+          'type': 'raster',
+          'tiles': [],
+          'minzoom': 1,
+          'maxzoom': 14,
+          'scheme': 'tms',
+          'tileSize': 256,
+           'bounds': [ -82.647,-82.498,35.507,35.612 ]
+         }
+       };
   }
 
   // makes change grid layer on map
@@ -201,6 +185,29 @@ export class MapBoxConfig {
           /* other */ this.defaultGreyBox
         ],
         'fill-opacity': 0.5
+      }
+    };
+  }
+
+  // makes change grid layer on map
+  //
+  // @param null
+  // @return null
+  makeGridOutLineLayer() {
+    return {
+      id: 'change-grid-outline',
+      type: 'line',
+      source: {
+        type: 'geojson',
+        data: this.squareGridGeoJSON
+      },
+      'layout': {
+        'line-join': 'round',
+        'line-cap': 'round'
+      },
+      'paint': {
+        'line-color': this.defaultGreyBox,
+        'line-width': 4
       }
     };
   }
