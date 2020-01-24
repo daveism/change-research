@@ -14,9 +14,12 @@ $default-padding:         10px;
 $roboto:                  Roboto, Helvetica, 'Helvetica Nue', Arial, sans-serif;
 $mapHeight:               250px;
 $mapSmallHeight:          200px;
-$mapWidth:                450px;
+$mapWidth:                400px;
+$mapHeight:               400px;
 $mapMediumWidth:          325px;
+$mapMediumHeight:         325px;
 $mapSmallWidth:           250px;
+$mapSmallHeight:          250px;
 $mapFullWidth:            100%;
 
 @import "~bootstrap/scss/bootstrap";
@@ -62,6 +65,7 @@ html, body {
 
   @media only screen and (max-width: 992px) {
     width: $mapMediumWidth;
+    height: $mapMediumHeight;
   }
 
   @media only screen and (max-width: 768px) {
@@ -83,6 +87,7 @@ html, body {
 
   @media only screen and (max-width: 992px) {
     width: $mapMediumWidth;
+    height: $mapMediumHeight;
   }
 
   @media only screen and (max-width: 768px) {
@@ -103,6 +108,7 @@ html, body {
 
   @media only screen and (max-width: 992px) {
     width: $mapMediumWidth+12;
+    height: $mapMediumHeight+12;
   }
 
   @media only screen and (max-width: 768px) {
