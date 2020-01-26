@@ -1,7 +1,7 @@
 import mapboxgl from 'mapbox-gl';
 import MapboxCompare from 'mapbox-gl-compare';
 import { polygon, featureCollection } from '@turf/helpers';
-import center from '@turf/center';
+// import center from '@turf/center';
 
 import { Utility } from './utility';
 // import squareGrid from '@turf/square-grid';
@@ -103,7 +103,7 @@ export class MapBoxConfig {
             maxzoom: 14,
             scheme: 'tms',
             tileSize: 256,
-            bounds: [-82.647, 35.507,-82.498, 35.612],
+            bounds: [-82.647, 35.507, -82.498, 35.612],
             maxbounds: [-82.702, 35.442, -82.462, 35.657]
           },
           {
@@ -114,7 +114,7 @@ export class MapBoxConfig {
             tileSize: 256,
             bounds: [-82.647, 35.507, -82.498, 35.612],
             maxbounds: [-82.702, 35.442, -82.462, 35.657]
-          },
+          }
         ],
         [ // hstn 1
           {
@@ -134,7 +134,7 @@ export class MapBoxConfig {
             tileSize: 256,
             bounds: [-95.940, 29.671, -95.791, 29.775],
             maxbounds: [-95.992, 29.625, -95.739, 29.820]
-          },
+          }
         ],
         [ // lv 2
           {
@@ -154,11 +154,10 @@ export class MapBoxConfig {
             tileSize: 256,
             bounds: [-114.899, 36.0795, -114.750, 36.183],
             maxbounds: [-114.955, 36.034, -114.694, 36.228]
-          },
+          }
         ]
-
       ]
-    }
+    };
 
     this.mapChangeLayersOne = [
       'https://daveism.github.io/change-research/dist/maps/nlcd-2016-30/{z}/{x}/{y}.png',
@@ -190,14 +189,13 @@ export class MapBoxConfig {
       map.addLayer(this.makeGridLayer());
       this.addGridClick(map);
       map.resize();
-      setTimeout(() => { map.resize();; }, 10);
+      setTimeout(() => { map.resize(); }, 10);
     });
 
     window.onload = (e) => {
       map.resize();
-      setTimeout(() => { map.resize();; }, 10);
+      setTimeout(() => { map.resize(); }, 10);
     };
-
     return map;
   }
 
@@ -330,7 +328,7 @@ export class MapBoxConfig {
   makeTMSLayer(mapChange, mapIndex) {
     // study constraints number of questions starts with 0
     const mapVersion = store.getStateItem('map-version');
-    const mapSetup = this.mapChangeLayers.layers[mapVersion]
+    const mapSetup = this.mapChangeLayers.layers[mapVersion];
 
     return {
       id: `map-change-${mapIndex}`,
@@ -342,8 +340,8 @@ export class MapBoxConfig {
         maxzoom: mapSetup[mapIndex].maxzoom,
         scheme: 'tms',
         tileSize: 256,
-        bounds:  mapSetup[mapIndex].bounds,
-        maxBounds:  mapSetup[mapIndex].maxbounds
+        bounds: mapSetup[mapIndex].bounds,
+        maxBounds: mapSetup[mapIndex].maxbounds
       },
       paint: {
         'raster-fade-duration': 0
