@@ -60,7 +60,6 @@ const utility = new Utility();
 export class MapBoxConfig {
   constructor() {
     this.mapVersion = store.getStateItem('map-version');
-    console.log('constructor', this.mapVersion)
     switch (this.mapVersion) {
       case 0: // avl
         this.squareGridGeoJSON = SquareGridGeoJSONOne;
@@ -173,12 +172,10 @@ export class MapBoxConfig {
   // @return new mapbox map object
   makeMap(mapContainer = this.defaultMapContainer, mapIndex = 0) {
     const mapVersion = store.getStateItem('map-version');
-    console.log('mapContainer', mapVersion);
     const mapSetup = this.mapChangeLayers.layers[mapVersion];
     const map = new this.mapboxgl.Map({
       container: mapContainer,
       style: this.lightMapStyle,
-      // center: this.defaultMapCenter,
       zoom: this.defaultMapZoom,
       showZoom: true,
       touchEnabled: true,
@@ -208,7 +205,6 @@ export class MapBoxConfig {
   // @return new mapbox map object
   makeAnimateMap(mapContainer = this.defaultMapContainer) {
     const mapVersion = store.getStateItem('map-version');
-    console.log('makeAnimateMap', mapVersion);
     const mapSetup = this.mapChangeLayers.layers[mapVersion];
 
     const map = new this.mapboxgl.Map({
@@ -258,7 +254,6 @@ export class MapBoxConfig {
   // @return array of maps new mapbox map object
   makeCompareMap(mapBeforeContainer, mapAfterContainer, mapCompareWrapperID) {
     const mapVersion = store.getStateItem('map-version');
-    console.log('makeCompareMap', mapVersion);
     const mapSetup = this.mapChangeLayers.layers[mapVersion];
 
     const beforeMap = new this.mapboxgl.Map({
@@ -334,14 +329,6 @@ export class MapBoxConfig {
     // study constraints number of questions starts with 0
     const mapVersion = store.getStateItem('map-version');
     const mapSetup = this.mapChangeLayers.layers[mapVersion]
-    console.log('makeTMSLayer', mapVersion)
-    console.log('mapVersion url', mapSetup[mapIndex].url)
-
-    // // console.log('makeTMSLayer layer', mapSetup[mapIndex].layers)
-    // console.log('makeTMSLayer mapVersion', mapVersion)
-    // console.log('makeTMSLayer mapSetup', mapSetup)
-    // console.log('mapVersion url', mapSetup[mapIndex].url)
-    // console.log('mapVersion bounds', mapSetup[mapIndex].bounds)
 
     return {
       id: `map-change-${mapIndex}`,
@@ -367,18 +354,6 @@ export class MapBoxConfig {
   // @param null
   // @return null
   makeGridLayer() {
-    // {"_sw":{"lng":-82.69918436136798,"lat":35.5006993752381},
-    // "_ne":{"lng":-82.43593385567635,"lat":35.61967467603169}
-    // }
-    // const bbox = [-82.650, 35.508 ,-82.485, 35.623]; // side to side fits small
-
-    // uncomment if need to redoo the qrid
-    // const bbox = [-82.650, 35.505 ,-82.485, 35.615];
-    // const cellSide = 0.6;
-    // const options = {units: 'miles'};
-    // const squareGridGeoJSON = squareGrid(bbox, cellSide, options);
-    // console.log('squareGridGeoJSON', JSON.stringify(squareGridGeoJSON))
-
     return {
       id: 'change-grid',
       type: 'fill',
@@ -531,10 +506,8 @@ export class MapBoxConfig {
 
   fitMyBounds(map) {
     const mapVersion = store.getStateItem('map-version');
-    console.log('fitMyBounds', mapVersion)
     const mapSetup = this.mapChangeLayers.layers[mapVersion];
     const bounds = mapSetup[0].maxbounds;
-    // const bounds = [-82.647, 35.507, -82.498, 35.612];
     map.fitBounds(bounds, { padding: 20 });
   }
 }
