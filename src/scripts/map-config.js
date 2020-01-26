@@ -190,10 +190,12 @@ export class MapBoxConfig {
       map.addLayer(this.makeGridLayer());
       this.addGridClick(map);
       map.resize();
+      setTimeout(() => { map.resize();; }, 10);
     });
 
     window.onload = (e) => {
       map.resize();
+      setTimeout(() => { map.resize();; }, 10);
     };
 
     return map;
