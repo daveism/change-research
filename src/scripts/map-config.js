@@ -208,8 +208,8 @@ export class MapBoxConfig {
     });
 
     window.onload = (e) => {
-    map.setZoom(this.defaultMapZoom);
-    map.resize();
+      map.setZoom(this.defaultMapZoom);
+      map.resize();
     };
     return map;
   }
@@ -218,7 +218,8 @@ export class MapBoxConfig {
   //
   // @param mapContainer - string
   // @return array of maps new mapbox map object
-  makeCompareMap(mapBeforeContainer, mapAfterContainer, mapCompareWrapperID, end = false, enableclick = true) {
+  makeCompareMap(mapBeforeContainer, mapAfterContainer, mapCompareWrapperID,
+    end = false, enableclick = true) {
     const mapVersion = store.getStateItem('map-version');
     const mapSetup = this.mapChangeLayers.layers[mapVersion];
 

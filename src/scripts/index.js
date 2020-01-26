@@ -98,7 +98,8 @@ switch (studyVersion) {
 }
 
 // create all the mapbox map objects
-// const mapEndArr = mapBoxConfig.makeCompareMap('map-c-enda', 'map-c-endb', 'compare-end-wrapper', true, false);
+// const mapEndArr = mapBoxConfig.makeCompareMap('map-c-enda',
+//  'map-c-endb', 'compare-end-wrapper', true, false);
 //
 const mapEnda = mapBoxConfig.makeMap('map-enda', 0, false, false);
 const mapEndb = mapBoxConfig.makeMap('map-endb', 1, true, false);
@@ -224,8 +225,10 @@ document.addEventListener('grid-update', () => {
       mapdef.getSource('change-grid').setData(currentSquareGridGeoJSON);
       break;
   }
-  mapEndArr[0].getSource('change-grid').setData(currentSquareGridGeoJSON);
-  mapEndArr[1].getSource('change-grid').setData(currentSquareGridGeoJSON);
+  // mapEndArr[0].getSource('change-grid').setData(currentSquareGridGeoJSON);
+  // mapEndArr[1].getSource('change-grid').setData(currentSquareGridGeoJSON);
+  mapEnda.getSource('change-grid').setData(currentSquareGridGeoJSON);
+  mapEndb.getSource('change-grid').setData(currentSquareGridGeoJSON);
 });
 
 const susBtnGroupElements = ['btn-group-sus-1',
