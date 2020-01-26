@@ -4,18 +4,107 @@ import { polygon, featureCollection } from '@turf/helpers';
 import { Utility } from './utility';
 // import squareGrid from '@turf/square-grid';
 import { Store } from './store';
-import SquareGridGeoJSON from './square-grid-geojson.json';
+import SquareGridGeoJSONOne from './square-grid-geojson.json';
+import SquareGridGeoJSONSecond from './square-grid-geojson-second.json';
+import SquareGridGeoJSONThird from './square-grid-geojson-third.json';
 
 const syncMove = require('@mapbox/mapbox-gl-sync-move');
 
 const store = new Store({});
 const utility = new Utility();
 
+// avl
+// 0:
+// [-82.64750279625561,35.50789745200741]
+// 1:
+// [-82.49816302416521,35.50789745200741]
+// 2:
+// [-82.49816302416521,35.61210237015567]
+// 3:
+// [-82.64750279625561,35.61210237015567]
+// 4:
+// [-82.64750279625561,35.50789745200741]
+
+// avl buffer
+// [-82.70284788178019,35.462903122329635]
+// 1:
+// [-82.4428179386373,35.462903122329635]
+// 2:
+// [-82.4428179386373,35.65709670004187]
+// 3:
+// [-82.70284788178019,35.65709670004187]
+// 4:
+// [-82.70284788178019,35.462903122329635]
+
+
+// hstn
+// 0:
+// [-95.94039512075331,29.67075135527005]
+// 1:
+// [-95.7910509634671,29.67075135527005]
+// 2:
+// [-95.7910509634671,29.7749562491426]
+// 3:
+// [-95.94039512075331,29.7749562491426]
+// 4:
+// [-95.94039512075331,29.67075135527005]
+
+
+// hstn buffer
+// [-95.99223294201447,29.62575702556433]
+// 1:
+// [-95.7392131422034,29.62575702556433]
+// 2:
+// [-95.7392131422034,29.81995057904633]
+// 3:
+// [-95.99223294201447,29.81995057904633]
+// 4:
+// [-95.99223294201447,29.62575702556433]
+
+// lv
+// 0:
+// [-114.89989978765914,36.07957205493418]
+// 1:
+// [-114.75056002016422,36.07957205493418]
+// 2:
+// [-114.75056002016422,36.18378142051415]
+// 3:
+// [-114.89989978765914,36.18378142051415]
+// 4:
+// [-114.89989978765914,36.07957205493418]
+
+// lv buff
+// [-114.95564603205906,36.034577725246685]
+// 1:
+// [-114.69481377573592,36.034577725246685]
+// 2:
+// [-114.69481377573592,36.228775750398455]
+// 3:
+// [-114.95564603205906,36.228775750398455]
+// 4:
+// [-114.95564603205906,36.034577725246685]
+
 export class MapBoxConfig {
   constructor() {
+    const mapVersion = store.getStateItem('map-version');    
+    switch (mapVersion) {
+      case 1:
+        this.squareGridGeoJSON = SquareGridGeoJSONOne;
+        break;
+      case 2:
+        this.squareGridGeoJSON = SquareGridGeoJSONSecond;
+        break;
+      case 3:
+        this.squareGridGeoJSON = SquareGridGeoJSONThird;
+        break;
+      default:
+        this.squareGridGeoJSON = SquareGridGeoJSONOne;
+        break;
+    }
+
     this.defaultMapStyle = 'mapbox://styles/mapbox/streets-v11';
     this.defaultMapCenter = [-82.570, 35.560]; // starting position [lng, lat]
-    this.maxBounds = [-82.702, 35.463, -82.442, 35.657];
+    this.defaultMaxBounds = [-82.702, 35.463, -82.442, 35.657];
     this.defaultMapZoom = 10; // starting zoom
     this.defaultMapContainer = 'map';
     this.darkMapStyle = 'mapbox://styles/mapbox/dark-v10';
@@ -28,7 +117,31 @@ export class MapBoxConfig {
     this.map2 = null;
     this.defaultGreyBox = '#555555';
     this.selectedBox = '#FBB03B';
-    this.squareGridGeoJSON = SquareGridGeoJSON;
+    this.mapChangeLayers = {
+      layers: [
+        [
+          {
+            url: 'https://daveism.github.io/change-research/dist/maps/nlcd-2016-30/{z}/{x}/{y}.png',
+            minzoom: 1,
+            maxzoom: 14,
+            scheme: 'tms',
+            tileSize: 256,
+            bounds: [-82.647, -82.498, 35.507, 35.612],
+            maxbounds: [-82.702, 35.463, -82.442, 35.657]
+          },
+          {
+            url: 'https://daveism.github.io/change-research/dist/maps/nlcd-2001-30/{z}/{x}/{y}.png',
+            minzoom: 1,
+            maxzoom: 14,
+            scheme: 'tms',
+            tileSize: 256,
+            bounds: [-82.647, -82.498, 35.507, 35.612],
+            maxbounds: [-82.702, 35.463, -82.442, 35.657]
+          },
+        ]
+      ]
+    }
+
     this.mapChangeLayersOne = [
       'https://daveism.github.io/change-research/dist/maps/nlcd-2016-30/{z}/{x}/{y}.png',
       'https://daveism.github.io/change-research/dist/maps/nlcd-2001-30/{z}/{x}/{y}.png'
@@ -41,20 +154,23 @@ export class MapBoxConfig {
   // @param mapContainer - string
   // @return new mapbox map object
   makeMap(mapContainer = this.defaultMapContainer, mapIndex = 0) {
+    const mapVersion = store.getStateItem('map-version');
+    //  replace mapVersion latter
+    const mapSetup = this.mapChangeLayers.layers[0][mapIndex]
     const map = new this.mapboxgl.Map({
       container: mapContainer,
       style: this.lightMapStyle,
-      center: this.defaultMapCenter,
+      // center: this.defaultMapCenter,
       zoom: this.defaultMapZoom,
       showZoom: true,
       touchEnabled: true,
       keybindings: true,
-      maxBounds: this.maxBounds
+      maxBounds: mapSetup.maxbounds
     });
 
     map.on('load', (e) => {
       MapBoxConfig.fitMyBounds(map);
-      map.addLayer(MapBoxConfig.makeTMSLayer(this.mapChangeLayersOne, mapIndex));
+      map.addLayer(this.makeTMSLayer(this.mapChangeLayersOne, mapIndex));
       map.addLayer(this.makeGridOutLineLayer());
       map.addLayer(this.makeGridLayer());
       this.addGridClick(map);
@@ -73,6 +189,10 @@ export class MapBoxConfig {
   // @param mapContainer - string
   // @return new mapbox map object
   makeAnimateMap(mapContainer = this.defaultMapContainer) {
+    const mapVersion = store.getStateItem('map-version');
+    //  replace mapVersion latter
+    const mapSetup = this.mapChangeLayers.layers[0][0]
+
     const map = new this.mapboxgl.Map({
       container: mapContainer,
       style: this.lightMapStyle,
@@ -81,13 +201,13 @@ export class MapBoxConfig {
       showZoom: true,
       touchEnabled: true,
       keybindings: true,
-      maxBounds: this.maxBounds
+      maxBounds: mapSetup.maxbounds
     });
 
     map.on('load', (e) => {
       MapBoxConfig.fitMyBounds(map);
-      map.addLayer(MapBoxConfig.makeTMSLayer(this.mapChangeLayersOne, 0));
-      map.addLayer(MapBoxConfig.makeTMSLayer(this.mapChangeLayersOne, 1));
+      map.addLayer(this.makeTMSLayer(this.mapChangeLayersOne, 0));
+      map.addLayer(this.makeTMSLayer(this.mapChangeLayersOne, 1));
       map.addLayer(this.makeGridOutLineLayer());
       map.addLayer(this.makeGridLayer());
       this.addGridClick(map);
@@ -119,6 +239,11 @@ export class MapBoxConfig {
   // @param mapContainer - string
   // @return array of maps new mapbox map object
   makeCompareMap(mapBeforeContainer, mapAfterContainer, mapCompareWrapperID) {
+    const mapVersion = store.getStateItem('map-version');
+    //  replace mapVersion latter
+    const mapSetup1 = this.mapChangeLayers.layers[0][0]
+    const mapSetup2 = this.mapChangeLayers.layers[0][1]
+
     const beforeMap = new this.mapboxgl.Map({
       container: mapBeforeContainer,
       style: this.lightMapStyle,
@@ -127,7 +252,7 @@ export class MapBoxConfig {
       showZoom: true,
       touchEnabled: true,
       keybindings: true,
-      maxBounds: this.maxBounds
+      maxBounds: mapSetup1.maxbounds
     });
 
     const afterMap = new this.mapboxgl.Map({
@@ -138,13 +263,13 @@ export class MapBoxConfig {
       showZoom: true,
       touchEnabled: true,
       keybindings: true,
-      maxBounds: this.maxBounds
+      maxBounds: mapSetup2.maxbounds
     });
     const compare = new this.MapboxCompare(beforeMap, afterMap, `#${mapCompareWrapperID}`);
 
     beforeMap.on('load', (e) => {
       MapBoxConfig.fitMyBounds(beforeMap);
-      beforeMap.addLayer(MapBoxConfig.makeTMSLayer(this.mapChangeLayersOne, 1));
+      beforeMap.addLayer(this.makeTMSLayer(this.mapChangeLayersOne, 1)); // needs update
       beforeMap.addLayer(this.makeGridOutLineLayer());
       beforeMap.addLayer(this.makeGridLayer());
       this.addGridClick(beforeMap);
@@ -154,7 +279,7 @@ export class MapBoxConfig {
 
     afterMap.on('load', (e) => {
       MapBoxConfig.fitMyBounds(afterMap);
-      afterMap.addLayer(MapBoxConfig.makeTMSLayer(this.mapChangeLayersOne, 0));
+      afterMap.addLayer(this.makeTMSLayer(this.mapChangeLayersOne, 0)); // needs update
       afterMap.addLayer(this.makeGridOutLineLayer());
       afterMap.addLayer(this.makeGridLayer());
       this.addGridClick(afterMap);
@@ -188,18 +313,22 @@ export class MapBoxConfig {
     syncMove(map1, map2);
   }
 
-  static makeTMSLayer(mapChange, mapIndex) {
+  makeTMSLayer(mapChange, mapIndex) {
+    const mapVersion = store.getStateItem('map-version');
+    //  replace mapVersion latter
+    const mapSetup = this.mapChangeLayers.layers[0][mapIndex]
+
     return {
       id: `map-change-${mapIndex}`,
       type: 'raster',
       source: {
         type: 'raster',
-        tiles: [mapChange[mapIndex]],
-        minzoom: 1,
-        maxzoom: 14,
+        tiles: [mapSetup.url],
+        minzoom: mapSetup.minzoom,
+        maxzoom: mapSetup.maxzoom,
         scheme: 'tms',
         tileSize: 256,
-        bounds: [-82.647, -82.498, 35.507, 35.612]
+        bounds:  mapSetup.bounds
       },
       paint: {
         'raster-fade-duration': 0
