@@ -104,7 +104,7 @@ export class MapBoxConfig {
             scheme: 'tms',
             tileSize: 256,
             bounds: [-82.647, 35.507,-82.498, 35.612],
-            maxbounds: [-82.702, 35.442, -82.463, 35.657]
+            maxbounds: [-82.702, 35.442, -82.462, 35.657]
           },
           {
             url: 'https://daveism.github.io/change-research/dist/maps/iknow_2/{z}/{x}/{y}.png',
@@ -113,7 +113,7 @@ export class MapBoxConfig {
             scheme: 'tms',
             tileSize: 256,
             bounds: [-82.647, 35.507, -82.498, 35.612],
-            maxbounds: [-82.702, 35.442, -82.463, 35.657]
+            maxbounds: [-82.702, 35.442, -82.462, 35.657]
           },
         ],
         [ // hstn 1
