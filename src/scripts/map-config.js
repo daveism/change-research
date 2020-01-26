@@ -66,11 +66,11 @@ export class MapBoxConfig {
         store.setStateItem('squareGridGeoJSON', SquareGridGeoJSONOne);
         break;
       case 1: // hstn
-        this.squareGridGeoJSON = SquareGridGeoJSONThird;
+        this.squareGridGeoJSON = SquareGridGeoJSONSecond;
         store.setStateItem('squareGridGeoJSON', SquareGridGeoJSONThird);
         break;
       case 2: // lv
-        this.squareGridGeoJSON = SquareGridGeoJSONSecond;
+        this.squareGridGeoJSON = SquareGridGeoJSONThird;
         store.setStateItem('squareGridGeoJSON', SquareGridGeoJSONSecond);
         break;
       default: // avl
