@@ -39,7 +39,7 @@ export class MapBoxConfig {
     this.defaultMapStyle = 'mapbox://styles/mapbox/streets-v11';
     this.defaultMapCenter = [-82.570, 35.560]; // starting position [lng, lat]
     this.defaultMaxBounds = [-82.702, 35.463, -82.442, 35.657];
-    this.defaultMapZoom = 10; // starting zoom
+    this.defaultMapZoom = 5; // starting zoom
     this.defaultMapContainer = 'map';
     this.darkMapStyle = 'mapbox://styles/mapbox/dark-v10';
     this.lightMapStyle = 'mapbox://styles/mapbox/light-v10';
@@ -151,11 +151,13 @@ export class MapBoxConfig {
       if (enableclick) {
         this.addGridClick(map);
       }
+      map.setZoom(this.defaultMapZoom);
       map.resize();
       setTimeout(() => { map.resize(); }, 10);
     });
 
     window.onload = (e) => {
+      map.setZoom(this.defaultMapZoom);
       map.resize();
       setTimeout(() => { map.resize(); }, 10);
     };
@@ -206,7 +208,8 @@ export class MapBoxConfig {
     });
 
     window.onload = (e) => {
-      map.resize();
+    map.setZoom(this.defaultMapZoom);
+    map.resize();
     };
     return map;
   }
@@ -250,6 +253,7 @@ export class MapBoxConfig {
       if (enableclick) {
         this.addGridClick(beforeMap);
       }
+      beforeMap.setZoom(this.defaultMapZoom);
       beforeMap.resize();
       compare.setSlider(150);
     });
@@ -266,6 +270,7 @@ export class MapBoxConfig {
       if (enableclick) {
         this.addGridClick(afterMap);
       }
+      afterMap.setZoom(this.defaultMapZoom);
       afterMap.resize();
       compare.setSlider(150);
     });
