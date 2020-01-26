@@ -126,7 +126,7 @@ export class MapBoxConfig {
   //
   // @param mapContainer - string
   // @return new mapbox map object
-  makeMap(mapContainer = this.defaultMapContainer, mapIndex = 0, end = false) {
+  makeMap(mapContainer = this.defaultMapContainer, mapIndex = 0, end = false, enableclick = true) {
     const mapVersion = store.getStateItem('map-version');
     const mapSetup = this.mapChangeLayers.layers[mapVersion];
     const map = new this.mapboxgl.Map({
@@ -148,7 +148,9 @@ export class MapBoxConfig {
       } else {
         map.addLayer(this.makeGridLayer());
       }
-      this.addGridClick(map);
+      if (enableclick) {
+        this.addGridClick(map);
+      }
       map.resize();
       setTimeout(() => { map.resize(); }, 10);
     });
