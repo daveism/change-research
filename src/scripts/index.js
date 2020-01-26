@@ -145,8 +145,8 @@ document.addEventListener('aggree-clicked', () => {
 });
 
 document.addEventListener('sus-clicked', () => {
-  mapEnda.setZoom(9);
-  mapEnda.setZoom(9);
+  mapEnda.setZoom(5);
+  mapEnda.setZoom(5);
   resizeAllMaps();
   // mapEndArr[0].setZoom(11);
   // mapEndArr[1].setZoom(11);

@@ -88,28 +88,50 @@ html, body {
 #map-1, #map-3a, #map-3b, #map-2a, #map-2b, #map-enda, #map-endb {
   height: $mapHeight;
   width: $mapWidth;
+  &.endmap {
+    height: $mapSmallHeight;
+    width: $mapBigWidth - 25;
+    max-width: $mapBigWidth - 25;;
+  }
   @include border-radius($default-radius, $default-radius);
 
 
   @media only screen and (max-width: 1200px) {
-    width: $mapBigWidth;
     height: $mapBigHeight;
+    width: $mapBigWidth;
+    &.endmap {
+      height: $mapSmallHeight;
+      width: $mapBigWidth - 25;;
+      max-width: $mapBigWidth - 25;;
+    }
   }
 
   @media only screen and (max-width: 992px) {
-    width: $mapMediumWidth;
     height: $mapMediumHeight;
+    width: $mapMediumWidth;
+    &.endmap {
+      height: $mapSmallHeight;
+      width: $mapSmallWidth;
+      max-width: $mapSmallWidth;
+    }
   }
 
   @media only screen and (max-width: 768px) {
     height: $mapSmallHeight;
     width: $mapSmallWidth;
+    &.endmap {
+      height: $mapSmallHeight - 75;
+    }
   }
 
   @media only screen and (max-width: 599px) {
     height: $mapTinyHeight;
     width: $mapTinyWidth;
     flex-flow: column;
+    &.endmap {
+      height: $mapTinyHeight - 25;
+      max-width: $mapSmallWidth;
+    }
   }
 }
 
