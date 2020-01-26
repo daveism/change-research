@@ -2,7 +2,6 @@ import mapboxgl from 'mapbox-gl';
 import MapboxCompare from 'mapbox-gl-compare';
 import { polygon, featureCollection } from '@turf/helpers';
 // import center from '@turf/center';
-
 import { Utility } from './utility';
 // import squareGrid from '@turf/square-grid';
 import { Store } from './store';
@@ -14,48 +13,6 @@ const syncMove = require('@mapbox/mapbox-gl-sync-move');
 
 const store = new Store({});
 const utility = new Utility();
-
-// avl
-// [-82.64750279625561,35.50789745200741]
-// [-82.49816302416521,35.50789745200741]
-// [-82.49816302416521,35.61210237015567]
-// [-82.64750279625561,35.61210237015567]
-// [-82.64750279625561,35.50789745200741]
-
-// avl buffer
-// [-82.70284788178019,35.462903122329635]
-// [-82.4428179386373,35.462903122329635]
-// [-82.4428179386373,35.65709670004187]
-// [-82.70284788178019,35.65709670004187]
-// [-82.70284788178019,35.462903122329635]
-
-// hstn
-// [-95.94039512075331,29.67075135527005]
-// [-95.7910509634671,29.67075135527005]
-// [-95.7910509634671,29.7749562491426]
-// [-95.94039512075331,29.7749562491426]
-// [-95.94039512075331,29.67075135527005]
-
-// hstn buffer
-// [-95.99223294201447,29.62575702556433]
-// [-95.7392131422034,29.62575702556433]
-// [-95.7392131422034,29.81995057904633]
-// [-95.99223294201447,29.81995057904633]
-// [-95.99223294201447,29.62575702556433]
-
-// lv
-// [-114.89989978765914,36.07957205493418]
-// [-114.75056002016422,36.07957205493418]
-// [-114.75056002016422,36.18378142051415]
-// [-114.89989978765914,36.18378142051415]
-// [-114.89989978765914,36.07957205493418]
-
-// lv buff
-// [-114.95564603205906,36.034577725246685]
-// [-114.69481377573592,36.034577725246685]
-// [-114.69481377573592,36.228775750398455]
-// [-114.95564603205906,36.228775750398455]
-// [-114.95564603205906,36.034577725246685]
 
 export class MapBoxConfig {
   constructor() {
@@ -169,7 +126,7 @@ export class MapBoxConfig {
   //
   // @param mapContainer - string
   // @return new mapbox map object
-  makeMap(mapContainer = this.defaultMapContainer, mapIndex = 0) {
+  makeMap(mapContainer = this.defaultMapContainer, mapIndex = 0, end = false) {
     const mapVersion = store.getStateItem('map-version');
     const mapSetup = this.mapChangeLayers.layers[mapVersion];
     const map = new this.mapboxgl.Map({
@@ -186,7 +143,11 @@ export class MapBoxConfig {
       this.fitMyBounds(map);
       map.addLayer(this.makeTMSLayer(this.mapChangeLayersOne, mapIndex));
       map.addLayer(this.makeGridOutLineLayer());
-      map.addLayer(this.makeGridLayer());
+      if (end) {
+        map.addLayer(this.makeGridCorrectLayer());
+      } else {
+        map.addLayer(this.makeGridLayer());
+      }
       this.addGridClick(map);
       map.resize();
       setTimeout(() => { map.resize(); }, 10);
@@ -366,6 +327,31 @@ export class MapBoxConfig {
         'fill-color': [
           'match',
           ['get', 'selected'],
+          1, this.selectedBox,
+          /* other */ this.defaultGreyBox
+        ],
+        'fill-opacity': 0.5
+      }
+    };
+  }
+
+  // makes change grid layer what correct on map
+  //
+  // @param null
+  // @return null
+  makeGridCorrectLayer() {
+    return {
+      id: 'change-grid',
+      type: 'fill',
+      source: {
+        type: 'geojson',
+        data: this.squareGridGeoJSON
+      },
+      layout: {},
+      paint: {
+        'fill-color': [
+          'match',
+          ['get', 'v'],
           1, this.selectedBox,
           /* other */ this.defaultGreyBox
         ],

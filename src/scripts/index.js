@@ -101,7 +101,7 @@ switch (studyVersion) {
 
 // create all the mapbox map objects
 const mapEnda = mapBoxConfig.makeMap('map-enda', 0);
-const mapEndb = mapBoxConfig.makeMap('map-endb', 1);
+const mapEndb = mapBoxConfig.makeMap('map-endb', 1, true);
 mapBoxConfig.syncMaps(mapEnda, mapEndb);
 
 
