@@ -21,8 +21,9 @@ export class Handlers {
 
     // study questions map change
     this.studyQuestionElementsAdd = ['study-progress-sus', 'block-study-sus-holder'];
-    this.studyQuestionElementsRemove = ['study-progress-map-0', 'study-progress-map-1', 'study-progress-map-2', 'map-action-holder'];
-
+    this.studyQuestion = store.getStateItem('study-question');
+    this.studyQuestionElementsRemove = [`study-progress-map-${this.studyQuestion}`, 'map-action-holder'];
+    
     // SUS scores
     this.studySUSElementsAdd = ['study-progress-end', 'block-study-completed-holder'];
     this.studySUSElementsRemove = ['study-progress-sus', 'block-study-sus-holder'];
