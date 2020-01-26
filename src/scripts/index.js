@@ -32,52 +32,6 @@ import blockStudyCompleted from '../content-blocks/block-study-completed.html';
 
 const store = new Store({});
 const recordStudyData = new RecordStudyData();
-const mapBoxConfig = new MapBoxConfig();
-const utility = new Utility();
-const handlers = new Handlers();
-
-if (!utility.checkValidObject(store.getStateItem('uuid'))) {
-  store.setStateItem('uuid', utility.uuid().toString());
-}
-
-// Kicks off the process of finding <i> tags and replacing with <svg>
-// addes support for fontawesome
-library.add(fas, far);
-dom.watch();
-
-// load all html blocks
-utility.loadHTMLBlock('block-study-aggreement-holder', blockStudyAggreement);
-utility.loadHTMLBlock('block-study-dissaggree-holder', blockStudyDissaggree);
-utility.loadHTMLBlock('block-study-question-1-holder', blockStudyQuestion1);
-utility.loadHTMLBlock('block-study-question-2-holder', blockStudyQuestion2);
-utility.loadHTMLBlock('block-study-question-3-holder', blockStudyQuestion3);
-utility.loadHTMLBlock('block-study-sus-holder', blockStudySUS);
-utility.loadHTMLBlock('block-study-completed-holder', blockStudyCompleted);
-
-// create all the mapbox map objects
-const map1 = mapBoxConfig.makeAnimateMap('map-1', 0);
-const map2a = mapBoxConfig.makeMap('map-2a', 0);
-const map2b = mapBoxConfig.makeMap('map-2b', 1);
-const map3Arr = mapBoxConfig.makeCompareMap('map-3a', 'map-3b', 'compare-wrapper');
-const mapEnda = mapBoxConfig.makeMap('map-enda', 0);
-const mapEndb = mapBoxConfig.makeMap('map-endb', 1);
-
-// create mapbox navigation control instance
-const nav = mapBoxConfig.addNav();
-
-// add navigatio to maps
-// I may not need this if I do not let user zoom/pan
-map1.addControl(nav, 'top-left');
-map2a.addControl(nav, 'top-left');
-map2b.addControl(nav, 'top-left');
-map3Arr[0].addControl(nav, 'top-left');
-map3Arr[1].addControl(nav, 'top-left');
-mapEnda.addControl(nav, 'top-left');
-mapEndb.addControl(nav, 'top-left');
-
-// sync maps
-mapBoxConfig.synMaps(map2a, map2b);
-mapBoxConfig.synMaps(mapEnda, mapEndb);
 
 // study constraints number of questions starts with 0
 const studyMinOne = 0;
@@ -93,14 +47,93 @@ const mapVersion = Math.floor(Math.random() * (mapMaxOne - mapMinOne + 1) + mapM
 store.setStateItem('map-version', mapVersion);
 recordStudyData.setEvent('data', 'map-version', mapVersion);
 
+const utility = new Utility();
+const handlers = new Handlers();
+const mapBoxConfig = new MapBoxConfig();
+
+if (!utility.checkValidObject(store.getStateItem('uuid'))) {
+  store.setStateItem('uuid', utility.uuid().toString());
+}
+
+// Kicks off the process of finding <i> tags and replacing with <svg>
+// addes support for fontawesome
+library.add(fas, far);
+dom.watch();
+
+// load only the block needed
+utility.loadHTMLBlock('block-study-aggreement-holder', blockStudyAggreement);
+utility.loadHTMLBlock('block-study-dissaggree-holder', blockStudyDissaggree);
+utility.loadHTMLBlock('block-study-sus-holder', blockStudySUS);
+utility.loadHTMLBlock('block-study-completed-holder', blockStudyCompleted);
+
+// create mapbox navigation control instance
+const nav = mapBoxConfig.addNav();
+let map1;
+let map2a;
+let map2b;
+let map3Arr;
+let mapdef;
+
+switch (studyVersion) {
+  case 0: // animate
+    utility.loadHTMLBlock('block-study-question-1-holder', blockStudyQuestion1);
+    map1 = mapBoxConfig.makeAnimateMap('map-1', 0);
+    map1.addControl(nav, 'top-left');
+    break;
+  case 1: // side by side
+    utility.loadHTMLBlock('block-study-question-2-holder', blockStudyQuestion2);
+    map2a = mapBoxConfig.makeMap('map-2a', 0);
+    map2b = mapBoxConfig.makeMap('map-2b', 1);
+    map2a.addControl(nav, 'top-left');
+    map2b.addControl(nav, 'top-left');
+    mapBoxConfig.syncMaps(map2a, map2b);
+    break;
+  case 2: // slider
+    utility.loadHTMLBlock('block-study-question-3-holder', blockStudyQuestion3);
+    map3Arr = mapBoxConfig.makeCompareMap('map-3a', 'map-3b', 'compare-wrapper');
+    map3Arr[0].addControl(nav, 'top-left');
+    map3Arr[1].addControl(nav, 'top-left');
+    mapBoxConfig.syncMaps(map3Arr[0], map3Arr[1]);
+    break;
+  default: // animate
+    utility.loadHTMLBlock('block-study-question-1-holder', blockStudyQuestion1);
+    mapdef = mapBoxConfig.makeAnimateMap('map-1', 0);
+    mapdef.addControl(nav, 'top-left');
+    break;
+}
+
+// create all the mapbox map objects
+const mapEnda = mapBoxConfig.makeMap('map-enda', 0);
+const mapEndb = mapBoxConfig.makeMap('map-endb', 1);
+mapBoxConfig.syncMaps(mapEnda, mapEndb);
+
+
+// add navigatio to maps
+// I may not need this if I do not let user zoom/pan
+mapEnda.addControl(nav, 'top-left');
+mapEndb.addControl(nav, 'top-left');
+
+// sync maps
+
 // // TODO only deal with map for study question
 // // only load html block needed map objects will have generic names also
 function resizeAllMaps() {
-  map1.resize();
-  map2a.resize();
-  map2b.resize();
-  map3Arr[0].resize();
-  map3Arr[1].resize();
+  switch (studyVersion) {
+    case 0: // animate
+      map1.resize();
+      break;
+    case 1: // side by side
+      map2a.resize();
+      map2b.resize();
+      break;
+    case 2: // slider
+      map3Arr[0].resize();
+      map3Arr[1].resize();
+      break;
+    default: // animate
+      mapdef.resize();
+      break;
+  }
   mapEnda.resize();
   mapEndb.resize();
 }
@@ -165,11 +198,22 @@ susChangeElements.forEach((elementUIID) => {
 // only updates one map how do get every map
 document.addEventListener('grid-update', () => {
   const currentSquareGridGeoJSON = store.getStateItem('squareGridGeoJSON');
-  map1.getSource('change-grid').setData(currentSquareGridGeoJSON);
-  map2a.getSource('change-grid').setData(currentSquareGridGeoJSON);
-  map2b.getSource('change-grid').setData(currentSquareGridGeoJSON);
-  map3Arr[0].getSource('change-grid').setData(currentSquareGridGeoJSON);
-  map3Arr[1].getSource('change-grid').setData(currentSquareGridGeoJSON);
+  switch (studyVersion) {
+    case 0: // animate
+      map1.getSource('change-grid').setData(currentSquareGridGeoJSON);
+      break;
+    case 1: // side by side
+      map2a.getSource('change-grid').setData(currentSquareGridGeoJSON);
+      map2b.getSource('change-grid').setData(currentSquareGridGeoJSON);
+      break;
+    case 2: // slider
+      map3Arr[0].getSource('change-grid').setData(currentSquareGridGeoJSON);
+      map3Arr[1].getSource('change-grid').setData(currentSquareGridGeoJSON);
+      break;
+    default: // animate
+      mapdef.getSource('change-grid').setData(currentSquareGridGeoJSON);
+      break;
+  }
   mapEnda.getSource('change-grid').setData(currentSquareGridGeoJSON);
   mapEndb.getSource('change-grid').setData(currentSquareGridGeoJSON);
 });

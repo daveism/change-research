@@ -59,21 +59,22 @@ const utility = new Utility();
 
 export class MapBoxConfig {
   constructor() {
-    const mapVersion = store.getStateItem('map-version');
-    switch (mapVersion) {
-      case 0:
+    this.mapVersion = store.getStateItem('map-version');
+    console.log('constructor', this.mapVersion)
+    switch (this.mapVersion) {
+      case 0: // avl
         this.squareGridGeoJSON = SquareGridGeoJSONOne;
         store.setStateItem('squareGridGeoJSON', SquareGridGeoJSONOne);
         break;
-      case 1:
+      case 1: // hstn
         this.squareGridGeoJSON = SquareGridGeoJSONThird;
         store.setStateItem('squareGridGeoJSON', SquareGridGeoJSONThird);
         break;
-      case 2:
+      case 2: // lv
         this.squareGridGeoJSON = SquareGridGeoJSONSecond;
         store.setStateItem('squareGridGeoJSON', SquareGridGeoJSONSecond);
         break;
-      default:
+      default: // avl
         this.squareGridGeoJSON = SquareGridGeoJSONOne;
         store.setStateItem('squareGridGeoJSON', SquareGridGeoJSONOne);
         break;
@@ -96,7 +97,7 @@ export class MapBoxConfig {
     this.selectedBox = '#FBB03B';
     this.mapChangeLayers = {
       layers: [
-        [
+        [ // avl 0
           {
             url: 'https://daveism.github.io/change-research/dist/maps/iknow_1/{z}/{x}/{y}.png',
             minzoom: 1,
@@ -116,7 +117,7 @@ export class MapBoxConfig {
             maxbounds: [-82.702, 35.442, -82.463, 35.657]
           },
         ],
-        [
+        [ // hstn 1
           {
             url: 'https://daveism.github.io/change-research/dist/maps/landcover_1/{z}/{x}/{y}.png',
             minzoom: 1,
@@ -127,7 +128,7 @@ export class MapBoxConfig {
             maxbounds: [-95.992, 29.625, -95.739, 29.820]
           },
           {
-            url: 'https://daveism.github.io/change-research/dist/maps/landcover_1/{z}/{x}/{y}.png',
+            url: 'https://daveism.github.io/change-research/dist/maps/landcover_2/{z}/{x}/{y}.png',
             minzoom: 1,
             maxzoom: 14,
             scheme: 'tms',
@@ -136,7 +137,7 @@ export class MapBoxConfig {
             maxbounds: [-95.992, 29.625, -95.739, 29.820]
           },
         ],
-        [
+        [ // lv 2
           {
             url: 'https://daveism.github.io/change-research/dist/maps/naip_1/{z}/{x}/{y}.png',
             minzoom: 1,
@@ -172,8 +173,8 @@ export class MapBoxConfig {
   // @return new mapbox map object
   makeMap(mapContainer = this.defaultMapContainer, mapIndex = 0) {
     const mapVersion = store.getStateItem('map-version');
-    //  replace mapVersion latter
-    const mapSetup = this.mapChangeLayers.layers[mapVersion][mapIndex]
+    console.log('mapContainer', mapVersion);
+    const mapSetup = this.mapChangeLayers.layers[mapVersion];
     const map = new this.mapboxgl.Map({
       container: mapContainer,
       style: this.lightMapStyle,
@@ -182,7 +183,7 @@ export class MapBoxConfig {
       showZoom: true,
       touchEnabled: true,
       keybindings: true,
-      maxBounds: mapSetup.maxbounds
+      maxBounds: mapSetup[mapIndex].maxbounds
     });
 
     map.on('load', (e) => {
@@ -207,8 +208,8 @@ export class MapBoxConfig {
   // @return new mapbox map object
   makeAnimateMap(mapContainer = this.defaultMapContainer) {
     const mapVersion = store.getStateItem('map-version');
-    //  replace mapVersion latter
-    const mapSetup = this.mapChangeLayers.layers[mapVersion][0]
+    console.log('makeAnimateMap', mapVersion);
+    const mapSetup = this.mapChangeLayers.layers[mapVersion];
 
     const map = new this.mapboxgl.Map({
       container: mapContainer,
@@ -218,7 +219,7 @@ export class MapBoxConfig {
       showZoom: true,
       touchEnabled: true,
       keybindings: true,
-      maxBounds: mapSetup.maxbounds
+      maxBounds: mapSetup[0].maxbounds
     });
 
     map.on('load', (e) => {
@@ -257,9 +258,8 @@ export class MapBoxConfig {
   // @return array of maps new mapbox map object
   makeCompareMap(mapBeforeContainer, mapAfterContainer, mapCompareWrapperID) {
     const mapVersion = store.getStateItem('map-version');
-    //  replace mapVersion latter
-    const mapSetup1 = this.mapChangeLayers.layers[mapVersion][0]
-    const mapSetup2 = this.mapChangeLayers.layers[mapVersion][1]
+    console.log('makeCompareMap', mapVersion);
+    const mapSetup = this.mapChangeLayers.layers[mapVersion];
 
     const beforeMap = new this.mapboxgl.Map({
       container: mapBeforeContainer,
@@ -269,7 +269,7 @@ export class MapBoxConfig {
       showZoom: true,
       touchEnabled: true,
       keybindings: true,
-      maxBounds: mapSetup1.maxbounds
+      maxBounds: mapSetup[0].maxbounds
     });
 
     const afterMap = new this.mapboxgl.Map({
@@ -280,7 +280,7 @@ export class MapBoxConfig {
       showZoom: true,
       touchEnabled: true,
       keybindings: true,
-      maxBounds: mapSetup2.maxbounds
+      maxBounds: mapSetup[1].maxbounds
     });
     const compare = new this.MapboxCompare(beforeMap, afterMap, `#${mapCompareWrapperID}`);
 
@@ -326,26 +326,35 @@ export class MapBoxConfig {
   // @param map1 = first mapbox map object
   // @param map2  = second mapbox map object
   // @return null
-  synMaps(map1, map2) { // eslint-disable-line
+  syncMaps(map1, map2) { // eslint-disable-line
     syncMove(map1, map2);
   }
 
   makeTMSLayer(mapChange, mapIndex) {
+    // study constraints number of questions starts with 0
     const mapVersion = store.getStateItem('map-version');
-    //  replace mapVersion latter
-    const mapSetup = this.mapChangeLayers.layers[mapVersion][mapIndex]
+    const mapSetup = this.mapChangeLayers.layers[mapVersion]
+    console.log('makeTMSLayer', mapVersion)
+    console.log('mapVersion url', mapSetup[mapIndex].url)
+
+    // // console.log('makeTMSLayer layer', mapSetup[mapIndex].layers)
+    // console.log('makeTMSLayer mapVersion', mapVersion)
+    // console.log('makeTMSLayer mapSetup', mapSetup)
+    // console.log('mapVersion url', mapSetup[mapIndex].url)
+    // console.log('mapVersion bounds', mapSetup[mapIndex].bounds)
 
     return {
       id: `map-change-${mapIndex}`,
       type: 'raster',
       source: {
         type: 'raster',
-        tiles: [mapSetup.url],
-        minzoom: mapSetup.minzoom,
-        maxzoom: mapSetup.maxzoom,
+        tiles: [mapSetup[mapIndex].url],
+        minzoom: mapSetup[mapIndex].minzoom,
+        maxzoom: mapSetup[mapIndex].maxzoom,
         scheme: 'tms',
         tileSize: 256,
-        bounds:  mapSetup.bounds
+        bounds:  mapSetup[mapIndex].bounds,
+        maxBounds:  mapSetup[mapIndex].maxbounds
       },
       paint: {
         'raster-fade-duration': 0
@@ -369,6 +378,7 @@ export class MapBoxConfig {
     // const options = {units: 'miles'};
     // const squareGridGeoJSON = squareGrid(bbox, cellSide, options);
     // console.log('squareGridGeoJSON', JSON.stringify(squareGridGeoJSON))
+
     return {
       id: 'change-grid',
       type: 'fill',
@@ -521,9 +531,9 @@ export class MapBoxConfig {
 
   fitMyBounds(map) {
     const mapVersion = store.getStateItem('map-version');
-    //  replace mapVersion latter
-    const mapSetup = this.mapChangeLayers.layers[mapVersion][0]
-    const bounds = mapSetup.maxbounds;
+    console.log('fitMyBounds', mapVersion)
+    const mapSetup = this.mapChangeLayers.layers[mapVersion];
+    const bounds = mapSetup[0].maxbounds;
     // const bounds = [-82.647, 35.507, -82.498, 35.612];
     map.fitBounds(bounds, { padding: 20 });
   }
