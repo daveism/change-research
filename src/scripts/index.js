@@ -144,6 +144,14 @@ document.addEventListener('aggree-clicked', () => {
   resizeAllMaps();
 });
 
+document.addEventListener('sus-clicked', () => {
+  mapEnda.setZoom(9);
+  mapEnda.setZoom(9);
+  resizeAllMaps();
+  // mapEndArr[0].setZoom(11);
+  // mapEndArr[1].setZoom(11);
+});
+
 document.addEventListener('disaggree-clicked', () => {
   resizeAllMaps();
 });

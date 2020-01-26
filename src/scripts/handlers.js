@@ -98,6 +98,7 @@ export class Handlers {
           const questionAnswer = store.getStateItem(key);
           susValueArray.push({ key, questionAnswer });
         });
+        utility.triggerEvent('sus-clicked', 'handleAgreeClick');
         recordStudyData.setEvent('data', 'susanswers', JSON.stringify(susValueArray));
         store.setStateItem('susanswers', susValueArray);
       });
