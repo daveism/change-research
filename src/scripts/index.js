@@ -5,9 +5,7 @@
 //            they are back at state they left the study
 //    MIGHT NOT BE ABLE TO DO THIS
 //
-// add change maps
 // completed needs expected map so people can see how they did
-// On the completed map disable map click of adding removing selected grids
 // Back to grid button when on sus? maybe or use navgo to create page
 // play pause on animation
 import { library, dom } from '@fortawesome/fontawesome-svg-core';
@@ -100,17 +98,22 @@ switch (studyVersion) {
 }
 
 // create all the mapbox map objects
+// const mapEndArr = mapBoxConfig.makeCompareMap('map-c-enda', 'map-c-endb', 'compare-end-wrapper', true, false);
+//
 const mapEnda = mapBoxConfig.makeMap('map-enda', 0, false, false);
 const mapEndb = mapBoxConfig.makeMap('map-endb', 1, true, false);
-mapBoxConfig.syncMaps(mapEnda, mapEndb);
+// mapBoxConfig.syncMaps(mapEndArr[0], mapEndArr[1]);
 
 
 // add navigatio to maps
 // I may not need this if I do not let user zoom/pan
+// mapEndArr[0].addControl(nav, 'top-left');
+// mapEndArr[1].addControl(nav, 'top-left');
 mapEnda.addControl(nav, 'top-left');
 mapEndb.addControl(nav, 'top-left');
 
 // sync maps
+mapBoxConfig.syncMaps(mapEnda, mapEndb);
 
 // // TODO only deal with map for study question
 // // only load html block needed map objects will have generic names also
@@ -131,6 +134,8 @@ function resizeAllMaps() {
       mapdef.resize();
       break;
   }
+  // mapEndArr[0].resize();
+  // mapEndArr[1].resize();
   mapEnda.resize();
   mapEndb.resize();
 }
@@ -211,8 +216,8 @@ document.addEventListener('grid-update', () => {
       mapdef.getSource('change-grid').setData(currentSquareGridGeoJSON);
       break;
   }
-  mapEnda.getSource('change-grid').setData(currentSquareGridGeoJSON);
-  mapEndb.getSource('change-grid').setData(currentSquareGridGeoJSON);
+  mapEndArr[0].getSource('change-grid').setData(currentSquareGridGeoJSON);
+  mapEndArr[1].getSource('change-grid').setData(currentSquareGridGeoJSON);
 });
 
 const susBtnGroupElements = ['btn-group-sus-1',

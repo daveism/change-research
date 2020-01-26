@@ -215,7 +215,7 @@ export class MapBoxConfig {
   //
   // @param mapContainer - string
   // @return array of maps new mapbox map object
-  makeCompareMap(mapBeforeContainer, mapAfterContainer, mapCompareWrapperID) {
+  makeCompareMap(mapBeforeContainer, mapAfterContainer, mapCompareWrapperID, end = false, enableclick = true) {
     const mapVersion = store.getStateItem('map-version');
     const mapSetup = this.mapChangeLayers.layers[mapVersion];
 
@@ -247,7 +247,9 @@ export class MapBoxConfig {
       beforeMap.addLayer(this.makeTMSLayer(this.mapChangeLayersOne, 1)); // needs update
       beforeMap.addLayer(this.makeGridOutLineLayer());
       beforeMap.addLayer(this.makeGridLayer());
-      this.addGridClick(beforeMap);
+      if (enableclick) {
+        this.addGridClick(beforeMap);
+      }
       beforeMap.resize();
       compare.setSlider(150);
     });
@@ -256,8 +258,14 @@ export class MapBoxConfig {
       this.fitMyBounds(afterMap);
       afterMap.addLayer(this.makeTMSLayer(this.mapChangeLayersOne, 0)); // needs update
       afterMap.addLayer(this.makeGridOutLineLayer());
-      afterMap.addLayer(this.makeGridLayer());
-      this.addGridClick(afterMap);
+      if (end) {
+        afterMap.addLayer(this.makeGridCorrectLayer());
+      } else {
+        afterMap.addLayer(this.makeGridLayer());
+      }
+      if (enableclick) {
+        this.addGridClick(afterMap);
+      }
       afterMap.resize();
       compare.setSlider(150);
     });
@@ -496,6 +504,6 @@ export class MapBoxConfig {
     const mapVersion = store.getStateItem('map-version');
     const mapSetup = this.mapChangeLayers.layers[mapVersion];
     const bounds = mapSetup[0].maxbounds;
-    map.fitBounds(bounds, { padding: 20 });
+    map.fitBounds(bounds, { padding: 100 });
   }
 }
