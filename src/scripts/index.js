@@ -2,8 +2,7 @@
 // TODOS
 //   record data at end so its all in one row.... store it in store then get each element
 //    record progress in state so when particpatant comes back or hist back button
-//            they are back at state they left the study ---- this really has to happen sine
-//            G limits writes...  maybe put answer grid into an array
+//            they are back at state they left the study
 //    MIGHT NOT BE ABLE TO DO THIS
 //
 // add change maps
