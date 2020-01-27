@@ -112,11 +112,13 @@ a {
 
 
   @media only screen and (max-width: 768px) {
-    height: 40pc !important;
-    width: 40pc !important;
+    padding-left: 10px;
+    height: 40px !important;
+    width: 40px !important;
   }
 
   @media only screen and (max-width: 599px) {
+    padding-left: 16px;
     height: 48px !important;
     width: 48px !important;
   }
