@@ -5,14 +5,12 @@
 //            they are back at state they left the study
 //    MIGHT NOT BE ABLE TO DO THIS
 //
-// completed needs expected map so people can see how they did
 // Back to grid button when on sus? maybe or use navgo to create page
-// play pause on animation
+// play pause on animation - maybe
 import { library, dom } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import { Store } from './store';
-import { RecordStudyData } from './record-study-data';
 import { MapBoxConfig } from './map-config';
 import { Utility } from './utility';
 import { Handlers } from './handlers';
@@ -26,21 +24,18 @@ import blockStudySUS from '../content-blocks/block-study-sus.html';
 import blockStudyCompleted from '../content-blocks/block-study-completed.html';
 
 const store = new Store({});
-const recordStudyData = new RecordStudyData();
 
 // study constraints number of questions starts with 0
 const studyMinOne = 0;
 const studyMaxOne = 2;
 const studyVersion = Math.floor(Math.random() * (studyMaxOne - studyMinOne + 1) + studyMinOne);
 store.setStateItem('study-question', studyVersion);
-recordStudyData.setEvent('data', 'study-question', studyVersion);
 
 // study constraints number of questions starts with 0
 const mapMinOne = 0;
 const mapMaxOne = 2;
 const mapVersion = Math.floor(Math.random() * (mapMaxOne - mapMinOne + 1) + mapMinOne);
 store.setStateItem('map-version', mapVersion);
-recordStudyData.setEvent('data', 'map-version', mapVersion);
 
 const utility = new Utility();
 const handlers = new Handlers();
@@ -162,13 +157,11 @@ const url = new URL(urlString);
 const campaign = url.searchParams.get('campaign');
 
 // ga event action, category, label
-recordStudyData.setEvent('data', 'study started', 'true');
-
-// ga event action, category, label
-recordStudyData.setEvent('data', 'campaign', campaign);
-
-// ga event action, category, label
-recordStudyData.setEvent('data', 'mobile', utility.isMobileDevice());
+const datestamp = new Date().toISOString();
+store.setStateItem('study started', true);
+store.setStateItem('study started time', datestamp);
+store.setStateItem('campaign', campaign);
+store.setStateItem('mobile', utility.isMobileDevice());
 
 // all the Aggreement change elements possible
 const aggrementChangeElements = ['aggree-button'];

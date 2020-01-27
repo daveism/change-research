@@ -6,6 +6,7 @@ const datapi = 'https://script.google.com/macros/s/AKfycbxRP9PVCSJ7Yo4_XYtqkzuSp
 export class RecordStudyData {
   constructor() {
     this.foo = {};
+    this.datapi = datapi;
   }
 
   setEvent(action = '', category = '', label = '', value = 0) {
@@ -23,7 +24,13 @@ export class RecordStudyData {
       date: this.date
     };
 
-    const dataAPIURL = new URL(datapi);
+    const dataAPIURL = new URL(this.datapi);
+    dataAPIURL.search = new URLSearchParams(jsondata);
+    fetch(dataAPIURL);
+  }
+
+  setEventAll(jsondata = {}) {
+    const dataAPIURL = new URL(this.datapi);
     dataAPIURL.search = new URLSearchParams(jsondata);
     fetch(dataAPIURL);
   }

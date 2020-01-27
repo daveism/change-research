@@ -1,8 +1,6 @@
 import { Store } from './store';
-import { RecordStudyData } from './record-study-data';
 
 const store = new Store({});
-const recordStudyData = new RecordStudyData();
 
 export class Utility {
   constructor() {
@@ -105,10 +103,10 @@ export class Utility {
       return null;
     }
     // write complted array to api
-    // const squareGridGeoJSON = store.getStateItem('squareGridGeoJSON'); // to big to write :(
-    // recordStudyData.setEvent('data', 'girdgeojson', JSON.stringify(squareGridGeoJSON));
-    recordStudyData.setEvent('data', 'gridanswers', JSON.stringify(valueArray));
+    // recordStudyData.setEvent('data', 'gridanswers', JSON.stringify(valueArray));
+    const datestamp = new Date().toISOString();
     store.setStateItem('gridanswers', valueArray);
+    store.setStateItem('gridanswers-time', datestamp);
     return null;
   }
 }

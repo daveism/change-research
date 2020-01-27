@@ -98,13 +98,105 @@ export class Handlers {
           const questionAnswer = store.getStateItem(key);
           susValueArray.push({ key, questionAnswer });
         });
-        utility.triggerEvent('sus-clicked', 'handleAgreeClick');
-        recordStudyData.setEvent('data', 'susanswers', JSON.stringify(susValueArray));
+        const datestamp = new Date().toISOString();
+        utility.triggerEvent('sus-clicked', 'sus-clicked');
+
         store.setStateItem('susanswers', susValueArray);
+        store.setStateItem('susanswers-time', datestamp);
+
+        Handlers.recordAggreed();
       });
     }
 
     return null;
+  }
+
+  static recordDisaggreed() {
+    const uuidRec = store.getStateItem('uuid');
+    const studyStartedRec = store.getStateItem('study started');
+    const studyStartedTimeRec = store.getStateItem('study started time');
+    const studyAgreementRec = store.getStateItem('study-agreement');
+    const studyAgreementTimeRec = store.getStateItem('study-agreement-time');
+    const campaignRec = store.getStateItem('campaign');
+    const mobileRec = store.getStateItem('mobile');
+    const mapVersionRec = store.getStateItem('map-version');
+    const studyQuestionRec = store.getStateItem('study-question');
+    const susanswersRec = store.getStateItem('susanswers');
+    const gridanswersRec = store.getStateItem('gridanswers');
+    const gridcorrectRec = store.getStateItem('squareGridGeoJSON');
+
+    const gridcorrectRecProps = [];
+
+    gridcorrectRec.features.forEach((val) => {
+      gridcorrectRecProps.push({
+        key: `grid-box-${val.properties.id}`,
+        value: val.properties.v
+      });
+    });
+
+    const jsonData = {
+      uuid: uuidRec,
+      study_started: studyStartedRec,
+      study_started_time: studyStartedTimeRec,
+      study_agreement: studyAgreementRec,
+      study_agreement_time: studyAgreementTimeRec,
+      campaign: JSON.stringify(campaignRec),
+      mobile: JSON.stringify(mobileRec),
+      map_version: mapVersionRec,
+      grid_correct: JSON.stringify(gridcorrectRecProps),
+      grid_answers: JSON.stringify(gridanswersRec),
+      gridanswers_time: '',
+      study_question: studyQuestionRec,
+      sus_answers: JSON.stringify(susanswersRec),
+      susanswers_time: ''
+    };
+
+    recordStudyData.setEventAll(jsonData);
+  }
+
+  static recordAggreed() {
+    const uuidRec = store.getStateItem('uuid');
+    const studyStartedRec = store.getStateItem('study started');
+    const studyStartedTimeRec = store.getStateItem('study started time');
+    const studyAgreementRec = store.getStateItem('study-agreement');
+    const studyAgreementTimeRec = store.getStateItem('study-agreement-time');
+    const campaignRec = store.getStateItem('campaign');
+    const mobileRec = store.getStateItem('mobile');
+    const mapVersionRec = store.getStateItem('map-version');
+    const studyQuestionRec = store.getStateItem('study-question');
+    const susanswersRec = store.getStateItem('susanswers');
+    const susanswersDateRec = store.getStateItem('susanswers-time');
+    const gridanswersRec = store.getStateItem('gridanswers');
+    const gridanswersDateRec = store.getStateItem('gridanswers-time');
+    const gridcorrectRec = store.getStateItem('squareGridGeoJSON');
+
+    const gridcorrectRecProps = [];
+
+    gridcorrectRec.features.forEach((val) => {
+      gridcorrectRecProps.push({
+        key: `grid-box-${val.properties.id}`,
+        value: val.properties.v
+      });
+    });
+
+    const jsonData = {
+      uuid: uuidRec,
+      study_started: studyStartedRec,
+      study_started_time: studyStartedTimeRec,
+      study_agreement: studyAgreementRec,
+      study_agreement_time: studyAgreementTimeRec,
+      campaign: JSON.stringify(campaignRec),
+      mobile: JSON.stringify(mobileRec),
+      map_version: mapVersionRec,
+      grid_correct: JSON.stringify(gridcorrectRecProps),
+      grid_answers: JSON.stringify(gridanswersRec),
+      gridanswers_time: gridanswersDateRec,
+      study_question: studyQuestionRec,
+      sus_answers: JSON.stringify(susanswersRec),
+      susanswers_time: susanswersDateRec
+    };
+
+    recordStudyData.setEventAll(jsonData);
   }
 
   // adds handler for aggreeing to do study
@@ -135,8 +227,7 @@ export class Handlers {
 
         utility.triggerEvent('aggree-clicked', 'handleAgreeClick');
         store.setStateItem('study-agreement', true);
-        store.setStateItem('study-agreement-date', agreementTimeStamp);
-        recordStudyData.setEvent('data', 'study-agreement', true);
+        store.setStateItem('study-agreement-time', agreementTimeStamp);
       });
     }
     return null;
@@ -168,8 +259,9 @@ export class Handlers {
 
         utility.triggerEvent('disaggree-clicked', 'handleAgreeClick');
         store.setStateItem('study-agreement', false);
-        store.setStateItem('study-agreement-date', agreementTimeStamp);
-        recordStudyData.setEvent('data', 'study-agreement', false);
+        store.setStateItem('study-agreement-time', agreementTimeStamp);
+
+        Handlers.recordDisaggreed();
       });
     }
     return null;
