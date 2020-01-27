@@ -110,6 +110,18 @@ a {
   height: $default-control-height !important;
   box-shadow: unset !important;
 
+
+  @media only screen and (max-width: 768px) {
+    height: 40pc !important;
+    width: 40pc !important;
+  }
+
+  @media only screen and (max-width: 599px) {
+    height: 48px !important;
+    width: 48px !important;
+  }
+
+
   &:focus, &:hover, &.selected {
     outline: none !important;
     border-width: 1px !important;
