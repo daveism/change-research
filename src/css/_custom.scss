@@ -73,7 +73,7 @@ a {
 
 .btn-xlight {
   background-color: $body-background-daker-color;
-  color: $btn-darker-color !important;
+  color: lighten($body-background-daker-color, 40) !important;
   height: $default-control-height !important;
   @include border-radius($round-radius, $round-radius);
   // @include box_shadowmd(1);
@@ -274,6 +274,6 @@ a {
 }
 
 .mapboxgl-compare {
-  top: 16px;
+  top: 0px;
   left: 14px;
 }
