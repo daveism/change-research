@@ -131,7 +131,7 @@ export class MapBoxConfig {
     const mapSetup = this.mapChangeLayers.layers[mapVersion];
     const map = new this.mapboxgl.Map({
       container: mapContainer,
-      style: this.lightMapStyle,
+      style: this.darkMapStyle,
       zoom: this.defaultMapZoom,
       showZoom: true,
       touchEnabled: true,
@@ -175,7 +175,7 @@ export class MapBoxConfig {
 
     const map = new this.mapboxgl.Map({
       container: mapContainer,
-      style: this.lightMapStyle,
+      style: this.darkMapStyle,
       center: this.defaultMapCenter,
       zoom: this.defaultMapZoom,
       showZoom: true,
@@ -228,7 +228,7 @@ export class MapBoxConfig {
 
     const beforeMap = new this.mapboxgl.Map({
       container: mapBeforeContainer,
-      style: this.lightMapStyle,
+      style: this.darkMapStyle,
       center: this.defaultMapCenter,
       zoom: this.defaultMapZoom,
       showZoom: true,
@@ -239,7 +239,7 @@ export class MapBoxConfig {
 
     const afterMap = new this.mapboxgl.Map({
       container: mapAfterContainer,
-      style: this.lightMapStyle,
+      style: this.darkMapStyle,
       center: this.defaultMapCenter,
       zoom: this.defaultMapZoom,
       showZoom: true,
