@@ -161,7 +161,7 @@ export class MapBoxConfig {
       map.resize();
       setTimeout(() => { map.resize(); }, 10);
     };
-    map.addControl(new mapboxgl.NavigationControl({showCompass: false}), 'top-left');
+    map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), 'top-left');
     return map;
   }
 
@@ -213,7 +213,7 @@ export class MapBoxConfig {
       map.resize();
     };
     // Add zoom and rotation controls to the map.
-    map.addControl(new mapboxgl.NavigationControl({showCompass: false}), 'top-left');
+    map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), 'top-left');
     return map;
   }
 
@@ -285,8 +285,8 @@ export class MapBoxConfig {
       compare.setSlider(150);
     };
     // Add zoom and rotation controls to the map.
-    beforeMap.addControl(new mapboxgl.NavigationControl({showCompass: false}), 'top-left');
-    afterMap.addControl(new mapboxgl.NavigationControl({showCompass: false}), 'top-left');
+    beforeMap.addControl(new mapboxgl.NavigationControl({ showCompass: false }), 'top-left');
+    afterMap.addControl(new mapboxgl.NavigationControl({ showCompass: false }), 'top-left');
     return [beforeMap, afterMap];
   }
 
