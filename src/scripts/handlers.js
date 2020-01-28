@@ -66,6 +66,7 @@ export class Handlers {
         const gridName = 'grid-box-';
         const gridIterations = 42;
         utility.setAPIForGroup(gridName, gridIterations);
+        history.pushState({ page: 2 }, '#sus-questions', '#sus-questions'); // eslint-disable-line
       });
     }
   }
@@ -103,8 +104,8 @@ export class Handlers {
 
         store.setStateItem('susanswers', susValueArray);
         store.setStateItem('susanswers-time', datestamp);
-
         Handlers.recordAggreed();
+        history.pushState({ page: 3 }, '#study-completed', '#study-completed'); // eslint-disable-line
       });
     }
 
@@ -228,6 +229,7 @@ export class Handlers {
         utility.triggerEvent('aggree-clicked', 'handleAgreeClick');
         store.setStateItem('study-agreement', true);
         store.setStateItem('study-agreement-time', agreementTimeStamp);
+        history.pushState({ page: 1 }, '#map', '#map'); // eslint-disable-line
       });
     }
     return null;
@@ -260,8 +262,8 @@ export class Handlers {
         utility.triggerEvent('disaggree-clicked', 'handleAgreeClick');
         store.setStateItem('study-agreement', false);
         store.setStateItem('study-agreement-time', agreementTimeStamp);
-
         Handlers.recordDisaggreed();
+        history.pushState({ page: 1 }, '#disaggree', '#disaggree'); // eslint-disable-line
       });
     }
     return null;
