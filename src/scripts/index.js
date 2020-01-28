@@ -51,8 +51,6 @@ utility.loadHTMLBlock('block-study-dissaggree-holder', blockStudyDissaggree);
 utility.loadHTMLBlock('block-study-sus-holder', blockStudySUS);
 utility.loadHTMLBlock('block-study-completed-holder', blockStudyCompleted);
 
-// create mapbox navigation control instance
-const nav = mapBoxConfig.addNav();
 let map1;
 let map2a;
 let map2b;
@@ -63,27 +61,21 @@ switch (studyVersion) {
   case 0: // animate
     utility.loadHTMLBlock('block-study-question-1-holder', blockStudyQuestion1);
     map1 = mapBoxConfig.makeAnimateMap('map-1', 0);
-    map1.addControl(nav, 'top-left');
     break;
   case 1: // side by side
     utility.loadHTMLBlock('block-study-question-2-holder', blockStudyQuestion2);
     map2a = mapBoxConfig.makeMap('map-2a', 0);
     map2b = mapBoxConfig.makeMap('map-2b', 1);
-    map2a.addControl(nav, 'top-left');
-    map2b.addControl(nav, 'top-left');
     mapBoxConfig.syncMaps(map2a, map2b);
     break;
   case 2: // slider
     utility.loadHTMLBlock('block-study-question-3-holder', blockStudyQuestion3);
     map3Arr = mapBoxConfig.makeCompareMap('map-3a', 'map-3b', 'compare-wrapper');
-    map3Arr[0].addControl(nav, 'top-left');
-    map3Arr[1].addControl(nav, 'top-left');
     mapBoxConfig.syncMaps(map3Arr[0], map3Arr[1]);
     break;
   default: // animate
     utility.loadHTMLBlock('block-study-question-1-holder', blockStudyQuestion1);
     mapdef = mapBoxConfig.makeAnimateMap('map-1', 0);
-    mapdef.addControl(nav, 'top-left');
     break;
 }
 
@@ -94,14 +86,6 @@ switch (studyVersion) {
 const mapEnda = mapBoxConfig.makeMap('map-enda', 0, false, false);
 const mapEndb = mapBoxConfig.makeMap('map-endb', 1, true, false);
 // mapBoxConfig.syncMaps(mapEndArr[0], mapEndArr[1]);
-
-
-// add navigatio to maps
-// I may not need this if I do not let user zoom/pan
-// mapEndArr[0].addControl(nav, 'top-left');
-// mapEndArr[1].addControl(nav, 'top-left');
-mapEnda.addControl(nav, 'top-left');
-mapEndb.addControl(nav, 'top-left');
 
 // sync maps
 mapBoxConfig.syncMaps(mapEnda, mapEndb);
