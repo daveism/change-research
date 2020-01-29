@@ -73,6 +73,26 @@ export class Utility {
     document.dispatchEvent(this.event);
   }
 
+  // iterates x number of iterations and sets
+  //    sus questions top state
+  //
+  // @param eventName - string event name for a listner to listen too
+  // @param detail - object details for event
+  // @return null
+  setDomStateForGroup(statetext, iterations) {
+    const value = store.getStateItem(`${statetext}${iterations}`, 0);
+    const btnPrefix = `btn-sus-q${iterations}-`;
+    const aggrementElement = document.getElementById(`${btnPrefix}${value}`);
+    console.log('setDomStateForGroup', `${btnPrefix}${value}`)
+    if (aggrementElement) {
+      aggrementElement.classList.add('selected');
+    }
+    if (iterations > 0) {
+      const nextIteration = iterations - 1;
+      this.setDomStateForGroup(statetext, nextIteration);
+    }
+  }
+
   // iterates x number of iterations and writes a
   // a default zero value state key
   //

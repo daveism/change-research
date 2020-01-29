@@ -233,6 +233,7 @@ susBtnGroupElements.forEach((elementUIID) => {
 const susName = 'sus-question-';
 const susIterations = 10;
 utility.setStateForGroup(susName, susIterations);
+utility.setDomStateForGroup(susName, susIterations);
 
 // add grid box state items
 const gridIterations = 42;
