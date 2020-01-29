@@ -1,1 +1,3 @@
-# all images need to be out using GEE and the GEE script [gee-script-for-creating-change-images.js](../gee-script-for-creating-change-images.js)
+# all images need to be out using GEE
+
+Usethe GEE script [gee-script-for-creating-change-images.js](../gee-script-for-creating-change-images.js) and download the files to this folder...
