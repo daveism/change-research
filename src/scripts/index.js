@@ -25,6 +25,11 @@ const studyMinOne = 0;
 const studyMaxOne = 2;
 const studyVersion = Math.floor(Math.random() * (studyMaxOne - studyMinOne + 1) + studyMinOne);
 store.setStateItem('study-question', studyVersion);
+// if (utility.checkValidObject(store.getStateItem('study-question'))) {
+//   studyVersion = store.getStateItem('study-question', studyVersion);
+// } else {
+//   store.setStateItem('study-question', studyVersion);
+// }
 
 // study constraints number of questions starts with 0
 const mapMinOne = 0;

@@ -80,9 +80,7 @@ export class Utility {
   // @param detail - object details for event
   // @return null
   setStateForGroup(statetext, iterations) {
-    // if (!this.checkValidObject(store.getStateItem(`${statetext}${iterations}`))) {
     store.setStateItem(`${statetext}${iterations}`, 0);
-    // }
     if (iterations > 0) {
       const nextIteration = iterations - 1;
       this.setStateForGroup(statetext, nextIteration);
@@ -97,9 +95,6 @@ export class Utility {
   setAPIForGroup(statetext, iterations, valueArray = []) {
     const key = `${statetext}${iterations}`;
     const value = store.getStateItem(`${statetext}${iterations}`);
-    // if (!this.checkValidObject(store.getStateItem(`${statetext}${iterations}`))) {
-    store.setStateItem(`${statetext}${iterations}`, 0);
-    // }
     // capture in array so we can write complted array to api
     valueArray.push({ key, value });
     if (iterations > 0) {
