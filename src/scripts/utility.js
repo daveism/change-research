@@ -80,7 +80,9 @@ export class Utility {
   // @param detail - object details for event
   // @return null
   setStateForGroup(statetext, iterations) {
-    store.setStateItem(`${statetext}${iterations}`, 0);
+    if (!this.checkValidObject(store.getStateItem(`${statetext}${iterations}`))) {
+      store.setStateItem(`${statetext}${iterations}`, 0);
+    }
     if (iterations > 0) {
       const nextIteration = iterations - 1;
       this.setStateForGroup(statetext, nextIteration);

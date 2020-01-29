@@ -19,20 +19,39 @@ export class MapBoxConfig {
     this.mapVersion = store.getStateItem('map-version');
     switch (this.mapVersion) {
       case 0: // avl
-        this.squareGridGeoJSON = SquareGridGeoJSONOne;
-        store.setStateItem('squareGridGeoJSON', SquareGridGeoJSONOne);
+        if (utility.checkValidObject(store.getStateItem('squareGridGeoJSON'))) {
+          this.squareGridGeoJSON = store.getStateItem('squareGridGeoJSON');
+        } else {
+          this.squareGridGeoJSON = SquareGridGeoJSONOne;
+          console.log(this.mapVersion, 'SquareGridGeoJSONOne');
+          store.setStateItem('squareGridGeoJSON', SquareGridGeoJSONOne);
+        }
         break;
       case 1: // hstn
-        this.squareGridGeoJSON = SquareGridGeoJSONSecond;
-        store.setStateItem('squareGridGeoJSON', SquareGridGeoJSONSecond);
+        if (utility.checkValidObject(store.getStateItem('squareGridGeoJSON'))) {
+          this.squareGridGeoJSON = store.getStateItem('squareGridGeoJSON');
+        } else {
+          this.squareGridGeoJSON = SquareGridGeoJSONSecond;
+          console.log(this.mapVersion, 'SquareGridGeoJSONSecond');
+          store.setStateItem('squareGridGeoJSON', SquareGridGeoJSONSecond);
+        }
         break;
       case 2: // lv
-        this.squareGridGeoJSON = SquareGridGeoJSONThird;
-        store.setStateItem('squareGridGeoJSON', SquareGridGeoJSONThird);
+        if (utility.checkValidObject(store.getStateItem('squareGridGeoJSON'))) {
+          this.squareGridGeoJSON = store.getStateItem('squareGridGeoJSON');
+        } else {
+          this.squareGridGeoJSON = SquareGridGeoJSONThird;
+          console.log(this.mapVersion, 'SquareGridGeoJSONThird');
+          store.setStateItem('squareGridGeoJSON', SquareGridGeoJSONThird);
+        }
         break;
       default: // avl
-        this.squareGridGeoJSON = SquareGridGeoJSONOne;
-        store.setStateItem('squareGridGeoJSON', SquareGridGeoJSONOne);
+        if (utility.checkValidObject(store.getStateItem('squareGridGeoJSON'))) {
+          this.squareGridGeoJSON = store.getStateItem('squareGridGeoJSON');
+        } else {
+          this.squareGridGeoJSON = SquareGridGeoJSONOne;
+          console.log(this.mapVersion, 'SquareGridGeoJSONOne');
+          store.setStateItem('squareGridGeoJSON', SquareGridGeoJSONOne);        }
         break;
     }
 

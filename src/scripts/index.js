@@ -19,27 +19,30 @@ import blockStudySUS from '../content-blocks/block-study-sus.html';
 import blockStudyCompleted from '../content-blocks/block-study-completed.html';
 
 const store = new Store({});
-
-// study constraints number of questions starts with 0
-const studyMinOne = 0;
-const studyMaxOne = 2;
-const studyVersion = Math.floor(Math.random() * (studyMaxOne - studyMinOne + 1) + studyMinOne);
-store.setStateItem('study-question', studyVersion);
-// if (utility.checkValidObject(store.getStateItem('study-question'))) {
-//   studyVersion = store.getStateItem('study-question', studyVersion);
-// } else {
-//   store.setStateItem('study-question', studyVersion);
-// }
-
-// study constraints number of questions starts with 0
-const mapMinOne = 0;
-const mapMaxOne = 2;
-const mapVersion = Math.floor(Math.random() * (mapMaxOne - mapMinOne + 1) + mapMinOne);
-store.setStateItem('map-version', mapVersion);
-
 const utility = new Utility();
 const handlers = new Handlers();
-const mapBoxConfig = new MapBoxConfig();
+
+// study constraints number of questions starts with 0
+let studyVersion = 0 // default study version
+if (utility.checkValidObject(store.getStateItem('study-question'))) {
+  studyVersion = store.getStateItem('study-question');
+} else {
+  const studyMinOne = 0;
+  const studyMaxOne = 2;
+  studyVersion = Math.floor(Math.random() * (studyMaxOne - studyMinOne + 1) + studyMinOne);
+  store.setStateItem('study-question', studyVersion);
+}
+
+// study constraints number of questions starts with 0
+let mapVersion = 0 // default study version
+if (utility.checkValidObject(store.getStateItem('map-version'))) {
+  mapVersion = store.getStateItem('map-version');
+} else {
+  const mapMinOne = 0;
+  const mapMaxOne = 2;
+  mapVersion = Math.floor(Math.random() * (mapMaxOne - mapMinOne + 1) + mapMinOne);
+  store.setStateItem('map-version', mapVersion);
+}
 
 if (!utility.checkValidObject(store.getStateItem('uuid'))) {
   store.setStateItem('uuid', utility.uuid().toString());
@@ -49,6 +52,8 @@ if (!utility.checkValidObject(store.getStateItem('uuid'))) {
 // addes support for fontawesome
 library.add(fas, far);
 dom.watch();
+
+const mapBoxConfig = new MapBoxConfig();
 
 // load only the block needed
 utility.loadHTMLBlock('block-study-aggreement-holder', blockStudyAggreement);
@@ -254,7 +259,10 @@ if (typeof StudyAgrreement === 'boolean') {
 
 // already agreed
 if (studyAgrreed) {
-  // handleAgreeClick();
+  const aggrementElement = document.getElementById('aggree-button');
+  if (aggrementElement) {
+    aggrementElement.click()
+  }
 }
 
 // hide study
