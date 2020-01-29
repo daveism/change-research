@@ -25,7 +25,7 @@ $mapMediumHeight:         300px;
 $mapSmallWidth:           375px;
 $mapSmallHeight:          250px;
 
-$mapTinyWidth:           300px;
+$mapTinyWidth:           325px;
 $mapTinyHeight:          250px;
 
 $mapFullWidth:            100%;
@@ -135,7 +135,7 @@ html, body {
     flex-flow: column;
     &.endmap {
       height: $mapTinyHeight - 25;
-      max-width: $mapSmallWidth;
+      max-width: $mapTinyWidth;
     }
   }
 }
@@ -404,6 +404,9 @@ html, body {
 
 #submit-button-to-end {
   width: 90% !important;
+  @media only screen and (max-width: 599px) {
+    width: 100% !important;
+  }
   text-align: center !important;
 }
 
