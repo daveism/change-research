@@ -110,7 +110,8 @@ export class Handlers {
         history.pushState({ page: 3 }, '#study-completed', '#study-completed'); // eslint-disable-line
 
         // temp get rid of state items
-        const storage = window['localStorage'];
+        // REMOVE FOR RELEASE
+        const storage = window['localStorage']; // eslint-disable-line
         storage.removeItem('state');
       });
     }

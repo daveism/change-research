@@ -1,6 +1,5 @@
 // import dependencies
 // TODOS
-// Back to grid button when on sus? maybe or use navgo to create page
 // play pause on animation - maybe
 import { library, dom } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
@@ -24,7 +23,7 @@ const utility = new Utility();
 const URLPath = window.location.hash;
 
 // study constraints number of questions starts with 0
-let studyVersion = 0 // default study version
+let studyVersion = 0; // default study version
 if (utility.checkValidObject(store.getStateItem('study-question'))) {
   studyVersion = store.getStateItem('study-question');
 } else {
@@ -35,7 +34,7 @@ if (utility.checkValidObject(store.getStateItem('study-question'))) {
 }
 
 // study constraints number of questions starts with 0
-let mapVersion = 0 // default study version
+let mapVersion = 0; // default study version
 if (utility.checkValidObject(store.getStateItem('map-version'))) {
   mapVersion = store.getStateItem('map-version');
 } else {
@@ -287,7 +286,7 @@ if (typeof gridSubmitedState === 'boolean') {
 
 // check study session state for submitting sus questions
 const susSubmitedState = store.getStateItem('susanswers-submited');
-let susSubmited = false;
+let susSubmited = false; // eslint-disable-line
 if (typeof gridSubmitedState === 'boolean') {
   susSubmited = susSubmitedState;
 } else {
@@ -296,12 +295,11 @@ if (typeof gridSubmitedState === 'boolean') {
 
 // submit buttons
 const aggrementElement = document.getElementById('aggree-button');
-const diaggreeElement = document.getElementById('diaggree-button');
+const diaggreeElement = document.getElementById('diaggree-button'); // eslint-disable-line
 const gridSubmitElement = document.getElementById(`submit-button-to-sus-${studyVersion}`);
 const completedSubmitElement = document.getElementById('submit-button-to-end');
 
 if (studyAgrreed) {
-  console.log('URLPath', URLPath)
   switch (URLPath) {
     case '#':
       if (studyAgrreed) {
@@ -334,15 +332,9 @@ if (studyAgrreed) {
   }
 }
 
-window.addEventListener("hashchange", (event) => {
-  window.location.reload(true);
+window.addEventListener('hashchange', (event) => {
+  window.location.reload();
 });
-
-// else {
-//   if (diaggreeElement) {
-//     diaggreeElement.click();
-//   }
-// }
 
 // hide study
 if (studyCompleted) {

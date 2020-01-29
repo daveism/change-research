@@ -47,7 +47,8 @@ export class MapBoxConfig {
           this.squareGridGeoJSON = store.getStateItem('squareGridGeoJSON');
         } else {
           this.squareGridGeoJSON = SquareGridGeoJSONOne;
-          store.setStateItem('squareGridGeoJSON', SquareGridGeoJSONOne);        }
+          store.setStateItem('squareGridGeoJSON', SquareGridGeoJSONOne);
+        }
         break;
     }
 
