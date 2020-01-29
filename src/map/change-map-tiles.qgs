@@ -34,16 +34,16 @@
     <layer-tree-layer checked="Qt::Unchecked" providerKey="ogr" source="../scripts/square-grid-geojson-orig-iknow.json|layername=square-grid-geojson-orig-iknow" expanded="0" id="square_grid_geojson_orig_iknow_0ab6bc21_bb0e_452c_b8d7_e625f3d7ac72" name="iknow_2">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer checked="Qt::Unchecked" providerKey="gdal" source="../../../../Downloads/Landcover_2016_HSTN_scale_60_2020_01_26_09_49.tif" expanded="0" id="Landcover_2016_HSTN_scale_60_2020_01_26_09_49_e0a0dc09_decd_4b61_8d6d_34603993d552" name="Landcover_2016_HSTN_scale_60_2020_01_26_09_49">
+    <layer-tree-layer checked="Qt::Unchecked" providerKey="gdal" source="./geeimages/Landcover_2016_HSTN_scale_60_2020_01_26_09_49.tif" expanded="0" id="Landcover_2016_HSTN_scale_60_2020_01_26_09_49_e0a0dc09_decd_4b61_8d6d_34603993d552" name="Landcover_2016_HSTN_scale_60_2020_01_26_09_49">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer checked="Qt::Unchecked" providerKey="gdal" source="../../../../Downloads/Landcover_2001_HSTN_scale_60_2020_01_26_09_49.tif" expanded="0" id="Landcover_2001_HSTN_scale_60_2020_01_26_09_49_4c2eb324_54e8_4e87_a157_3ffff880015c" name="Landcover_2001_HSTN_scale_60_2020_01_26_09_49">
+    <layer-tree-layer checked="Qt::Unchecked" providerKey="gdal" source="./geeimages/Landcover_2001_HSTN_scale_60_2020_01_26_09_49.tif" expanded="0" id="Landcover_2001_HSTN_scale_60_2020_01_26_09_49_4c2eb324_54e8_4e87_a157_3ffff880015c" name="Landcover_2001_HSTN_scale_60_2020_01_26_09_49">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer checked="Qt::Unchecked" providerKey="gdal" source="../../../../Downloads/naip1_LV_scale_5_2020_01_25_13_46.tif" expanded="1" id="naip1_LV_scale_5_2020_01_25_13_46_326ac261_21b1_4081_bb12_35232380bf4e" name="naip1_LV_scale_5_2020_01_25_13_46">
+    <layer-tree-layer checked="Qt::Unchecked" providerKey="gdal" source="./geeimages/naip1_lv_scale_5_2020_01_25_13_46.tif" expanded="1" id="naip1_lv_scale_5_2020_01_25_13_46_326ac261_21b1_4081_bb12_35232380bf4e" name="naip1_lv_scale_5_2020_01_25_13_46">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer checked="Qt::Unchecked" providerKey="gdal" source="../../../../Downloads/naip2_lv_scale_5_2020_01_26_09_26.tif" expanded="1" id="naip2_lv_scale_5_2020_01_26_09_26_530b41f7_dc08_4430_914b_55781cc0b99f" name="naip2_lv_scale_5_2020_01_26_09_26">
+    <layer-tree-layer checked="Qt::Unchecked" providerKey="gdal" source="./geeimages/naip2_lv_scale_5_2020_01_26_09_26.tif" expanded="1" id="naip2_lv_scale_5_2020_01_26_09_26_530b41f7_dc08_4430_914b_55781cc0b99f" name="naip2_lv_scale_5_2020_01_26_09_26">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer checked="Qt::Unchecked" providerKey="mapserver" source="crs='EPSG:3857' format='PNG32' layer='0' url='http://server.arcgisonline.com/arcgis/rest/services/World_Street_Map/MapServer'" expanded="1" id="World_Street_Map_8869cc94_0619_4320_8fe8_eb4e92991fe2" name="World Street Map">
@@ -54,7 +54,7 @@
       <item>naip2_lv_scale_5_2020_01_26_09_26_530b41f7_dc08_4430_914b_55781cc0b99f</item>
       <item>Landcover_2001_HSTN_scale_60_2020_01_26_09_49_4c2eb324_54e8_4e87_a157_3ffff880015c</item>
       <item>Landcover_2016_HSTN_scale_60_2020_01_26_09_49_e0a0dc09_decd_4b61_8d6d_34603993d552</item>
-      <item>naip1_LV_scale_5_2020_01_25_13_46_326ac261_21b1_4081_bb12_35232380bf4e</item>
+      <item>naip1_lv_scale_5_2020_01_25_13_46_326ac261_21b1_4081_bb12_35232380bf4e</item>
       <item>square_grid_geojson_orig_iknow_6121e667_c5b4_4a1a_bd08_9e41f3a36312</item>
       <item>square_grid_geojson_orig_iknow_0ab6bc21_bb0e_452c_b8d7_e625f3d7ac72</item>
       <item>square_grid_geojson_f490fdf7_6001_4c03_bcc0_eb971db8d917</item>
@@ -133,9 +133,9 @@
         <legendlayerfile visible="0" layerid="Landcover_2001_HSTN_scale_60_2020_01_26_09_49_4c2eb324_54e8_4e87_a157_3ffff880015c" isInOverview="0"/>
       </filegroup>
     </legendlayer>
-    <legendlayer open="true" checked="Qt::Unchecked" name="naip1_LV_scale_5_2020_01_25_13_46" showFeatureCount="0" drawingOrder="-1">
+    <legendlayer open="true" checked="Qt::Unchecked" name="naip1_lv_scale_5_2020_01_25_13_46" showFeatureCount="0" drawingOrder="-1">
       <filegroup open="true" hidden="false">
-        <legendlayerfile visible="0" layerid="naip1_LV_scale_5_2020_01_25_13_46_326ac261_21b1_4081_bb12_35232380bf4e" isInOverview="0"/>
+        <legendlayerfile visible="0" layerid="naip1_lv_scale_5_2020_01_25_13_46_326ac261_21b1_4081_bb12_35232380bf4e" isInOverview="0"/>
       </filegroup>
     </legendlayer>
     <legendlayer open="true" checked="Qt::Unchecked" name="naip2_lv_scale_5_2020_01_26_09_26" showFeatureCount="0" drawingOrder="-1">
@@ -160,7 +160,7 @@
         <ymax>29.77537874436883669</ymax>
       </extent>
       <id>Landcover_2001_HSTN_scale_60_2020_01_26_09_49_4c2eb324_54e8_4e87_a157_3ffff880015c</id>
-      <datasource>../../../../Downloads/Landcover_2001_HSTN_scale_60_2020_01_26_09_49.tif</datasource>
+      <datasource>./geeimages/Landcover_2001_HSTN_scale_60_2020_01_26_09_49.tif</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -520,7 +520,7 @@
         <ymax>29.77537874436883669</ymax>
       </extent>
       <id>Landcover_2016_HSTN_scale_60_2020_01_26_09_49_e0a0dc09_decd_4b61_8d6d_34603993d552</id>
-      <datasource>../../../../Downloads/Landcover_2016_HSTN_scale_60_2020_01_26_09_49.tif</datasource>
+      <datasource>./geeimages/Landcover_2016_HSTN_scale_60_2020_01_26_09_49.tif</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -1025,12 +1025,12 @@
         <xmax>-2581735</xmax>
         <ymax>4584610</ymax>
       </extent>
-      <id>naip1_LV_scale_5_2020_01_25_13_46_326ac261_21b1_4081_bb12_35232380bf4e</id>
-      <datasource>../../../../Downloads/naip1_LV_scale_5_2020_01_25_13_46.tif</datasource>
+      <id>naip1_lv_scale_5_2020_01_25_13_46_326ac261_21b1_4081_bb12_35232380bf4e</id>
+      <datasource>./geeimages/naip1_lv_scale_5_2020_01_25_13_46.tif</datasource>
       <keywordList>
         <value></value>
       </keywordList>
-      <layername>naip1_LV_scale_5_2020_01_25_13_46</layername>
+      <layername>naip1_lv_scale_5_2020_01_25_13_46</layername>
       <srs>
         <spatialrefsys>
           <proj4>+proj=utm +zone=17 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs</proj4>
@@ -1145,7 +1145,7 @@
         <ymax>4584610</ymax>
       </extent>
       <id>naip2_lv_scale_5_2020_01_26_09_26_530b41f7_dc08_4430_914b_55781cc0b99f</id>
-      <datasource>../../../../Downloads/naip2_lv_scale_5_2020_01_26_09_26.tif</datasource>
+      <datasource>./geeimages/naip2_lv_scale_5_2020_01_26_09_26.tif</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -2680,7 +2680,7 @@ def my_form_open(dialog, layer, feature):
     <layer id="naip2_lv_scale_5_2020_01_26_09_26_530b41f7_dc08_4430_914b_55781cc0b99f"/>
     <layer id="Landcover_2001_HSTN_scale_60_2020_01_26_09_49_4c2eb324_54e8_4e87_a157_3ffff880015c"/>
     <layer id="Landcover_2016_HSTN_scale_60_2020_01_26_09_49_e0a0dc09_decd_4b61_8d6d_34603993d552"/>
-    <layer id="naip1_LV_scale_5_2020_01_25_13_46_326ac261_21b1_4081_bb12_35232380bf4e"/>
+    <layer id="naip1_lv_scale_5_2020_01_25_13_46_326ac261_21b1_4081_bb12_35232380bf4e"/>
     <layer id="square_grid_geojson_orig_iknow_6121e667_c5b4_4a1a_bd08_9e41f3a36312"/>
     <layer id="square_grid_geojson_orig_iknow_0ab6bc21_bb0e_452c_b8d7_e625f3d7ac72"/>
     <layer id="square_grid_geojson_f490fdf7_6001_4c03_bcc0_eb971db8d917"/>
