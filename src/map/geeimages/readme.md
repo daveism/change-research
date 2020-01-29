@@ -8,7 +8,8 @@ Use the GEE script [gee-script-for-creating-change-images.js](../gee-script-for-
 
 use directions from http://mashe.hawksey.info/2014/07/google-sheets-as-a-database-insert-with-apps-script-using-postget-methods-with-ajax-example/
 
+## in short do this
 * From the Script Editor select File > Manage versions… and ‘Save New Version’
 * Publish > Deploy as web app and updating Project Version.
 * in the Script Editor Run > setup
-* you will have to approve this app
+* you will have to approve this app for your account for it to work.
