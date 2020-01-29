@@ -58,6 +58,11 @@ if (!utility.checkValidObject(store.getStateItem('susanswers-submited'))) {
 if (!utility.checkValidObject(store.getStateItem('grid-submited'))) {
   store.setStateItem('grid-submited', false);
 }
+
+if (!utility.checkValidObject(store.getStateItem('study-agreement'))) {
+  store.setStateItem('study-agreement', false);
+}
+
 // Kicks off the process of finding <i> tags and replacing with <svg>
 // addes support for fontawesome
 library.add(fas, far);

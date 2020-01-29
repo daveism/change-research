@@ -104,12 +104,16 @@ export class Handlers {
         const datestamp = new Date().toISOString();
         utility.triggerEvent('sus-clicked', 'sus-clicked');
 
-        // store.setStateItem('susanswers-submited', true);
+        store.setStateItem('susanswers-submited', true);
         store.setStateItem('susanswers', susValueArray);
         store.setStateItem('susanswers-time', datestamp);
-        // store.setStateItem('study-completed', true);
+        store.setStateItem('study-completed', true);
         Handlers.recordAggreed();
         history.pushState({ page: 3 }, '#study-completed', '#study-completed'); // eslint-disable-line
+
+        // temp get rid of state items
+        const storage = window['localStorage'];
+        storage.removeItem('state');
       });
     }
 
