@@ -50,6 +50,7 @@ export class Handlers {
     if (element) {
       element.addEventListener('click', (e) => {
         // add elements to UI
+        console.log('this.studyQuestionElementsAdd', this.studyQuestionElementsAdd)
         this.studyQuestionElementsAdd.forEach((elementUIID) => {
           document.getElementById(elementUIID).classList.remove(this.displayNoneClass);
         });
@@ -58,6 +59,7 @@ export class Handlers {
         this.studyQuestionElementsRemove.forEach((elementUIID) => {
           // only add display none class if the class does not exsist
           // ensure that duplicate classes are not added
+          console.log('addHandlerSubmitChangeClick', elementUIID)
           if (!document.getElementById(elementUIID).classList.contains(this.displayNoneClass)) {
             document.getElementById(elementUIID).classList.add(this.displayNoneClass);
           }
@@ -102,8 +104,10 @@ export class Handlers {
         const datestamp = new Date().toISOString();
         utility.triggerEvent('sus-clicked', 'sus-clicked');
 
+        // store.setStateItem('susanswers-submited', true);
         store.setStateItem('susanswers', susValueArray);
         store.setStateItem('susanswers-time', datestamp);
+        // store.setStateItem('study-completed', true);
         Handlers.recordAggreed();
         history.pushState({ page: 3 }, '#study-completed', '#study-completed'); // eslint-disable-line
       });
@@ -122,9 +126,12 @@ export class Handlers {
     const mobileRec = store.getStateItem('mobile');
     const mapVersionRec = store.getStateItem('map-version');
     const studyQuestionRec = store.getStateItem('study-question');
+    const susanswersSubmitedRec = store.getStateItem('susanswers-submited');
+    const gridSubmitedRec = store.getStateItem('grid-submited');
     const susanswersRec = store.getStateItem('susanswers');
     const gridanswersRec = store.getStateItem('gridanswers');
     const gridcorrectRec = store.getStateItem('squareGridGeoJSON');
+    const studyCompletedRec = store.getStateItem('study-completed');
 
     const gridcorrectRecProps = [];
 
@@ -140,6 +147,8 @@ export class Handlers {
       study_started: studyStartedRec,
       study_started_time: studyStartedTimeRec,
       study_agreement: studyAgreementRec,
+      susanswers_submited: susanswersSubmitedRec,
+      grid_submited: gridSubmitedRec,
       study_agreement_time: studyAgreementTimeRec,
       campaign: JSON.stringify(campaignRec),
       mobile: JSON.stringify(mobileRec),
@@ -149,7 +158,8 @@ export class Handlers {
       gridanswers_time: '',
       study_question: studyQuestionRec,
       sus_answers: JSON.stringify(susanswersRec),
-      susanswers_time: ''
+      susanswers_time: '',
+      study_completed: studyCompletedRec
     };
 
     recordStudyData.setEventAll(jsonData);
@@ -165,11 +175,14 @@ export class Handlers {
     const mobileRec = store.getStateItem('mobile');
     const mapVersionRec = store.getStateItem('map-version');
     const studyQuestionRec = store.getStateItem('study-question');
+    const susanswersSubmitedRec = store.getStateItem('susanswers-submited');
+    const gridSubmitedRec = store.getStateItem('grid-submited');
     const susanswersRec = store.getStateItem('susanswers');
     const susanswersDateRec = store.getStateItem('susanswers-time');
     const gridanswersRec = store.getStateItem('gridanswers');
     const gridanswersDateRec = store.getStateItem('gridanswers-time');
     const gridcorrectRec = store.getStateItem('squareGridGeoJSON');
+    const studyCompletedRec = store.getStateItem('study-completed');
 
     const gridcorrectRecProps = [];
 
@@ -185,6 +198,8 @@ export class Handlers {
       study_started: studyStartedRec,
       study_started_time: studyStartedTimeRec,
       study_agreement: studyAgreementRec,
+      susanswers_submited: susanswersSubmitedRec,
+      grid_submited: gridSubmitedRec,
       study_agreement_time: studyAgreementTimeRec,
       campaign: JSON.stringify(campaignRec),
       mobile: JSON.stringify(mobileRec),
@@ -194,7 +209,8 @@ export class Handlers {
       gridanswers_time: gridanswersDateRec,
       study_question: studyQuestionRec,
       sus_answers: JSON.stringify(susanswersRec),
-      susanswers_time: susanswersDateRec
+      susanswers_time: susanswersDateRec,
+      study_completed: studyCompletedRec
     };
 
     recordStudyData.setEventAll(jsonData);
@@ -227,7 +243,7 @@ export class Handlers {
         });
 
         utility.triggerEvent('aggree-clicked', 'handleAgreeClick');
-        store.setStateItem('study-agreement', true);
+        // store.setStateItem('study-agreement', true);
         store.setStateItem('study-agreement-time', agreementTimeStamp);
         history.pushState({ page: 1 }, '#map', '#map'); // eslint-disable-line
       });

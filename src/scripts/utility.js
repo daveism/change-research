@@ -83,7 +83,6 @@ export class Utility {
     const value = store.getStateItem(`${statetext}${iterations}`, 0);
     const btnPrefix = `btn-sus-q${iterations}-`;
     const aggrementElement = document.getElementById(`${btnPrefix}${value}`);
-    console.log('setDomStateForGroup', `${btnPrefix}${value}`)
     if (aggrementElement) {
       aggrementElement.classList.add('selected');
     }
@@ -127,6 +126,7 @@ export class Utility {
     // write complted array to api
     // recordStudyData.setEvent('data', 'gridanswers', JSON.stringify(valueArray));
     const datestamp = new Date().toISOString();
+    // store.setStateItem('grid-submited', true);
     store.setStateItem('gridanswers', valueArray);
     store.setStateItem('gridanswers-time', datestamp);
     return null;

@@ -20,7 +20,6 @@ import blockStudyCompleted from '../content-blocks/block-study-completed.html';
 
 const store = new Store({});
 const utility = new Utility();
-const handlers = new Handlers();
 
 // study constraints number of questions starts with 0
 let studyVersion = 0 // default study version
@@ -48,12 +47,24 @@ if (!utility.checkValidObject(store.getStateItem('uuid'))) {
   store.setStateItem('uuid', utility.uuid().toString());
 }
 
+if (!utility.checkValidObject(store.getStateItem('study-completed'))) {
+  store.setStateItem('study-completed', false);
+}
+
+if (!utility.checkValidObject(store.getStateItem('susanswers-submited'))) {
+  store.setStateItem('susanswers-submited', false);
+}
+
+if (!utility.checkValidObject(store.getStateItem('grid-submited'))) {
+  store.setStateItem('grid-submited', false);
+}
 // Kicks off the process of finding <i> tags and replacing with <svg>
 // addes support for fontawesome
 library.add(fas, far);
 dom.watch();
 
 const mapBoxConfig = new MapBoxConfig();
+const handlers = new Handlers();
 
 // load only the block needed
 utility.loadHTMLBlock('block-study-aggreement-holder', blockStudyAggreement);
@@ -241,7 +252,7 @@ const gridName = 'grid-box-';
 utility.setStateForGroup(gridName, gridIterations);
 
 // check study session state for completetion
-const isStudycompleted = store.getStateItem('studycompleted');
+const isStudycompleted = store.getStateItem('study-completed');
 let studyCompleted = false;
 if (typeof isStudycompleted === 'boolean') {
   studyCompleted = isStudycompleted;
@@ -262,13 +273,29 @@ if (typeof StudyAgrreement === 'boolean') {
 if (studyAgrreed) {
   const aggrementElement = document.getElementById('aggree-button');
   if (aggrementElement) {
-    aggrementElement.click()
+    aggrementElement.click();
+  }
+}
+
+const gridSubmitedState = store.getStateItem('grid-submited');
+let gridSubmited = false;
+if (typeof gridSubmitedState === 'boolean') {
+  gridSubmited = gridSubmitedState;
+} else {
+  gridSubmited = false;
+}
+
+if (gridSubmited) {
+  const gridSubmitElement = document.getElementById(`submit-button-to-sus-${studyVersion}`);
+  if (gridSubmitElement) {
+    gridSubmitElement.click();
   }
 }
 
 // hide study
-if (studyCompleted) { //
-  store.setStateItem('studycompleted', true);
-} else {
-  store.setStateItem('studycompleted', false);
+if (studyCompleted) {
+  const completedSubmitElement = document.getElementById('submit-button-to-end');
+  if (completedSubmitElement) {
+    completedSubmitElement.click();
+  }
 }

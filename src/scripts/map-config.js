@@ -23,7 +23,6 @@ export class MapBoxConfig {
           this.squareGridGeoJSON = store.getStateItem('squareGridGeoJSON');
         } else {
           this.squareGridGeoJSON = SquareGridGeoJSONOne;
-          console.log(this.mapVersion, 'SquareGridGeoJSONOne');
           store.setStateItem('squareGridGeoJSON', SquareGridGeoJSONOne);
         }
         break;
@@ -32,7 +31,6 @@ export class MapBoxConfig {
           this.squareGridGeoJSON = store.getStateItem('squareGridGeoJSON');
         } else {
           this.squareGridGeoJSON = SquareGridGeoJSONSecond;
-          console.log(this.mapVersion, 'SquareGridGeoJSONSecond');
           store.setStateItem('squareGridGeoJSON', SquareGridGeoJSONSecond);
         }
         break;
@@ -41,7 +39,6 @@ export class MapBoxConfig {
           this.squareGridGeoJSON = store.getStateItem('squareGridGeoJSON');
         } else {
           this.squareGridGeoJSON = SquareGridGeoJSONThird;
-          console.log(this.mapVersion, 'SquareGridGeoJSONThird');
           store.setStateItem('squareGridGeoJSON', SquareGridGeoJSONThird);
         }
         break;
@@ -50,7 +47,6 @@ export class MapBoxConfig {
           this.squareGridGeoJSON = store.getStateItem('squareGridGeoJSON');
         } else {
           this.squareGridGeoJSON = SquareGridGeoJSONOne;
-          console.log(this.mapVersion, 'SquareGridGeoJSONOne');
           store.setStateItem('squareGridGeoJSON', SquareGridGeoJSONOne);        }
         break;
     }
