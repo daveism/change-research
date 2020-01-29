@@ -1,4 +1,4 @@
-# qgis make tile data
+# qgis make tile settings for generating xyz tiles (directory)
 
 ## IKNOW
 * -82.64750495397475,-82.49816237322194,35.50789663006824,35.61210336993178 [EPSG:4326]
