@@ -4,7 +4,7 @@ Use the GEE script [gee-script-for-creating-change-images.js](../gee-script-for-
 
 # for api use this google script in your google sheet
 
-[api-script.gs](../api-script.gs)
+[api-script.gs](../../scripts/api-script.gs)
 
 use directions from http://mashe.hawksey.info/2014/07/google-sheets-as-a-database-insert-with-apps-script-using-postget-methods-with-ajax-example/
 
