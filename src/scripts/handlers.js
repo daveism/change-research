@@ -50,7 +50,6 @@ export class Handlers {
     if (element) {
       element.addEventListener('click', (e) => {
         // add elements to UI
-        console.log('this.studyQuestionElementsAdd', this.studyQuestionElementsAdd)
         this.studyQuestionElementsAdd.forEach((elementUIID) => {
           document.getElementById(elementUIID).classList.remove(this.displayNoneClass);
         });
@@ -59,7 +58,6 @@ export class Handlers {
         this.studyQuestionElementsRemove.forEach((elementUIID) => {
           // only add display none class if the class does not exsist
           // ensure that duplicate classes are not added
-          console.log('addHandlerSubmitChangeClick', elementUIID)
           if (!document.getElementById(elementUIID).classList.contains(this.displayNoneClass)) {
             document.getElementById(elementUIID).classList.add(this.displayNoneClass);
           }

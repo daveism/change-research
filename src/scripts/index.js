@@ -21,6 +21,8 @@ import blockStudyCompleted from '../content-blocks/block-study-completed.html';
 const store = new Store({});
 const utility = new Utility();
 
+const URLPath = window.location.hash;
+
 // study constraints number of questions starts with 0
 let studyVersion = 0 // default study version
 if (utility.checkValidObject(store.getStateItem('study-question'))) {
@@ -265,7 +267,7 @@ if (typeof isStudycompleted === 'boolean') {
   studyCompleted = false;
 }
 
-// check study session state for completetion
+// check study session state for aggreeing to study
 const StudyAgrreement = store.getStateItem('study-agreement');
 let studyAgrreed = false;
 if (typeof StudyAgrreement === 'boolean') {
@@ -274,14 +276,7 @@ if (typeof StudyAgrreement === 'boolean') {
   studyAgrreed = false;
 }
 
-// already agreed
-if (studyAgrreed) {
-  const aggrementElement = document.getElementById('aggree-button');
-  if (aggrementElement) {
-    aggrementElement.click();
-  }
-}
-
+// check study session state for submitting study
 const gridSubmitedState = store.getStateItem('grid-submited');
 let gridSubmited = false;
 if (typeof gridSubmitedState === 'boolean') {
@@ -290,16 +285,67 @@ if (typeof gridSubmitedState === 'boolean') {
   gridSubmited = false;
 }
 
-if (gridSubmited) {
-  const gridSubmitElement = document.getElementById(`submit-button-to-sus-${studyVersion}`);
-  if (gridSubmitElement) {
-    gridSubmitElement.click();
+// check study session state for submitting sus questions
+const susSubmitedState = store.getStateItem('susanswers-submited');
+let susSubmited = false;
+if (typeof gridSubmitedState === 'boolean') {
+  susSubmited = susSubmitedState;
+} else {
+  susSubmited = false;
+}
+
+// submit buttons
+const aggrementElement = document.getElementById('aggree-button');
+const diaggreeElement = document.getElementById('diaggree-button');
+const gridSubmitElement = document.getElementById(`submit-button-to-sus-${studyVersion}`);
+const completedSubmitElement = document.getElementById('submit-button-to-end');
+
+if (studyAgrreed) {
+  console.log('URLPath', URLPath)
+  switch (URLPath) {
+    case '#':
+      if (studyAgrreed) {
+        if (aggrementElement) {
+          aggrementElement.click();
+        }
+      }
+      break;
+    case '#map':
+      if (studyAgrreed) {
+        if (aggrementElement) {
+          aggrementElement.click();
+        }
+      }
+      break;
+    case '#sus-questions':
+      if (gridSubmited) {
+        if (gridSubmitElement) {
+          gridSubmitElement.click();
+        }
+      }
+      break;
+    default:
+      if (studyAgrreed) {
+        if (aggrementElement) {
+          aggrementElement.click();
+        }
+      }
+      break;
   }
 }
 
+window.addEventListener("hashchange", (event) => {
+  window.location.reload(true);
+});
+
+// else {
+//   if (diaggreeElement) {
+//     diaggreeElement.click();
+//   }
+// }
+
 // hide study
 if (studyCompleted) {
-  const completedSubmitElement = document.getElementById('submit-button-to-end');
   if (completedSubmitElement) {
     completedSubmitElement.click();
   }
