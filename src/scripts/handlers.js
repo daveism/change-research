@@ -247,7 +247,7 @@ export class Handlers {
         });
 
         utility.triggerEvent('aggree-clicked', 'handleAgreeClick');
-        // store.setStateItem('study-agreement', true);
+        store.setStateItem('study-agreement', true);
         store.setStateItem('study-agreement-time', agreementTimeStamp);
         history.pushState({ page: 1 }, '#map', '#map'); // eslint-disable-line
       });

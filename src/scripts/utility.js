@@ -126,7 +126,7 @@ export class Utility {
     // write complted array to api
     // recordStudyData.setEvent('data', 'gridanswers', JSON.stringify(valueArray));
     const datestamp = new Date().toISOString();
-    // store.setStateItem('grid-submited', true);
+    store.setStateItem('grid-submited', true);
     store.setStateItem('gridanswers', valueArray);
     store.setStateItem('gridanswers-time', datestamp);
     return null;
