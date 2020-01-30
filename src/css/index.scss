@@ -410,12 +410,14 @@ html, body {
   text-align: center !important;
 }
 
-#submit-button-to-sus, #circle-button2 {
-  width: 45% !important;
-  @media only screen and (max-width: 768px) {
-    width: 100% !important;
-    padding-left: 6px !important;
-    padding-right: 6px !important;
+#submit-button-to-sus {
+  &-0, &-1, &-2 {
+    width: 50% !important;
+    @media only screen and (max-width: 768px) {
+      width: 100% !important;
+      padding-left: 6px !important;
+      padding-right: 6px !important;
+    }
   }
 }
 
