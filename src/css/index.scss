@@ -262,13 +262,16 @@ html, body {
   padding-top: 0px !important;
 }
 
-.sus-odd {
+.sus-odd  {
   background-color: $body-background-daker-color;
   color: $body-darker-color;
 }
 
 .sus-odd, .sus-even {
   @include border-radius($default-radius/2, $default-radius/2);
+  .step-directions {
+    font-size: 18px;
+  }
 }
 
 // .sus-describer-agree, .sus-describer-disagree {
