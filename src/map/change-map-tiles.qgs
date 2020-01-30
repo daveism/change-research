@@ -19,9 +19,6 @@
   </projectCrs>
   <layer-tree-group>
     <customproperties/>
-    <layer-tree-layer id="square_grid_geojson_third_mask_5ec5aef1_44c1_4089_a569_e891c33cdbe9" source="../scripts/square-grid-geojson-third-mask.geojson|layername=square-grid-geojson-third-mask" checked="Qt::Unchecked" name="square-grid-geojson-third-mask" expanded="1" providerKey="ogr">
-      <customproperties/>
-    </layer-tree-layer>
     <layer-tree-layer id="square_grid_geojson_third_square_grid_geojson_0089c8e0_706f_4b37_bef5_8199d6026429" source="../scripts/square-grid-geojson-third.json|layername=square-grid-geojson" checked="Qt::Unchecked" name="square-grid-geojson-third square-grid-geojson" expanded="1" providerKey="ogr">
       <customproperties/>
     </layer-tree-layer>
@@ -46,7 +43,7 @@
     <layer-tree-layer id="naip2_cut_41357b36_ad20_41c2_b2d0_24853eaf0d16" source="../../../../test-tiles/naip2_cut.tif" checked="Qt::Unchecked" name="naip2_cut" expanded="1" providerKey="gdal">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer id="naip1_cut_b9ce63f6_262c_4696_b84d_227859fd1d8c" source="../../../../test-tiles/naip1_cut.tif" checked="Qt::Checked" name="naip1_cut" expanded="1" providerKey="gdal">
+    <layer-tree-layer id="naip1_cut_b9ce63f6_262c_4696_b84d_227859fd1d8c" source="../../../../test-tiles/naip1_cut.tif" checked="Qt::Unchecked" name="naip1_cut" expanded="1" providerKey="gdal">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer id="naip1_lv_scale_5_2020_01_25_13_46_326ac261_21b1_4081_bb12_35232380bf4e" source="./geeimages/naip1_lv_scale_5_2020_01_25_13_46.tif" checked="Qt::Unchecked" name="naip1_lv_scale_5_2020_01_25_13_46" expanded="1" providerKey="gdal">
@@ -55,11 +52,7 @@
     <layer-tree-layer id="naip2_lv_scale_5_2020_01_26_09_26_530b41f7_dc08_4430_914b_55781cc0b99f" source="./geeimages/naip2_lv_scale_5_2020_01_26_09_26.tif" checked="Qt::Unchecked" name="naip2_lv_scale_5_2020_01_26_09_26" expanded="1" providerKey="gdal">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer id="World_Street_Map_8869cc94_0619_4320_8fe8_eb4e92991fe2" source="crs='EPSG:3857' format='PNG32' layer='0' url='http://server.arcgisonline.com/arcgis/rest/services/World_Street_Map/MapServer'" checked="Qt::Unchecked" name="World Street Map" expanded="1" providerKey="mapserver">
-      <customproperties/>
-    </layer-tree-layer>
     <custom-order enabled="0">
-      <item>World_Street_Map_8869cc94_0619_4320_8fe8_eb4e92991fe2</item>
       <item>naip2_lv_scale_5_2020_01_26_09_26_530b41f7_dc08_4430_914b_55781cc0b99f</item>
       <item>Landcover_2001_HSTN_scale_60_2020_01_26_09_49_4c2eb324_54e8_4e87_a157_3ffff880015c</item>
       <item>Landcover_2016_HSTN_scale_60_2020_01_26_09_49_e0a0dc09_decd_4b61_8d6d_34603993d552</item>
@@ -69,7 +62,6 @@
       <item>square_grid_geojson_f490fdf7_6001_4c03_bcc0_eb971db8d917</item>
       <item>square_grid_geojson_second_square_grid_geojson_a87ac85c_ce76_4d01_9fa2_aa9baaca6b1d</item>
       <item>square_grid_geojson_third_square_grid_geojson_0089c8e0_706f_4b37_bef5_8199d6026429</item>
-      <item>square_grid_geojson_third_mask_5ec5aef1_44c1_4089_a569_e891c33cdbe9</item>
       <item>naip2_cut_41357b36_ad20_41c2_b2d0_24853eaf0d16</item>
       <item>naip1_cut_b9ce63f6_262c_4696_b84d_227859fd1d8c</item>
     </custom-order>
@@ -77,7 +69,6 @@
   <snapping-settings mode="2" tolerance="12" unit="1" type="1" intersection-snapping="0" enabled="0">
     <individual-layer-settings>
       <layer-setting id="square_grid_geojson_orig_iknow_0ab6bc21_bb0e_452c_b8d7_e625f3d7ac72" tolerance="12" units="1" type="1" enabled="0"/>
-      <layer-setting id="square_grid_geojson_third_mask_5ec5aef1_44c1_4089_a569_e891c33cdbe9" tolerance="12" units="1" type="1" enabled="0"/>
       <layer-setting id="square_grid_geojson_f490fdf7_6001_4c03_bcc0_eb971db8d917" tolerance="12" units="1" type="1" enabled="0"/>
       <layer-setting id="square_grid_geojson_third_square_grid_geojson_0089c8e0_706f_4b37_bef5_8199d6026429" tolerance="12" units="1" type="1" enabled="0"/>
       <layer-setting id="square_grid_geojson_second_square_grid_geojson_a87ac85c_ce76_4d01_9fa2_aa9baaca6b1d" tolerance="12" units="1" type="1" enabled="0"/>
@@ -111,11 +102,6 @@
   </mapcanvas>
   <projectModels/>
   <legend updateDrawingOrder="true">
-    <legendlayer showFeatureCount="0" checked="Qt::Unchecked" name="square-grid-geojson-third-mask" open="true" drawingOrder="-1">
-      <filegroup open="true" hidden="false">
-        <legendlayerfile visible="0" layerid="square_grid_geojson_third_mask_5ec5aef1_44c1_4089_a569_e891c33cdbe9" isInOverview="0"/>
-      </filegroup>
-    </legendlayer>
     <legendlayer showFeatureCount="0" checked="Qt::Unchecked" name="square-grid-geojson-third square-grid-geojson" open="true" drawingOrder="-1">
       <filegroup open="true" hidden="false">
         <legendlayerfile visible="0" layerid="square_grid_geojson_third_square_grid_geojson_0089c8e0_706f_4b37_bef5_8199d6026429" isInOverview="0"/>
@@ -156,9 +142,9 @@
         <legendlayerfile visible="0" layerid="naip2_cut_41357b36_ad20_41c2_b2d0_24853eaf0d16" isInOverview="0"/>
       </filegroup>
     </legendlayer>
-    <legendlayer showFeatureCount="0" checked="Qt::Checked" name="naip1_cut" open="true" drawingOrder="-1">
+    <legendlayer showFeatureCount="0" checked="Qt::Unchecked" name="naip1_cut" open="true" drawingOrder="-1">
       <filegroup open="true" hidden="false">
-        <legendlayerfile visible="1" layerid="naip1_cut_b9ce63f6_262c_4696_b84d_227859fd1d8c" isInOverview="0"/>
+        <legendlayerfile visible="0" layerid="naip1_cut_b9ce63f6_262c_4696_b84d_227859fd1d8c" isInOverview="0"/>
       </filegroup>
     </legendlayer>
     <legendlayer showFeatureCount="0" checked="Qt::Unchecked" name="naip1_lv_scale_5_2020_01_25_13_46" open="true" drawingOrder="-1">
@@ -169,11 +155,6 @@
     <legendlayer showFeatureCount="0" checked="Qt::Unchecked" name="naip2_lv_scale_5_2020_01_26_09_26" open="true" drawingOrder="-1">
       <filegroup open="true" hidden="false">
         <legendlayerfile visible="0" layerid="naip2_lv_scale_5_2020_01_26_09_26_530b41f7_dc08_4430_914b_55781cc0b99f" isInOverview="0"/>
-      </filegroup>
-    </legendlayer>
-    <legendlayer showFeatureCount="0" checked="Qt::Unchecked" name="World Street Map" open="true" drawingOrder="-1">
-      <filegroup open="true" hidden="false">
-        <legendlayerfile visible="0" layerid="World_Street_Map_8869cc94_0619_4320_8fe8_eb4e92991fe2" isInOverview="0"/>
       </filegroup>
     </legendlayer>
   </legend>
@@ -902,152 +883,6 @@
     </maplayer>
     <maplayer autoRefreshTime="0" autoRefreshEnabled="0" minScale="1e+08" maxScale="0" styleCategories="AllStyleCategories" refreshOnNotifyMessage="" type="raster" refreshOnNotifyEnabled="0" hasScaleBasedVisibilityFlag="0">
       <extent>
-        <xmin>-20037507.06716184318065643</xmin>
-        <ymin>-30240971.45838609337806702</ymin>
-        <xmax>20037507.06716184318065643</xmax>
-        <ymax>30240971.45838609337806702</ymax>
-      </extent>
-      <id>World_Street_Map_8869cc94_0619_4320_8fe8_eb4e92991fe2</id>
-      <datasource>crs='EPSG:3857' format='PNG32' layer='0' url='http://server.arcgisonline.com/arcgis/rest/services/World_Street_Map/MapServer'</datasource>
-      <keywordList>
-        <value></value>
-      </keywordList>
-      <timestamp>2020-01-29T21:33:26</timestamp>
-      <layername>World Street Map</layername>
-      <srs>
-        <spatialrefsys>
-          <proj4>+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs</proj4>
-          <srsid>3857</srsid>
-          <srid>3857</srid>
-          <authid>EPSG:3857</authid>
-          <description>WGS 84 / Pseudo-Mercator</description>
-          <projectionacronym>merc</projectionacronym>
-          <ellipsoidacronym>WGS84</ellipsoidacronym>
-          <geographicflag>false</geographicflag>
-        </spatialrefsys>
-      </srs>
-      <resourceMetadata>
-        <identifier>http://server.arcgisonline.com/arcgis/rest/services/World_Street_Map/MapServer/0</identifier>
-        <parentidentifier>http://server.arcgisonline.com/arcgis/rest/services/World_Street_Map/MapServer</parentidentifier>
-        <language></language>
-        <type>dataset</type>
-        <title>World Street Map</title>
-        <abstract>This worldwide street map presents highway-level data for the world. Street-level data includes the United States; much of Canada; Mexico; Europe; Japan; Australia and New Zealand; India; South America and Central America; Africa; and most of the Middle East. This comprehensive street map includes highways, major roads, minor roads, one-way arrow indicators, railways, water features, administrative boundaries, cities, parks, and landmarks, overlaid on shaded relief imagery for added context. The map also includes building footprints for selected areas. Coverage is provided down to ~1:4k with ~1:1k and ~1:2k data available in select urban areas. The street map was developed by Esri using Esri basemap data, Garmin basemap layers, U.S. Geological Survey (USGS) elevation data, Intact Forest Landscape (IFL) data for the world; HERE data for Europe, Australia and New Zealand, North America, South America and Central America, Africa, India, and most of the Middle East; OpenStreetMap contributors for select countries in Africa and Pacific Islands; NGCC data for China; and select data from the GIS user community. For more information on this map, including the terms of use, visit us online at http://goto.arcgisonline.com/maps/World_Street_Map</abstract>
-        <keywords vocabulary="gmd:topicCategory">
-          <keyword>transportation(Transportation Networks) </keyword>
-        </keywords>
-        <keywords vocabulary="keywords">
-          <keyword>World</keyword>
-          <keyword>Global</keyword>
-          <keyword>Europe</keyword>
-          <keyword>Japan</keyword>
-          <keyword>Hong Kong</keyword>
-          <keyword>North America</keyword>
-          <keyword>United States</keyword>
-          <keyword>Canada</keyword>
-          <keyword>Mexico</keyword>
-          <keyword>Southern Africa</keyword>
-          <keyword>Asia</keyword>
-          <keyword>South America</keyword>
-          <keyword>Australia</keyword>
-          <keyword>New Zealand</keyword>
-          <keyword>India</keyword>
-          <keyword>Argentina</keyword>
-          <keyword>Brazil</keyword>
-          <keyword>Chile</keyword>
-          <keyword>Venezuela</keyword>
-          <keyword>Andorra</keyword>
-          <keyword>Austria</keyword>
-          <keyword>Belgium</keyword>
-          <keyword>Czech Republic</keyword>
-          <keyword>Denmark</keyword>
-          <keyword>France</keyword>
-          <keyword>Germany</keyword>
-          <keyword>Great Britain</keyword>
-          <keyword>Greece</keyword>
-          <keyword>Hungary</keyword>
-          <keyword>Ireland</keyword>
-          <keyword>Italy</keyword>
-          <keyword>Luxembourg</keyword>
-          <keyword>Netherlands</keyword>
-          <keyword>Norway</keyword>
-          <keyword>Poland</keyword>
-          <keyword>Portugal</keyword>
-          <keyword>San Marino</keyword>
-          <keyword>Slovakia</keyword>
-          <keyword>Spain</keyword>
-          <keyword>Sweden</keyword>
-          <keyword>Switzerland</keyword>
-          <keyword>Russia</keyword>
-          <keyword>Thailand</keyword>
-          <keyword>Turkey</keyword>
-        </keywords>
-        <contact>
-          <name>Esri</name>
-          <organization></organization>
-          <position></position>
-          <voice></voice>
-          <fax></fax>
-          <email></email>
-          <role>author</role>
-        </contact>
-        <links>
-          <link url="http://server.arcgisonline.com/arcgis/rest/services/World_Street_Map/MapServer/0" format="" mimeType="" type="WWW:LINK" name="Source" description="" size=""/>
-        </links>
-        <fees></fees>
-        <rights>Sources: Esri, HERE, Garmin, USGS, Intermap, INCREMENT P, NRCan, Esri Japan, METI, Esri China (Hong Kong), Esri Korea, Esri (Thailand), NGCC, © OpenStreetMap contributors, and the GIS User Community</rights>
-        <encoding></encoding>
-        <crs>
-          <spatialrefsys>
-            <proj4>+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs</proj4>
-            <srsid>3857</srsid>
-            <srid>3857</srid>
-            <authid>EPSG:3857</authid>
-            <description>WGS 84 / Pseudo-Mercator</description>
-            <projectionacronym>merc</projectionacronym>
-            <ellipsoidacronym>WGS84</ellipsoidacronym>
-            <geographicflag>false</geographicflag>
-          </spatialrefsys>
-        </crs>
-        <extent>
-          <spatial dimensions="2" maxx="20037507.06716184318065643" miny="-30240971.45838609337806702" maxz="0" minz="0" crs="EPSG:3857" minx="-20037507.06716184318065643" maxy="30240971.45838609337806702"/>
-        </extent>
-      </resourceMetadata>
-      <provider>arcgismapserver</provider>
-      <noData>
-        <noDataList bandNo="1" useSrcNoData="0"/>
-      </noData>
-      <map-layer-style-manager current="default">
-        <map-layer-style name="default"/>
-      </map-layer-style-manager>
-      <flags>
-        <Identifiable>1</Identifiable>
-        <Removable>1</Removable>
-        <Searchable>0</Searchable>
-      </flags>
-      <customproperties>
-        <property key="identify/format" value="Feature"/>
-      </customproperties>
-      <pipe>
-        <rasterrenderer opacity="1" type="singlebandcolordata" alphaBand="-1" band="1">
-          <rasterTransparency/>
-          <minMaxOrigin>
-            <limits>None</limits>
-            <extent>WholeRaster</extent>
-            <statAccuracy>Estimated</statAccuracy>
-            <cumulativeCutLower>0.02</cumulativeCutLower>
-            <cumulativeCutUpper>0.98</cumulativeCutUpper>
-            <stdDevFactor>2</stdDevFactor>
-          </minMaxOrigin>
-        </rasterrenderer>
-        <brightnesscontrast brightness="0" contrast="0"/>
-        <huesaturation colorizeStrength="100" saturation="0" colorizeRed="255" colorizeOn="0" colorizeGreen="128" colorizeBlue="128" grayscaleMode="0"/>
-        <rasterresampler maxOversampling="2"/>
-      </pipe>
-      <blendMode>0</blendMode>
-    </maplayer>
-    <maplayer autoRefreshTime="0" autoRefreshEnabled="0" minScale="1e+08" maxScale="0" styleCategories="AllStyleCategories" refreshOnNotifyMessage="" type="raster" refreshOnNotifyEnabled="0" hasScaleBasedVisibilityFlag="0">
-      <extent>
         <xmin>-114.89992421030608227</xmin>
         <ymin>36.07954208207917191</ymin>
         <xmax>-114.75051479119358078</xmax>
@@ -1078,6 +913,15 @@
         <type></type>
         <title></title>
         <abstract></abstract>
+        <contact>
+          <name></name>
+          <organization></organization>
+          <position></position>
+          <voice></voice>
+          <fax></fax>
+          <email></email>
+          <role></role>
+        </contact>
         <links/>
         <fees></fees>
         <encoding></encoding>
@@ -1093,7 +937,15 @@
             <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
-        <extent/>
+        <extent>
+          <spatial dimensions="2" maxx="0" miny="0" maxz="0" minz="0" crs="" minx="0" maxy="0"/>
+          <temporal>
+            <period>
+              <start></start>
+              <end></end>
+            </period>
+          </temporal>
+        </extent>
       </resourceMetadata>
       <provider>gdal</provider>
       <noData>
@@ -1110,32 +962,35 @@
         <Searchable>1</Searchable>
       </flags>
       <customproperties>
+        <property key="WMSBackgroundLayer" value="false"/>
+        <property key="WMSPublishDataSourceUrl" value="false"/>
+        <property key="embeddedWidgets/count" value="0"/>
         <property key="identify/format" value="Value"/>
       </customproperties>
       <pipe>
         <rasterrenderer greenBand="2" opacity="1" type="multibandcolor" alphaBand="-1" redBand="1" blueBand="3">
           <rasterTransparency/>
           <minMaxOrigin>
-            <limits>CumulativeCut</limits>
+            <limits>None</limits>
             <extent>WholeRaster</extent>
-            <statAccuracy>Estimated</statAccuracy>
+            <statAccuracy>Exact</statAccuracy>
             <cumulativeCutLower>0.02</cumulativeCutLower>
             <cumulativeCutUpper>0.98</cumulativeCutUpper>
             <stdDevFactor>2</stdDevFactor>
           </minMaxOrigin>
           <redContrastEnhancement>
             <minValue>0</minValue>
-            <maxValue>188.0535</maxValue>
+            <maxValue>255</maxValue>
             <algorithm>StretchToMinimumMaximum</algorithm>
           </redContrastEnhancement>
           <greenContrastEnhancement>
             <minValue>0</minValue>
-            <maxValue>177.76</maxValue>
+            <maxValue>255</maxValue>
             <algorithm>StretchToMinimumMaximum</algorithm>
           </greenContrastEnhancement>
           <blueContrastEnhancement>
             <minValue>0</minValue>
-            <maxValue>170.856</maxValue>
+            <maxValue>255</maxValue>
             <algorithm>StretchToMinimumMaximum</algorithm>
           </blueContrastEnhancement>
         </rasterrenderer>
@@ -1296,6 +1151,15 @@
         <type></type>
         <title></title>
         <abstract></abstract>
+        <contact>
+          <name></name>
+          <organization></organization>
+          <position></position>
+          <voice></voice>
+          <fax></fax>
+          <email></email>
+          <role></role>
+        </contact>
         <links/>
         <fees></fees>
         <encoding></encoding>
@@ -1311,7 +1175,15 @@
             <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
-        <extent/>
+        <extent>
+          <spatial dimensions="2" maxx="0" miny="0" maxz="0" minz="0" crs="" minx="0" maxy="0"/>
+          <temporal>
+            <period>
+              <start></start>
+              <end></end>
+            </period>
+          </temporal>
+        </extent>
       </resourceMetadata>
       <provider>gdal</provider>
       <noData>
@@ -1328,13 +1200,16 @@
         <Searchable>1</Searchable>
       </flags>
       <customproperties>
+        <property key="WMSBackgroundLayer" value="false"/>
+        <property key="WMSPublishDataSourceUrl" value="false"/>
+        <property key="embeddedWidgets/count" value="0"/>
         <property key="identify/format" value="Value"/>
       </customproperties>
       <pipe>
         <rasterrenderer greenBand="2" opacity="1" type="multibandcolor" alphaBand="-1" redBand="1" blueBand="3">
           <rasterTransparency/>
           <minMaxOrigin>
-            <limits>CumulativeCut</limits>
+            <limits>None</limits>
             <extent>WholeRaster</extent>
             <statAccuracy>Estimated</statAccuracy>
             <cumulativeCutLower>0.02</cumulativeCutLower>
@@ -1343,17 +1218,17 @@
           </minMaxOrigin>
           <redContrastEnhancement>
             <minValue>0</minValue>
-            <maxValue>181.902</maxValue>
+            <maxValue>255</maxValue>
             <algorithm>StretchToMinimumMaximum</algorithm>
           </redContrastEnhancement>
           <greenContrastEnhancement>
             <minValue>0</minValue>
-            <maxValue>166.8</maxValue>
+            <maxValue>255</maxValue>
             <algorithm>StretchToMinimumMaximum</algorithm>
           </greenContrastEnhancement>
           <blueContrastEnhancement>
             <minValue>0</minValue>
-            <maxValue>151.8195</maxValue>
+            <maxValue>255</maxValue>
             <algorithm>StretchToMinimumMaximum</algorithm>
           </blueContrastEnhancement>
         </rasterrenderer>
@@ -2638,269 +2513,6 @@ def my_form_open(dialog, layer, feature):
       <previewExpression>id</previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer minScale="1e+08" simplifyMaxScale="1" wkbType="MultiPolygon" autoRefreshEnabled="0" type="vector" simplifyDrawingHints="1" simplifyAlgorithm="0" refreshOnNotifyMessage="" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" styleCategories="AllStyleCategories" labelsEnabled="0" maxScale="0" geometry="Polygon" readOnly="0" simplifyDrawingTol="1" autoRefreshTime="0" refreshOnNotifyEnabled="0">
-      <extent>
-        <xmin>-115.0492462888900036</xmin>
-        <ymin>35.97536674544614499</ymin>
-        <xmax>-114.60121343579351105</xmax>
-        <ymax>36.2879885549561223</ymax>
-      </extent>
-      <id>square_grid_geojson_third_mask_5ec5aef1_44c1_4089_a569_e891c33cdbe9</id>
-      <datasource>../scripts/square-grid-geojson-third-mask.geojson|layername=square-grid-geojson-third-mask</datasource>
-      <keywordList>
-        <value></value>
-      </keywordList>
-      <layername>square-grid-geojson-third-mask</layername>
-      <srs>
-        <spatialrefsys>
-          <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
-          <srsid>3452</srsid>
-          <srid>4326</srid>
-          <authid>EPSG:4326</authid>
-          <description>WGS 84</description>
-          <projectionacronym>longlat</projectionacronym>
-          <ellipsoidacronym>WGS84</ellipsoidacronym>
-          <geographicflag>true</geographicflag>
-        </spatialrefsys>
-      </srs>
-      <resourceMetadata>
-        <identifier></identifier>
-        <parentidentifier></parentidentifier>
-        <language></language>
-        <type>dataset</type>
-        <title></title>
-        <abstract></abstract>
-        <contact>
-          <name></name>
-          <organization></organization>
-          <position></position>
-          <voice></voice>
-          <fax></fax>
-          <email></email>
-          <role></role>
-        </contact>
-        <links/>
-        <fees></fees>
-        <encoding></encoding>
-        <crs>
-          <spatialrefsys>
-            <proj4></proj4>
-            <srsid>0</srsid>
-            <srid>0</srid>
-            <authid></authid>
-            <description></description>
-            <projectionacronym></projectionacronym>
-            <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
-          </spatialrefsys>
-        </crs>
-        <extent>
-          <spatial dimensions="2" maxx="0" miny="0" maxz="0" minz="0" crs="" minx="0" maxy="0"/>
-          <temporal>
-            <period>
-              <start></start>
-              <end></end>
-            </period>
-          </temporal>
-        </extent>
-      </resourceMetadata>
-      <provider encoding="UTF-8">ogr</provider>
-      <vectorjoins/>
-      <layerDependencies/>
-      <dataDependencies/>
-      <legend type="default-vector"/>
-      <expressionfields/>
-      <map-layer-style-manager current="default">
-        <map-layer-style name="default"/>
-      </map-layer-style-manager>
-      <auxiliaryLayer/>
-      <flags>
-        <Identifiable>1</Identifiable>
-        <Removable>1</Removable>
-        <Searchable>1</Searchable>
-      </flags>
-      <renderer-v2 symbollevels="0" forceraster="0" enableorderby="0" type="singleSymbol">
-        <symbols>
-          <symbol alpha="1" type="fill" name="0" clip_to_extent="1" force_rhr="0">
-            <layer class="SimpleFill" locked="0" enabled="1" pass="0">
-              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
-              <prop k="color" v="255,255,255,255"/>
-              <prop k="joinstyle" v="bevel"/>
-              <prop k="offset" v="0,0"/>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
-              <prop k="offset_unit" v="MM"/>
-              <prop k="outline_color" v="255,255,255,255"/>
-              <prop k="outline_style" v="solid"/>
-              <prop k="outline_width" v="0.26"/>
-              <prop k="outline_width_unit" v="MM"/>
-              <prop k="style" v="solid"/>
-              <data_defined_properties>
-                <Option type="Map">
-                  <Option type="QString" value="" name="name"/>
-                  <Option name="properties"/>
-                  <Option type="QString" value="collection" name="type"/>
-                </Option>
-              </data_defined_properties>
-            </layer>
-          </symbol>
-        </symbols>
-        <rotation/>
-        <sizescale/>
-      </renderer-v2>
-      <customproperties>
-        <property key="dualview/previewExpressions" value="&quot;id&quot;"/>
-        <property key="embeddedWidgets/count" value="0"/>
-        <property key="variableNames"/>
-        <property key="variableValues"/>
-      </customproperties>
-      <blendMode>0</blendMode>
-      <featureBlendMode>0</featureBlendMode>
-      <layerOpacity>1</layerOpacity>
-      <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
-        <DiagramCategory minimumSize="0" maxScaleDenominator="1e+08" scaleDependency="Area" scaleBasedVisibility="0" barWidth="5" backgroundAlpha="255" labelPlacementMethod="XHeight" width="15" penColor="#000000" lineSizeType="MM" sizeType="MM" minScaleDenominator="0" diagramOrientation="Up" height="15" opacity="1" sizeScale="3x:0,0,0,0,0,0" enabled="0" lineSizeScale="3x:0,0,0,0,0,0" backgroundColor="#ffffff" penWidth="0" rotationOffset="270" penAlpha="255">
-          <fontProperties style="" description=".SF NS Text,13,-1,5,50,0,0,0,0,0"/>
-          <attribute field="" color="#000000" label=""/>
-        </DiagramCategory>
-      </SingleCategoryDiagramRenderer>
-      <DiagramLayerSettings obstacle="0" showAll="1" zIndex="0" linePlacementFlags="18" dist="0" placement="1" priority="0">
-        <properties>
-          <Option type="Map">
-            <Option type="QString" value="" name="name"/>
-            <Option name="properties"/>
-            <Option type="QString" value="collection" name="type"/>
-          </Option>
-        </properties>
-      </DiagramLayerSettings>
-      <geometryOptions removeDuplicateNodes="0" geometryPrecision="0">
-        <activeChecks/>
-        <checkConfiguration/>
-      </geometryOptions>
-      <fieldConfiguration>
-        <field name="row">
-          <editWidget type="TextEdit">
-            <config>
-              <Option/>
-            </config>
-          </editWidget>
-        </field>
-        <field name="col">
-          <editWidget type="TextEdit">
-            <config>
-              <Option/>
-            </config>
-          </editWidget>
-        </field>
-        <field name="id">
-          <editWidget type="TextEdit">
-            <config>
-              <Option/>
-            </config>
-          </editWidget>
-        </field>
-        <field name="selected">
-          <editWidget type="TextEdit">
-            <config>
-              <Option/>
-            </config>
-          </editWidget>
-        </field>
-        <field name="v">
-          <editWidget type="TextEdit">
-            <config>
-              <Option/>
-            </config>
-          </editWidget>
-        </field>
-      </fieldConfiguration>
-      <aliases>
-        <alias field="row" index="0" name=""/>
-        <alias field="col" index="1" name=""/>
-        <alias field="id" index="2" name=""/>
-        <alias field="selected" index="3" name=""/>
-        <alias field="v" index="4" name=""/>
-      </aliases>
-      <excludeAttributesWMS/>
-      <excludeAttributesWFS/>
-      <defaults>
-        <default applyOnUpdate="0" field="row" expression=""/>
-        <default applyOnUpdate="0" field="col" expression=""/>
-        <default applyOnUpdate="0" field="id" expression=""/>
-        <default applyOnUpdate="0" field="selected" expression=""/>
-        <default applyOnUpdate="0" field="v" expression=""/>
-      </defaults>
-      <constraints>
-        <constraint constraints="0" field="row" notnull_strength="0" unique_strength="0" exp_strength="0"/>
-        <constraint constraints="0" field="col" notnull_strength="0" unique_strength="0" exp_strength="0"/>
-        <constraint constraints="0" field="id" notnull_strength="0" unique_strength="0" exp_strength="0"/>
-        <constraint constraints="0" field="selected" notnull_strength="0" unique_strength="0" exp_strength="0"/>
-        <constraint constraints="0" field="v" notnull_strength="0" unique_strength="0" exp_strength="0"/>
-      </constraints>
-      <constraintExpressions>
-        <constraint field="row" desc="" exp=""/>
-        <constraint field="col" desc="" exp=""/>
-        <constraint field="id" desc="" exp=""/>
-        <constraint field="selected" desc="" exp=""/>
-        <constraint field="v" desc="" exp=""/>
-      </constraintExpressions>
-      <expressionfields/>
-      <attributeactions>
-        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
-      </attributeactions>
-      <attributetableconfig sortOrder="0" sortExpression="" actionWidgetStyle="dropDown">
-        <columns>
-          <column type="field" name="row" hidden="0" width="-1"/>
-          <column type="field" name="col" hidden="0" width="-1"/>
-          <column type="field" name="id" hidden="0" width="-1"/>
-          <column type="field" name="selected" hidden="0" width="-1"/>
-          <column type="field" name="v" hidden="0" width="-1"/>
-          <column type="actions" hidden="1" width="-1"/>
-        </columns>
-      </attributetableconfig>
-      <conditionalstyles>
-        <rowstyles/>
-        <fieldstyles/>
-      </conditionalstyles>
-      <editform tolerant="1"></editform>
-      <editforminit/>
-      <editforminitcodesource>0</editforminitcodesource>
-      <editforminitfilepath></editforminitfilepath>
-      <editforminitcode><![CDATA[# -*- coding: utf-8 -*-
-"""
-QGIS forms can have a Python function that is called when the form is
-opened.
-
-Use this function to add extra logic to your forms.
-
-Enter the name of the function in the "Python Init function"
-field.
-An example follows:
-"""
-from qgis.PyQt.QtWidgets import QWidget
-
-def my_form_open(dialog, layer, feature):
-	geom = feature.geometry()
-	control = dialog.findChild(QWidget, "MyLineEdit")
-]]></editforminitcode>
-      <featformsuppress>0</featformsuppress>
-      <editorlayout>generatedlayout</editorlayout>
-      <editable>
-        <field name="col" editable="1"/>
-        <field name="id" editable="1"/>
-        <field name="row" editable="1"/>
-        <field name="selected" editable="1"/>
-        <field name="v" editable="1"/>
-      </editable>
-      <labelOnTop>
-        <field name="col" labelOnTop="0"/>
-        <field name="id" labelOnTop="0"/>
-        <field name="row" labelOnTop="0"/>
-        <field name="selected" labelOnTop="0"/>
-        <field name="v" labelOnTop="0"/>
-      </labelOnTop>
-      <widgets/>
-      <previewExpression>id</previewExpression>
-      <mapTip></mapTip>
-    </maplayer>
     <maplayer minScale="1e+08" simplifyMaxScale="1" wkbType="Polygon" autoRefreshEnabled="0" type="vector" simplifyDrawingHints="1" simplifyAlgorithm="0" refreshOnNotifyMessage="" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" styleCategories="AllStyleCategories" labelsEnabled="0" maxScale="0" geometry="Polygon" readOnly="0" simplifyDrawingTol="1" autoRefreshTime="0" refreshOnNotifyEnabled="0">
       <extent>
         <xmin>-114.89990079623977692</xmin>
@@ -3165,7 +2777,6 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
   </projectlayers>
   <layerorder>
-    <layer id="World_Street_Map_8869cc94_0619_4320_8fe8_eb4e92991fe2"/>
     <layer id="naip2_lv_scale_5_2020_01_26_09_26_530b41f7_dc08_4430_914b_55781cc0b99f"/>
     <layer id="Landcover_2001_HSTN_scale_60_2020_01_26_09_49_4c2eb324_54e8_4e87_a157_3ffff880015c"/>
     <layer id="Landcover_2016_HSTN_scale_60_2020_01_26_09_49_e0a0dc09_decd_4b61_8d6d_34603993d552"/>
@@ -3175,7 +2786,6 @@ def my_form_open(dialog, layer, feature):
     <layer id="square_grid_geojson_f490fdf7_6001_4c03_bcc0_eb971db8d917"/>
     <layer id="square_grid_geojson_second_square_grid_geojson_a87ac85c_ce76_4d01_9fa2_aa9baaca6b1d"/>
     <layer id="square_grid_geojson_third_square_grid_geojson_0089c8e0_706f_4b37_bef5_8199d6026429"/>
-    <layer id="square_grid_geojson_third_mask_5ec5aef1_44c1_4089_a569_e891c33cdbe9"/>
     <layer id="naip2_cut_41357b36_ad20_41c2_b2d0_24853eaf0d16"/>
     <layer id="naip1_cut_b9ce63f6_262c_4696_b84d_227859fd1d8c"/>
   </layerorder>
