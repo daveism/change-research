@@ -39,3 +39,15 @@
 * check use inverted tiles y axis
 * /Users/daveism/Github/change-research/dist/maps/naip_1
 * /Users/daveism/Github/change-research/dist/maps/naip_2
+
+may need to to do some gdal
+gdalwarp -s_srs EPSG:26917 -t_srs EPSG:4326 -r average -of GTiff naip1_lv_scale_5_2020_01_25_13_46.tif naip1_rp_av.tif
+
+
+
+gdalwarp -s_srs EPSG:4326 -t_srs EPSG:4326 -of GTiff -tr 4.8010738789362284e-05 -4.801073878936242e-05 -tap -cutline square-grid-geojson-third.json -crop_to_cutline -multi naip1_rp_av.tif naip1_cut.tif
+
+gdalwarp -s_srs EPSG:26917 -t_srs EPSG:4326 -r average -of GTiff naip2_lv_scale_5_2020_01_26_09_26.tif naip2_rp_av.tif
+
+
+gdalwarp -s_srs EPSG:4326 -t_srs EPSG:4326 -of GTiff -tr 4.8010738789362284e-05 -4.801073878936242e-05 -tap -cutline square-grid-geojson-third.json -crop_to_cutline -multi naip2_rp_av.tif naip2_cut.tif
