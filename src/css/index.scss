@@ -94,9 +94,10 @@ html, body {
   height: $mapHeight;
   width: $mapWidth;
   &.endmap {
-    height: $mapSmallHeight;
-    width: $mapBigWidth - 25;
-    max-width: $mapBigWidth - 25;;
+    height: 350px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
   }
   @include border-radius($default-radius, $default-radius);
 
@@ -105,9 +106,10 @@ html, body {
     height: $mapBigHeight;
     width: $mapBigWidth;
     &.endmap {
-      height: $mapSmallHeight;
-      width: $mapBigWidth - 25;;
-      max-width: $mapBigWidth - 25;;
+      height: 350px;
+      width: 100%;
+      max-width: 100%;
+      min-width: 100%;
     }
   }
 
@@ -115,9 +117,10 @@ html, body {
     height: $mapMediumHeight;
     width: $mapMediumWidth;
     &.endmap {
-      height: $mapSmallHeight;
-      width: $mapSmallWidth;
-      max-width: $mapSmallWidth;
+      height: 350px;
+      width: 100%;
+      max-width: 100%;
+      min-width: 100%;
     }
   }
 
@@ -125,7 +128,8 @@ html, body {
     height: $mapSmallHeight;
     width: $mapSmallWidth;
     &.endmap {
-      height: $mapSmallHeight - 75;
+      height: 350px;
+      min-width: 100%;
     }
   }
 
@@ -134,8 +138,10 @@ html, body {
     width: $mapTinyWidth;
     flex-flow: column;
     &.endmap {
-      height: $mapTinyHeight - 25;
-      max-width: $mapTinyWidth;
+      height: 275px;
+      margin-left: 0px !important;
+      max-width: 100%;
+      min-width: 100%;
     }
   }
 }
@@ -320,7 +326,7 @@ html, body {
   font-weight: 500;
 
   &.for-sat {
-    font-weight: 700; 
+    font-weight: 700;
   }
 
   @media only screen and (max-width: 768px) {
