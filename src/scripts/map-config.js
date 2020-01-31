@@ -111,7 +111,7 @@ export class MapBoxConfig {
         ],
         [ // lv 2
           {
-            url: 'https://daveism.github.io/change-research/dist/maps/lakemead_2/{z}/{x}/{y}.png',
+            url: 'https://daveism.github.io/change-research/dist/maps/lakemead_1/{z}/{x}/{y}.png',
             minzoom: 1,
             maxzoom: 14,
             scheme: 'tms',
