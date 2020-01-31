@@ -247,10 +247,10 @@ susBtnGroupElements.forEach((elementUIID) => {
 });
 
 // remove imagery directions when not imagery
-if (mapVersion !== 2){
+if (mapVersion !== 2) {
   const imageryDirectionsElems = document.querySelectorAll('.for-sat');
 
-  imageryDirectionsElems.forEach(function(elem) {
+  imageryDirectionsElems.forEach((elem) => {
     elem.setAttribute('style', 'display: none !important');
   });
 }
