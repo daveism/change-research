@@ -246,6 +246,15 @@ susBtnGroupElements.forEach((elementUIID) => {
   handlers.addHandlerSUSQuestionClick(elementUIID);
 });
 
+// remove imagery directions when not imagery
+if (mapVersion !== 2){
+  const imageryDirectionsElems = document.querySelectorAll('.for-sat');
+
+  imageryDirectionsElems.forEach(function(elem) {
+    elem.setAttribute('style', 'display: none !important');
+  });
+}
+
 // sus question state items
 const susName = 'sus-question-';
 const susIterations = 10;

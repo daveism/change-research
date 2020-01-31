@@ -37,8 +37,8 @@
 * 256
 * check use inverted tiles y axis
 * check use inverted tiles y axis
-* /Users/daveism/Github/change-research/dist/maps/naip_1
-* /Users/daveism/Github/change-research/dist/maps/naip_2
+* /Users/daveism/Github/change-research/dist/maps/lakemead_1
+* /Users/daveism/Github/change-research/dist/maps/lakemead_2
 
 ### may need to to do some gdal for LV naip images
 gdalwarp -s_srs EPSG:26917 -t_srs EPSG:4326 -r average -of GTiff naip1_lv_scale_5_2020_01_25_13_46.tif naip1_rp_av.tif
