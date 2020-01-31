@@ -7,8 +7,36 @@ var naip1 = NAIP.filterDate('2005', '2007')
 var naip2 = NAIP.filterDate('2017', '2018')
   .filter(ee.Filter.listContains('system:band_names', 'B'));
 
-print('naip1 projection', naip1.first().projection())
-print('naip2 projection', naip2.first().projection())
+  var filter_may_2016 = ee.Filter.date('2016-05-22', '2016-05-24');
+  var filterL8 = ee.Filter.or(filter_may_2016);
+
+  var filter_may_1984 = ee.Filter.date('1984-05-14', '1984-05-16');
+  var filterL5 = ee.Filter.or(filter_may_1984);
+
+  var blueL8 = 'B2';
+  var greenL8 = 'B3';
+  var redL8 = 'B4';
+
+  var blueL5 = 'B1';
+  var greenL5 = 'B2';
+  var redL5 = 'B3';
+
+  // image collections clips to study area,
+  // removes clouds and cloud shadows.
+  var l8 = ee.ImageCollection('LANDSAT/LC08/C01/T1_SR')
+      .filter(filterL8)
+
+  var l5 = ee.ImageCollection('LANDSAT/LT05/C01/T1_SR')
+      .filter(filterL5)
+
+  var geeImageL8 = ee.Image(l8.mean());
+  var geeImageL5 = ee.Image(l5.mean());
+
+  var RGBImageL8 = geeImageL8.select(redL8, greenL8, blueL8);
+  var RGBImageL5 = geeImageL5.select(redL5, greenL5, blueL5);
+
+print('l8 projection', RGBImageL8.projection())
+print('l5 projection', RGBImageL5.projection())
 
 // get a GEE 2016 ee.ImageCollection for 2016
 var nlcd1 = dataset.filter(ee.Filter.eq('system:index', 'NLCD2016'));
@@ -53,7 +81,7 @@ var clipGeometryAVL = tableAVL.geometry().bounds();
 var clipGeometryHSTN = tableHSTN.geometry().bounds();
 var clipGeometryLV = tableLV.geometry().bounds();
 
-var scale = 60;
+var scale = 120;
 var maxPixels = 1e9;
 
 nlcd1_landcover_img = nlcd1_landcover_img.resample('bicubic').reproject(nlcd1_landcover_img.projection(), null, scale);
@@ -63,8 +91,44 @@ Map.addLayer(nlcd1_landcover_img, landcoverVis, 'Landcover 2016');
 Map.addLayer(nlcd2_landcover_img, landcoverVis, 'Landcover 2001');
 Map.addLayer(naip1, {bands: 'R,G,B'}, 'NAIP 2005');
 Map.addLayer(naip2, {bands: 'R,G,B'}, 'NAIP 2017');
+Map.addLayer(RGBImageL5, {}, 'RGB 1984');
+Map.addLayer(RGBImageL8, {}, 'RGB 2016');
 
-Map.addLayer(clipGeometryLV, {}, 'clipGeometryLV grid');
+Map.addLayer(tableLV, {}, 'clipGeometryHSTN grid');
+
+var scale = 30;
+var maxPixels = 1e9;
+
+var naip1ID = ee.data.newTaskId();
+var naip1 = {
+    crs: 'EPSG:4326',
+    element: RGBImageL5,
+    type: 'EXPORT_IMAGE',
+    fileFormat: 'GEO_TIFF',
+    description: 'L5_LV_scale_'+scale+rundate,
+    region: clipGeometryLV,
+    driveFileNamePrefix: 'L5_LV_scale_'+scale+rundate,
+    driveFolder: 'gee-temp',
+    maxPixels: maxPixels,
+    scale: scale,
+};
+
+var msg = ee.data.startProcessing(naip1ID, naip1);
+
+var naip2ID = ee.data.newTaskId();
+var naip2 = {
+    crs: 'EPSG:4326',
+    element: RGBImageL8,
+    type: 'EXPORT_IMAGE',
+    fileFormat: 'GEO_TIFF',
+    description: 'L8_lv_scale_'+scale+rundate,
+    region: clipGeometryLV,
+    driveFileNamePrefix: 'L8_lv_scale_'+scale+rundate,
+    driveFolder: 'gee-temp',
+    maxPixels: maxPixels,
+    scale: scale,
+};
+var msg = ee.data.startProcessing(naip2ID, naip2);
 
 var scale = 60;
 var maxPixels = 1e9;
@@ -100,6 +164,9 @@ var nlcd2_landcover_task_AVL = {
 
 var msg = ee.data.startProcessing(tidnlcd2_AVL, nlcd2_landcover_task_AVL);
 
+var scale = 120;
+var maxPixels = 1e9;
+
 var tidnlcd1_HST = ee.data.newTaskId();
 var nlcd1_landcover_task_HSTN = {
       crs: 'EPSG:4326',
@@ -131,40 +198,40 @@ var nlcd2_landcover_task_HSTN = {
 
 var msg = ee.data.startProcessing(tidnlcd2_HST, nlcd2_landcover_task_HSTN);
 
-var scale = 5;
-var maxPixels = 1e9;
+// var scale = 5;
+// var maxPixels = 1e9;
 
-var naip1ID = ee.data.newTaskId();
-var naip1 = {
-    crs: 'EPSG:26917',
-    element: naip1.select('R', 'G', 'B').mean(),
-    type: 'EXPORT_IMAGE',
-    fileFormat: 'GEO_TIFF',
-    description: 'naip1_LV_scale_'+scale+rundate,
-    region: clipGeometryLV,
-    driveFileNamePrefix: 'naip1_LV_scale_'+scale+rundate,
-    driveFolder: 'gee-temp',
-    maxPixels: maxPixels,
-    scale: scale,
-};
+// var naip1ID = ee.data.newTaskId();
+// var naip1 = {
+//     crs: 'EPSG:26917',
+//     element: naip1.select('R', 'G', 'B').mean(),
+//     type: 'EXPORT_IMAGE',
+//     fileFormat: 'GEO_TIFF',
+//     description: 'naip1_LV_scale_'+scale+rundate,
+//     region: clipGeometryLV,
+//     driveFileNamePrefix: 'naip1_LV_scale_'+scale+rundate,
+//     driveFolder: 'gee-temp',
+//     maxPixels: maxPixels,
+//     scale: scale,
+// };
 
-var msg = ee.data.startProcessing(naip1ID, naip1);
+// var msg = ee.data.startProcessing(naip1ID, naip1);
 
-var naip2ID = ee.data.newTaskId();
-var naip2 = {
-    crs: 'EPSG:26917',
-    element: naip2.select('R', 'G', 'B').mean(),
-    type: 'EXPORT_IMAGE',
-    fileFormat: 'GEO_TIFF',
-    description: 'naip2_lv_scale_'+scale+rundate,
-    region: clipGeometryLV,
-    driveFileNamePrefix: 'naip2_lv_scale_'+scale+rundate,
-    driveFolder: 'gee-temp',
-    maxPixels: maxPixels,
-    scale: scale,
-};
+// var naip2ID = ee.data.newTaskId();
+// var naip2 = {
+//     crs: 'EPSG:26917',
+//     element: naip2.select('R', 'G', 'B').mean(),
+//     type: 'EXPORT_IMAGE',
+//     fileFormat: 'GEO_TIFF',
+//     description: 'naip2_lv_scale_'+scale+rundate,
+//     region: clipGeometryLV,
+//     driveFileNamePrefix: 'naip2_lv_scale_'+scale+rundate,
+//     driveFolder: 'gee-temp',
+//     maxPixels: maxPixels,
+//     scale: scale,
+// };
 
-var msg = ee.data.startProcessing(naip2ID, naip2);
+// var msg = ee.data.startProcessing(naip2ID, naip2);
 
 var landcoverVisU = {
   min: 0.0,

@@ -319,6 +319,10 @@ html, body {
   font-size: 16px;
   font-weight: 500;
 
+  &.for-sat {
+    font-weight: 700; 
+  }
+
   @media only screen and (max-width: 768px) {
     font-size: 14px;
   }

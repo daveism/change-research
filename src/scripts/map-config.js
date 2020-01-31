@@ -111,7 +111,7 @@ export class MapBoxConfig {
         ],
         [ // lv 2
           {
-            url: 'https://daveism.github.io/change-research/dist/maps/naip_1/{z}/{x}/{y}.png',
+            url: 'https://daveism.github.io/change-research/dist/maps/lakemead_2/{z}/{x}/{y}.png',
             minzoom: 1,
             maxzoom: 14,
             scheme: 'tms',
@@ -120,7 +120,7 @@ export class MapBoxConfig {
             maxbounds: [-114.955, 36.034, -114.694, 36.228]
           },
           {
-            url: 'https://daveism.github.io/change-research/dist/maps/naip_2/{z}/{x}/{y}.png',
+            url: 'https://daveism.github.io/change-research/dist/maps/lakemead_2/{z}/{x}/{y}.png',
             minzoom: 1,
             maxzoom: 14,
             scheme: 'tms',
