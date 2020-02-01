@@ -56,6 +56,11 @@ module.exports = {
             presets: ["es2015",'stage-2']
           }
         },
+        {
+          test: /\.mjs$/,
+          include: /node_modules/,
+          type: "javascript/auto",
+        },
         htmlLoader = {
           test: /\.html$/,
           loader: 'html-loader'

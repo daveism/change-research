@@ -1,13 +1,16 @@
 import mapboxgl from 'mapbox-gl';
 import MapboxCompare from 'mapbox-gl-compare';
 import { polygon, featureCollection } from '@turf/helpers';
-// import center from '@turf/center';
+import buffer from '@turf/buffer';
+import bboxPolygon from '@turf/bbox-polygon';
+import bbox from '@turf/bbox';
+import envelope from '@turf/envelope';
 import { Utility } from './utility';
-// import squareGrid from '@turf/square-grid';
 import { Store } from './store';
 import SquareGridGeoJSONOne from './square-grid-geojson.json';
 import SquareGridGeoJSONSecond from './square-grid-geojson-second.json';
 import SquareGridGeoJSONThird from './square-grid-geojson-third.json';
+
 
 const syncMove = require('@mapbox/mapbox-gl-sync-move');
 
@@ -16,6 +19,17 @@ const utility = new Utility();
 
 export class MapBoxConfig {
   constructor() {
+    // defaults for grid boxes
+    const buffDist = 4;
+    const buffUnits = { units: 'miles' };
+    const ikBox = bbox(envelope(SquareGridGeoJSONOne));
+    const hstnBox = bbox(envelope(SquareGridGeoJSONSecond));
+    const lvBox = bbox(envelope(SquareGridGeoJSONThird));
+
+    const ikMaxBox = bbox(buffer(bboxPolygon(ikBox), buffDist, buffUnits));
+    const hstnMaxBox = bbox(buffer(bboxPolygon(hstnBox), buffDist, buffUnits));
+    const lvMaxBox = bbox(buffer(bboxPolygon(lvBox), buffDist, buffUnits));
+
     this.mapVersion = store.getStateItem('map-version');
     switch (this.mapVersion) {
       case 0: // avl
@@ -76,8 +90,8 @@ export class MapBoxConfig {
             maxzoom: 14,
             scheme: 'tms',
             tileSize: 256,
-            bounds: [-82.647, 35.507, -82.498, 35.612],
-            maxbounds: [-82.702, 35.442, -82.462, 35.657]
+            bounds: ikBox,
+            maxbounds: ikMaxBox
           },
           {
             url: 'https://daveism.github.io/change-research/dist/maps/iknow_2/{z}/{x}/{y}.png',
@@ -85,8 +99,8 @@ export class MapBoxConfig {
             maxzoom: 14,
             scheme: 'tms',
             tileSize: 256,
-            bounds: [-82.647, 35.507, -82.498, 35.612],
-            maxbounds: [-82.702, 35.442, -82.462, 35.657]
+            bounds: ikBox,
+            maxbounds: ikMaxBox
           }
         ],
         [ // hstn 1
@@ -96,8 +110,8 @@ export class MapBoxConfig {
             maxzoom: 14,
             scheme: 'tms',
             tileSize: 256,
-            bounds: [-95.940, 29.671, -95.791, 29.775],
-            maxbounds: [-95.992, 29.625, -95.739, 29.820]
+            bounds: hstnBox,
+            maxbounds: hstnMaxBox
           },
           {
             url: 'https://daveism.github.io/change-research/dist/maps/landcover_2/{z}/{x}/{y}.png',
@@ -105,8 +119,8 @@ export class MapBoxConfig {
             maxzoom: 14,
             scheme: 'tms',
             tileSize: 256,
-            bounds: [-95.940, 29.671, -95.791, 29.775],
-            maxbounds: [-95.992, 29.625, -95.739, 29.820]
+            bounds: hstnBox,
+            maxbounds: hstnMaxBox
           }
         ],
         [ // lv 2
@@ -116,8 +130,8 @@ export class MapBoxConfig {
             maxzoom: 14,
             scheme: 'tms',
             tileSize: 256,
-            bounds: [-114.899, 36.0795, -114.750, 36.183],
-            maxbounds: [-114.955, 36.034, -114.694, 36.228]
+            bounds: lvBox,
+            maxbounds: lvMaxBox
           },
           {
             url: 'https://daveism.github.io/change-research/dist/maps/lakemead_2/{z}/{x}/{y}.png',
@@ -125,8 +139,8 @@ export class MapBoxConfig {
             maxzoom: 14,
             scheme: 'tms',
             tileSize: 256,
-            bounds: [-114.899, 36.0795, -114.750, 36.183],
-            maxbounds: [-114.955, 36.034, -114.694, 36.228]
+            bounds: lvBox,
+            maxbounds: lvMaxBox
           }
         ]
       ]
