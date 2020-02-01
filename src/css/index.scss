@@ -28,6 +28,9 @@ $mapSmallHeight:          250px;
 $mapTinyWidth:           325px;
 $mapTinyHeight:          250px;
 
+$mapXTinyWidth:           250px;
+$mapXTinyHeight:          250px;
+
 $mapFullWidth:            100%;
 $mapFullHeight:            100%;
 
@@ -146,6 +149,18 @@ html, body {
       min-width: 100%;
     }
   }
+
+  @media only screen and (max-width: 320px) {
+    height: $mapXTinyHeight;
+    width: $mapXTinyWidth;
+    flex-flow: column;
+    &.endmap {
+      height: 275px;
+      margin-left: 0px !important;
+      max-width: 100%;
+      min-width: 100%;
+    }
+  }
 }
 
 #map-3a, #map-c-enda , #map-c-endc {
@@ -167,12 +182,18 @@ html, body {
   @media only screen and (max-width: 768px) {
     height: $mapSmallHeight;
     width: $mapSmallWidth;
+  }
 
-    @media only screen and (max-width: 599px) {
-      height: $mapTinyHeight;
-      width: $mapTinyWidth;
-      flex-flow: column;
-    }
+  @media only screen and (max-width: 599px) {
+    height: $mapTinyHeight;
+    width: $mapTinyWidth;
+    flex-flow: column;
+  }
+
+  @media only screen and (max-width: 320px) {
+    height: $mapXTinyHeight;
+    width: $mapXTinyWidth;
+    flex-flow: column;
   }
 }
 
@@ -195,12 +216,18 @@ html, body {
   @media only screen and (max-width: 768px) {
     height: $mapSmallHeight;
     width: $mapSmallWidth;
+  }
 
-    @media only screen and (max-width: 599px) {
-      height: $mapTinyHeight;
-      width: $mapTinyWidth;
-      flex-flow: column;
-    }
+  @media only screen and (max-width: 599px) {
+    height: $mapTinyHeight;
+    width: $mapTinyWidth;
+    flex-flow: column;
+  }
+
+  @media only screen and (max-width: 320px) {
+    height: $mapXTinyHeight;
+    width: $mapXTinyWidth;
+    flex-flow: column;
   }
 }
 
@@ -223,12 +250,18 @@ html, body {
   @media only screen and (max-width: 768px) {
     height: $mapSmallHeight;
     width: $mapSmallWidth;
+  }
 
-    @media only screen and (max-width: 599px) {
-      height: $mapTinyHeight;
-      width: $mapTinyWidth;
-      flex-flow: column;
-    }
+  @media only screen and (max-width: 599px) {
+    height: $mapTinyHeight;
+    width: $mapTinyWidth;
+    flex-flow: column;
+  }
+
+  @media only screen and (max-width: 320px) {
+    height: $mapXTinyHeight;
+    width: $mapXTinyWidth;
+    flex-flow: column;
   }
 }
 
@@ -258,6 +291,11 @@ html, body {
     flex-flow: column;
   }
 
+  @media only screen and (max-width: 320px) {
+    height: $mapXTinyHeight+40;
+    width: $mapXTinyWidth;
+    flex-flow: column;
+  }
 }
 
 .start-step1, .start-step2 {
