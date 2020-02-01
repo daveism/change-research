@@ -54,6 +54,9 @@
     "postcss-loader": "^2.1.5",
     "sass-loader": "^7.0.1",
     "style-loader": "^0.21.0",
+    "stylelint": "^13.0.0",
+    "stylelint-config-recommended": "^3.0.0",
+    "stylelint-config-standard": "^19.0.0",
     "transform-loader": "^0.2.4",
     "url-loader": "^1.0.1",
     "webpack": "^4.10.2",
@@ -65,7 +68,8 @@
     "start": "./node_modules/.bin/webpack-dev-server",
     "build-css": "node-sass --include-path scss scss/main.scss   public/css/main.css",
     "build": "webpack",
-    "lint": "eslint ./src/scripts"
+    "lint": "eslint ./src/scripts",
+    "stylelint": "stylelint '**/*.scss'; exit 0"
   },
   "repository": {
     "type": "git",
