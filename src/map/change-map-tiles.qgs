@@ -76,10 +76,10 @@
   <mapcanvas name="theMapCanvas" annotationsVisible="1">
     <units>degrees</units>
     <extent>
-      <xmin>-82.65123851849357095</xmin>
-      <ymin>35.50529146157165172</ymin>
-      <xmax>-82.49442880870311967</xmax>
-      <ymax>35.61470853842836704</ymax>
+      <xmin>-114.90363436075860193</xmin>
+      <ymin>36.07696868033734461</ymin>
+      <xmax>-114.74682465096815065</xmax>
+      <ymax>36.18638575719405992</ymax>
     </extent>
     <rotation>0</rotation>
     <destinationsrs>
@@ -2522,7 +2522,9 @@ def my_form_open(dialog, layer, feature):
         <sizescale/>
       </renderer-v2>
       <customproperties>
-        <property key="dualview/previewExpressions" value="id"/>
+        <property key="dualview/previewExpressions">
+          <value>id</value>
+        </property>
         <property key="embeddedWidgets/count" value="0"/>
         <property key="variableNames"/>
         <property key="variableValues"/>
