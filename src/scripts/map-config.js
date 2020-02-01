@@ -159,6 +159,12 @@ export class MapBoxConfig {
   makeMap(mapContainer = this.defaultMapContainer, mapIndex = 0, end = false, enableclick = true) {
     const mapVersion = store.getStateItem('map-version');
     const mapSetup = this.mapChangeLayers.layers[mapVersion];
+    let mapIndexBounds = this.defaultMaxBounds;
+    if (mapIndex === 99) {
+      mapIndexBounds = mapSetup[0].maxbounds;
+    } else {
+      mapIndexBounds = mapSetup[mapIndex].maxbounds;
+    }
     const map = new this.mapboxgl.Map({
       container: mapContainer,
       style: this.darkMapStyle,
@@ -166,12 +172,14 @@ export class MapBoxConfig {
       showZoom: true,
       touchEnabled: true,
       keybindings: true,
-      maxBounds: mapSetup[mapIndex].maxbounds
+      maxBounds: mapIndexBounds
     });
 
     map.on('load', (e) => {
       this.fitMyBounds(map);
-      map.addLayer(this.makeTMSLayer(this.mapChangeLayersOne, mapIndex));
+      if (mapIndex !== 99) {
+        map.addLayer(this.makeTMSLayer(this.mapChangeLayersOne, mapIndex));
+      }
       map.addLayer(this.makeGridOutLineLayer());
       if (end) {
         map.addLayer(this.makeGridCorrectLayer());
@@ -199,7 +207,8 @@ export class MapBoxConfig {
   //
   // @param mapContainer - string
   // @return new mapbox map object
-  makeAnimateMap(mapContainer = this.defaultMapContainer) {
+  makeAnimateMap(mapContainer = this.defaultMapContainer,
+    mapIndex = 0, end = false, enableclick = true) {
     const mapVersion = store.getStateItem('map-version');
     const mapSetup = this.mapChangeLayers.layers[mapVersion];
 
@@ -219,8 +228,14 @@ export class MapBoxConfig {
       map.addLayer(this.makeTMSLayer(this.mapChangeLayersOne, 0));
       map.addLayer(this.makeTMSLayer(this.mapChangeLayersOne, 1));
       map.addLayer(this.makeGridOutLineLayer());
-      map.addLayer(this.makeGridLayer());
-      this.addGridClick(map);
+      if (end) {
+        map.addLayer(this.makeGridCorrectLayer());
+      } else {
+        map.addLayer(this.makeGridLayer());
+      }
+      if (enableclick) {
+        this.addGridClick(map);
+      }
       map.resize();
 
       const indexCount = 2;
@@ -283,7 +298,11 @@ export class MapBoxConfig {
       this.fitMyBounds(beforeMap);
       beforeMap.addLayer(this.makeTMSLayer(this.mapChangeLayersOne, 1)); // needs update
       beforeMap.addLayer(this.makeGridOutLineLayer());
-      beforeMap.addLayer(this.makeGridLayer());
+      if (end) {
+        beforeMap.addLayer(this.makeGridCorrectLayer());
+      } else {
+        beforeMap.addLayer(this.makeGridLayer());
+      }
       if (enableclick) {
         this.addGridClick(beforeMap);
       }

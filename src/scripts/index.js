@@ -106,12 +106,20 @@ switch (studyVersion) {
     break;
 }
 
-// create all the mapbox map objects
-// const mapEndArr = mapBoxConfig.makeCompareMap('map-c-enda',
-//  'map-c-endb', 'compare-end-wrapper', true, false);
-//
-const mapEnda = mapBoxConfig.makeMap('map-enda', 0, false, false);
-const mapEndb = mapBoxConfig.makeMap('map-endb', 1, true, false);
+// compare maps need to uncomment html too
+// const mapEndAArr = mapBoxConfig.makeCompareMap('map-c-enda', 'map-c-endb',
+//        'compare-end1-wrapper', false, false);
+// const mapEndBArr = mapBoxConfig.makeCompareMap('map-c-endc', 'map-c-endd',
+//        'compare-end2-wrapper', true, false);
+// mapBoxConfig.syncMaps(mapEndAArr[0], mapEndAArr[1]);
+// mapBoxConfig.syncMaps(mapEndBArr[0], mapEndBArr[1]);
+
+const mapEnda = mapBoxConfig.makeAnimateMap('map-enda', 99, false, false);
+const mapEndb = mapBoxConfig.makeAnimateMap('map-endb', 99, true, false);
+
+//  single maps
+// const mapEnda = mapBoxConfig.makeMap('map-enda', 99, false, false);
+// const mapEndb = mapBoxConfig.makeMap('map-endb',99, true, false);
 // mapBoxConfig.syncMaps(mapEndArr[0], mapEndArr[1]);
 
 // sync maps
@@ -136,8 +144,11 @@ function resizeAllMaps() {
       mapdef.resize();
       break;
   }
-  // mapEndArr[0].resize();
-  // mapEndArr[1].resize();
+  // mapEndAArr[0].resize();
+  // mapEndAArr[1].resize();
+  // mapEndBArr[0].resize();
+  // mapEndBArr[1].resize();
+
   mapEnda.resize();
   mapEndb.resize();
 }
@@ -147,9 +158,15 @@ document.addEventListener('aggree-clicked', () => {
 });
 
 document.addEventListener('sus-clicked', () => {
-  mapEnda.setZoom(5);
-  mapEnda.setZoom(5);
   resizeAllMaps();
+  mapEnda.setZoom(5);
+  mapEnda.setZoom(5);
+
+  // mapEndAArr[0].setZoom(5);;
+  // mapEndAArr[1].setZoom(5);;
+  // mapEndBArr[0].setZoom(5);;
+  // mapEndBArr[1].setZoom(5);;
+
   // mapEndArr[0].setZoom(11);
   // mapEndArr[1].setZoom(11);
 });
