@@ -1,15 +1,19 @@
 // Your variable overrides
 @mixin box_shadowmd ($level) {
   @if $level == 1 {
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  } @else if $level == 2 {
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-  } @else if $level == 3 {
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-  } @else if $level == 4 {
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-  } @else if $level == 5 {
-    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  }
+  @else if $level == 2 {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  }
+  @else if $level == 3 {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  }
+  @else if $level == 4 {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  }
+  @else if $level == 5 {
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
   }
 }
 
@@ -68,12 +72,13 @@ a {
   }
 }
 
-.w-40 {
-  width: 40% !important;
-}
-
-.w-20 {
-  width: 20% !important;
+.w {
+  &-40 {
+    width: 40% !important;
+  }
+  &-20 {
+    width: 20% !important;
+  }
 }
 
 .btn-light {
@@ -83,7 +88,7 @@ a {
   @include border-radius($round-radius, $round-radius);
   &:focus, &:hover {
     outline: none !important;
-    border-width: 0px !important;
+    border-width: 0 !important;
     background-color: darken($body-color, 20) !important;
   }
 
@@ -106,7 +111,7 @@ a {
   @include border-radius($round-radius, $round-radius);
   &:focus {
     outline: none !important;
-    border-width: 0px !important;
+    border-width: 0 !important;
     box-shadow: unset !important;
   }
   &:hover {
@@ -123,7 +128,7 @@ a {
   @include box_shadowmd(3);
   &:focus {
     outline: none !important;
-    border-width: 0px !important;
+    border-width: 0 !important;
     @include box_shadowmd(5);
   }
   &:hover {
@@ -137,7 +142,6 @@ a {
   height: $default-control-height !important;
   box-shadow: unset !important;
 
-
   @media only screen and (max-width: 768px) {
     padding-left: 10px;
     height: 40px !important;
@@ -149,7 +153,6 @@ a {
     height: 48px !important;
     width: 48px !important;
   }
-
 
   &:focus, &:hover, &.selected {
     outline: none !important;
@@ -169,78 +172,14 @@ a {
 }
 
 .mapboxgl-popup-content {
-  color: #000000
-}
-
-.mapboxgl-ctrl-geocoder {
-  max-width: unset !important;
-}
-
-.mapboxgl-ctrl-geocoder--input {
-  background-color: $body-color !important;
-  color: $body-background-color !important;
-  height: $default-control-height !important;
-  @include border-radius($default-radius, $default-radius);
-}
-
-.mapboxgl-ctrl-geocoder .suggestions{
-  background-color: $body-color !important;
-  color: $body-background-color !important;
-}
-
-.mapboxgl-ctrl-geocoder .suggestions > li > a:hover {
-  background-color: darken($body-color, 12) !important;
-  color: $body-background-color !important;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.mapboxgl-ctrl-geocoder--button {
-  background-color: $body-color !important;
-  color: $body-background-color !important;
-  &:focus {
-    outline: none !important;
-    border: unset !important;
-    box-shadow: unset !important;
-  }
+  color: #000000;
 }
 
 .mapboxgl-ctrl-top-left {
   z-index: 0 !important;
 }
 
-.suggestions-wrapper {
-  cursor: pointer;
-  background-color: $body-color !important;
-  color: $body-background-color !important;
-  z-index: 999 !important;
-}
-
-.suggestions {
-  z-index: 999 !important;
-}
-
-.mapbox-gl-draw_ctrl-draw-btn {
-  display: none !important;
-}
-
-.mapboxgl-ctrl-geocoder {
-  width: 100% !important;
-}
-
-.mapboxgl-ctrl-geocoder--icon-close {
-  @media only screen and (max-width: 450px) {
-    margin-top: 3px;
-  }
-}
-
-.mapboxgl-ctrl-geocoder--icon-search {
-  @media only screen and (max-width: 450px) {
-    top: 6px;
-  }
-}
-
-.bs-tooltip-top .arrow::before, .bs-tooltip-auto[x-placement^="top"] .arrow::before {
+.bs-tooltip-top .arrow::before, .bs-tooltip-auto[x-placement^='top'] .arrow::before {
   border-top-color: darken($body-color, 20) !important;
 }
 
@@ -262,29 +201,13 @@ a {
   }
 }
 
-.pt-3, .py-3{
+.pt-3, .py-3 {
   @media only screen and (max-width: 768px) {
     padding-top: .25rem !important;
   }
 }
 
-.mapboxgl-ctrl-geocoder--icon-search {
-  @media only screen and (max-width: 768px) {
-    @media only screen and (max-height: 376px) {
-      top: 7px !important;
-    }
-  }
-}
-
-.mapboxgl-ctrl-geocoder--button {
-  @media only screen and (max-width: 768px) {
-    @media only screen and (max-height: 376px) {
-      top: 0px !important;
-    }
-  }
-}
-
 .mapboxgl-compare {
-  top: 0px;
+  top: 0;
   left: 14px;
 }

@@ -226,8 +226,8 @@ export class MapBoxConfig {
     map.on('load', (e) => {
       this.fitMyBounds(map);
       // if (end) {
-        map.addLayer(this.makeTMSLayer(this.mapChangeLayersOne, 0));
-        map.addLayer(this.makeTMSLayer(this.mapChangeLayersOne, 1));
+      map.addLayer(this.makeTMSLayer(this.mapChangeLayersOne, 0));
+      map.addLayer(this.makeTMSLayer(this.mapChangeLayersOne, 1));
       // }
       map.addLayer(this.makeGridOutLineLayer());
       if (end) {
