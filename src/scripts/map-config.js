@@ -208,7 +208,7 @@ export class MapBoxConfig {
   // @param mapContainer - string
   // @return new mapbox map object
   makeAnimateMap(mapContainer = this.defaultMapContainer,
-    mapIndex = 0, end = false, enableclick = true) {
+    mapIndex = 0, end = false, enableclick = true, endmaps = false) {
     const mapVersion = store.getStateItem('map-version');
     const mapSetup = this.mapChangeLayers.layers[mapVersion];
 
@@ -251,6 +251,19 @@ export class MapBoxConfig {
         } else {
           map.setLayoutProperty('map-change-0', 'visibility', 'visible');
           map.setLayoutProperty('map-change-1', 'visibility', 'none');
+        }
+        if (endmaps) {
+          const keepGoing = store.getStateItem('map-completed-animation');
+          if (!keepGoing) {
+            map.setLayoutProperty('map-change-0', 'visibility', 'none');
+            map.setLayoutProperty('map-change-1', 'visibility', 'none');
+          }
+        } else {
+          const keepGoing = store.getStateItem('map-study-animation');
+          if (!keepGoing) {
+            map.setLayoutProperty('map-change-0', 'visibility', 'none');
+            map.setLayoutProperty('map-change-1', 'visibility', 'none');
+          }
         }
       }, 1000);
     });

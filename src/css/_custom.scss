@@ -73,6 +73,9 @@ a {
 }
 
 .w {
+  &-80 {
+    width: 40% !important;
+  }
   &-40 {
     width: 40% !important;
   }
@@ -108,6 +111,7 @@ a {
   background-color: $body-background-daker-color;
   color: lighten($body-background-daker-color, 40) !important;
   height: $default-control-height !important;
+  border-width: 0 !important;
   @include border-radius($round-radius, $round-radius);
   &:focus {
     outline: none !important;
@@ -125,6 +129,20 @@ a {
 .btn {
   cursor: pointer;
   text-align: start !important;
+  @include box_shadowmd(3);
+  &:focus {
+    outline: none !important;
+    border-width: 0 !important;
+    @include box_shadowmd(5);
+  }
+  &:hover {
+    @include box_shadowmd(5);
+  }
+}
+
+.btn-center {
+  cursor: pointer;
+  text-align: btn-center !important;
   @include box_shadowmd(3);
   &:focus {
     outline: none !important;

@@ -44,6 +44,14 @@ if (utility.checkValidObject(store.getStateItem('map-version'))) {
   store.setStateItem('map-version', mapVersion);
 }
 
+if (!utility.checkValidObject(store.getStateItem('map-completed-animation'))) {
+  store.setStateItem('map-completed-animation', true);
+}
+
+if (!utility.checkValidObject(store.getStateItem('map-study-animation'))) {
+  store.setStateItem('map-study-animation', true);
+}
+
 if (!utility.checkValidObject(store.getStateItem('uuid'))) {
   store.setStateItem('uuid', utility.uuid().toString());
 }
@@ -114,8 +122,8 @@ switch (studyVersion) {
 // mapBoxConfig.syncMaps(mapEndAArr[0], mapEndAArr[1]);
 // mapBoxConfig.syncMaps(mapEndBArr[0], mapEndBArr[1]);
 
-const mapEnda = mapBoxConfig.makeAnimateMap('map-enda', 99, false, false);
-const mapEndb = mapBoxConfig.makeAnimateMap('map-endb', 99, true, false);
+const mapEnda = mapBoxConfig.makeAnimateMap('map-enda', 99, false, false, true);
+const mapEndb = mapBoxConfig.makeAnimateMap('map-endb', 99, true, false, true);
 
 //  single maps
 // const mapEnda = mapBoxConfig.makeMap('map-enda', 99, false, false);
@@ -221,6 +229,13 @@ const susChangeElements = ['submit-button-to-end'];
 susChangeElements.forEach((elementUIID) => {
   handlers.addHandlerSubmitSUSClick(elementUIID);
 });
+
+
+handlers.addHandlerPlayClick('completed', 'completed-play');
+handlers.addHandlerPauseClick('completed', 'completed-pause');
+
+handlers.addHandlerPlayClick('study', 'study-play');
+handlers.addHandlerPauseClick('study', 'study-pause');
 
 // only updates one map how do get every map
 document.addEventListener('grid-update', () => {

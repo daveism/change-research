@@ -71,6 +71,38 @@ export class Handlers {
     }
   }
 
+  // completed-play
+  // adds handler for playing animation
+  //
+  // @param page - string page to play completed, map
+  // @return null
+  addHandlerPlayClick(page = 'completed', elementID) {
+    const element = document.getElementById(elementID);
+    // ensure element exsists
+    if (element) {
+      element.addEventListener('click', (e) => {
+        store.setStateItem(`map-${page}-animation`, true);
+        this.animate = true;
+      });
+    }
+  }
+
+  // completed-play
+  // adds handler for pausing animation
+  //
+  // @param page - string page to play completed, map
+  // @return null
+  addHandlerPauseClick(page = 'completed', elementID) {
+    const element = document.getElementById(elementID);
+    // ensure element exsists
+    if (element) {
+      element.addEventListener('click', (e) => {
+        store.setStateItem(`map-${page}-animation`, false);
+        this.animate = false;
+      });
+    }
+  }
+
   // adds handler for submitting sus score
   //
   // @param elementID - HTML element ID
