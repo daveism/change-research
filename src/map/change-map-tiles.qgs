@@ -25,13 +25,13 @@
     <layer-tree-layer name="square-grid-geojson-second square-grid-geojson" id="square_grid_geojson_second_square_grid_geojson_a87ac85c_ce76_4d01_9fa2_aa9baaca6b1d" providerKey="ogr" source="../scripts/square-grid-geojson-second.json|layername=square-grid-geojson" checked="Qt::Unchecked" expanded="1">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer name="square-grid-geojson" id="square_grid_geojson_f490fdf7_6001_4c03_bcc0_eb971db8d917" providerKey="ogr" source="../scripts/square-grid-geojson.json|layername=square-grid-geojson" checked="Qt::Checked" expanded="1">
+    <layer-tree-layer name="square-grid-geojson" id="square_grid_geojson_f490fdf7_6001_4c03_bcc0_eb971db8d917" providerKey="ogr" source="../scripts/square-grid-geojson.json|layername=square-grid-geojson" checked="Qt::Unchecked" expanded="1">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer name="iknow-v2-1" id="square_grid_geojson_iknow_square_grid_geojson_f0b32851_8176_42c2_9e72_0e5ecbde1bd5" providerKey="ogr" source="../scripts/square-grid-geojson-iknow.json|layername=square-grid-geojson" checked="Qt::Unchecked" expanded="1">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer name="iknow-v2-2" id="square_grid_geojson_iknow_square_grid_geojson_dc073b33_9565_4d6f_a61a_7fd57f53173c" providerKey="ogr" source="../scripts/square-grid-geojson-iknow.json|layername=square-grid-geojson" checked="Qt::Checked" expanded="1">
+    <layer-tree-layer name="iknow-v2-2" id="square_grid_geojson_iknow_square_grid_geojson_dc073b33_9565_4d6f_a61a_7fd57f53173c" providerKey="ogr" source="../scripts/square-grid-geojson-iknow.json|layername=square-grid-geojson" checked="Qt::Unchecked" expanded="1">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer name="iknow_1" id="square_grid_geojson_orig_iknow_6121e667_c5b4_4a1a_bd08_9e41f3a36312" providerKey="ogr" source="../scripts/square-grid-geojson-orig-iknow.json|layername=square-grid-geojson-orig-iknow" checked="Qt::Unchecked" expanded="0">
@@ -119,9 +119,9 @@
         <legendlayerfile isInOverview="0" visible="0" layerid="square_grid_geojson_second_square_grid_geojson_a87ac85c_ce76_4d01_9fa2_aa9baaca6b1d"/>
       </filegroup>
     </legendlayer>
-    <legendlayer open="true" showFeatureCount="0" name="square-grid-geojson" drawingOrder="-1" checked="Qt::Checked">
+    <legendlayer open="true" showFeatureCount="0" name="square-grid-geojson" drawingOrder="-1" checked="Qt::Unchecked">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" visible="1" layerid="square_grid_geojson_f490fdf7_6001_4c03_bcc0_eb971db8d917"/>
+        <legendlayerfile isInOverview="0" visible="0" layerid="square_grid_geojson_f490fdf7_6001_4c03_bcc0_eb971db8d917"/>
       </filegroup>
     </legendlayer>
     <legendlayer open="true" showFeatureCount="0" name="iknow-v2-1" drawingOrder="-1" checked="Qt::Unchecked">
@@ -129,9 +129,9 @@
         <legendlayerfile isInOverview="0" visible="0" layerid="square_grid_geojson_iknow_square_grid_geojson_f0b32851_8176_42c2_9e72_0e5ecbde1bd5"/>
       </filegroup>
     </legendlayer>
-    <legendlayer open="true" showFeatureCount="0" name="iknow-v2-2" drawingOrder="-1" checked="Qt::Checked">
+    <legendlayer open="true" showFeatureCount="0" name="iknow-v2-2" drawingOrder="-1" checked="Qt::Unchecked">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" visible="1" layerid="square_grid_geojson_iknow_square_grid_geojson_dc073b33_9565_4d6f_a61a_7fd57f53173c"/>
+        <legendlayerfile isInOverview="0" visible="0" layerid="square_grid_geojson_iknow_square_grid_geojson_dc073b33_9565_4d6f_a61a_7fd57f53173c"/>
       </filegroup>
     </legendlayer>
     <legendlayer open="false" showFeatureCount="0" name="iknow_1" drawingOrder="-1" checked="Qt::Unchecked">
