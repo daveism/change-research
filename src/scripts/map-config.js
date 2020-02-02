@@ -244,6 +244,32 @@ export class MapBoxConfig {
       let index = 0;
 
       setInterval(() => {
+        // see if user paused animation
+        if (endmaps) {
+          const keepGoing = store.getStateItem('map-completed-animation');
+          if (!keepGoing) {
+            return null;
+          }
+          const keepGoingStop = store.getStateItem('map-completed-animation-stop');
+          if (!keepGoingStop) {
+            map.setLayoutProperty('map-change-1', 'visibility', 'none');
+            map.setLayoutProperty('map-change-0', 'visibility', 'none');
+            return null;
+          }
+        } else {
+          const keepGoing = store.getStateItem('map-study-animation');
+          if (!keepGoing) {
+            return null;
+          }
+
+          const keepGoingStop = store.getStateItem('map-study-animation-stop');
+          if (!keepGoingStop) {
+            map.setLayoutProperty('map-change-1', 'visibility', 'none');
+            map.setLayoutProperty('map-change-0', 'visibility', 'none');
+            return null;
+          }
+        }
+
         index = (index + 1) % indexCount;
         if (index === 1) {
           map.setLayoutProperty('map-change-1', 'visibility', 'visible');
@@ -252,19 +278,7 @@ export class MapBoxConfig {
           map.setLayoutProperty('map-change-0', 'visibility', 'visible');
           map.setLayoutProperty('map-change-1', 'visibility', 'none');
         }
-        if (endmaps) {
-          const keepGoing = store.getStateItem('map-completed-animation');
-          if (!keepGoing) {
-            map.setLayoutProperty('map-change-0', 'visibility', 'none');
-            map.setLayoutProperty('map-change-1', 'visibility', 'none');
-          }
-        } else {
-          const keepGoing = store.getStateItem('map-study-animation');
-          if (!keepGoing) {
-            map.setLayoutProperty('map-change-0', 'visibility', 'none');
-            map.setLayoutProperty('map-change-1', 'visibility', 'none');
-          }
-        }
+        return null;
       }, 1000);
     });
 

@@ -44,6 +44,14 @@ if (utility.checkValidObject(store.getStateItem('map-version'))) {
   store.setStateItem('map-version', mapVersion);
 }
 
+if (!utility.checkValidObject(store.getStateItem('map-completed-animation-stop'))) {
+  store.setStateItem('map-completed-animation-stop', true);
+}
+
+if (!utility.checkValidObject(store.getStateItem('map-study-animation-stop'))) {
+  store.setStateItem('map-study-animation-stop', true);
+}
+
 if (!utility.checkValidObject(store.getStateItem('map-completed-animation'))) {
   store.setStateItem('map-completed-animation', true);
 }
@@ -233,9 +241,12 @@ susChangeElements.forEach((elementUIID) => {
 
 handlers.addHandlerPlayClick('completed', 'completed-play');
 handlers.addHandlerPauseClick('completed', 'completed-pause');
+handlers.addHandlerLayersOffClick('completed', 'completed-stop');
 
 handlers.addHandlerPlayClick('study', 'study-play');
 handlers.addHandlerPauseClick('study', 'study-pause');
+handlers.addHandlerLayersOffClick('study', 'study-stop');
+
 
 // only updates one map how do get every map
 document.addEventListener('grid-update', () => {

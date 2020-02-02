@@ -113,12 +113,10 @@ a {
   height: $default-control-height !important;
   border-width: 0 !important;
   @include border-radius($round-radius, $round-radius);
-  &:focus {
+  &:focus, &:hover, &.selected {
     outline: none !important;
     border-width: 0 !important;
     box-shadow: unset !important;
-  }
-  &:hover {
     background-color: lighten($body-background-daker-color, 10) !important;
   }
   &.disabled {

@@ -82,10 +82,29 @@ export class Handlers {
     if (element) {
       element.addEventListener('click', (e) => {
         store.setStateItem(`map-${page}-animation`, true);
+        store.setStateItem(`map-${page}-animation-stop`, true);
         this.animate = true;
       });
     }
   }
+
+
+  // completed-play
+  // adds handler for playing animation
+  //
+  // @param page - string page to play completed, map
+  // @return null
+  addHandlerLayersOffClick(page = 'completed', elementID) {
+    const element = document.getElementById(elementID);
+    // ensure element exsists
+    if (element) {
+      element.addEventListener('click', (e) => {
+        store.setStateItem(`map-${page}-animation-stop`, false);
+        this.animate = true;
+      });
+    }
+  }
+
 
   // completed-play
   // adds handler for pausing animation
