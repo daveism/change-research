@@ -19,7 +19,7 @@
   </projectCrs>
   <layer-tree-group>
     <customproperties/>
-    <layer-tree-layer name="square-grid-geojson-third square-grid-geojson" id="square_grid_geojson_third_square_grid_geojson_0089c8e0_706f_4b37_bef5_8199d6026429" providerKey="ogr" source="../scripts/square-grid-geojson-third.json|layername=square-grid-geojson" checked="Qt::Checked" expanded="1">
+    <layer-tree-layer name="square-grid-geojson-third square-grid-geojson" id="square_grid_geojson_third_square_grid_geojson_0089c8e0_706f_4b37_bef5_8199d6026429" providerKey="ogr" source="../scripts/square-grid-geojson-third.json|layername=square-grid-geojson" checked="Qt::Unchecked" expanded="1">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer name="square-grid-geojson-second square-grid-geojson" id="square_grid_geojson_second_square_grid_geojson_a87ac85c_ce76_4d01_9fa2_aa9baaca6b1d" providerKey="ogr" source="../scripts/square-grid-geojson-second.json|layername=square-grid-geojson" checked="Qt::Unchecked" expanded="1">
@@ -52,10 +52,10 @@
     <layer-tree-layer name="L8_lv_scale_30_2020_01_30_20_15" id="L8_lv_scale_30_2020_01_30_20_15_1052724c_d9d1_4174_b65d_cc211c9d38f9" providerKey="gdal" source="./geeimages/L8_lv_scale_30_2020_01_30_20_15.tif" checked="Qt::Unchecked" expanded="1">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer name="L8_lv_scale_30_2020_01_30_20_15-masked" id="L8_lv_scale_30_2020_01_30_20_15_masked_0990bffc_3e5c_4cb4_90a6_673945f31d19" providerKey="gdal" source="./geeimages/L8_lv_scale_30_2020_01_30_20_15-masked.tif" checked="Qt::Checked" expanded="1">
+    <layer-tree-layer name="L8_lv_scale_30_2020_01_30_20_15-masked" id="L8_lv_scale_30_2020_01_30_20_15_masked_0990bffc_3e5c_4cb4_90a6_673945f31d19" providerKey="gdal" source="./geeimages/L8_lv_scale_30_2020_01_30_20_15-masked.tif" checked="Qt::Unchecked" expanded="1">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer name="L5_LV_scale_30_2020_01_30_20_15" id="L5_LV_scale_30_2020_01_30_20_15_e078669c_2719_43a2_89f1_4ab860c78bdd" providerKey="gdal" source="./geeimages/L5_LV_scale_30_2020_01_30_20_15.tif" checked="Qt::Checked" expanded="1">
+    <layer-tree-layer name="L5_LV_scale_30_2020_01_30_20_15" id="L5_LV_scale_30_2020_01_30_20_15_e078669c_2719_43a2_89f1_4ab860c78bdd" providerKey="gdal" source="./geeimages/L5_LV_scale_30_2020_01_30_20_15.tif" checked="Qt::Unchecked" expanded="1">
       <customproperties/>
     </layer-tree-layer>
     <custom-order enabled="0">
@@ -113,9 +113,9 @@
   </mapcanvas>
   <projectModels/>
   <legend updateDrawingOrder="true">
-    <legendlayer open="true" showFeatureCount="0" name="square-grid-geojson-third square-grid-geojson" drawingOrder="-1" checked="Qt::Checked">
+    <legendlayer open="true" showFeatureCount="0" name="square-grid-geojson-third square-grid-geojson" drawingOrder="-1" checked="Qt::Unchecked">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" visible="1" layerid="square_grid_geojson_third_square_grid_geojson_0089c8e0_706f_4b37_bef5_8199d6026429"/>
+        <legendlayerfile isInOverview="0" visible="0" layerid="square_grid_geojson_third_square_grid_geojson_0089c8e0_706f_4b37_bef5_8199d6026429"/>
       </filegroup>
     </legendlayer>
     <legendlayer open="true" showFeatureCount="0" name="square-grid-geojson-second square-grid-geojson" drawingOrder="-1" checked="Qt::Unchecked">
@@ -168,14 +168,14 @@
         <legendlayerfile isInOverview="0" visible="0" layerid="L8_lv_scale_30_2020_01_30_20_15_1052724c_d9d1_4174_b65d_cc211c9d38f9"/>
       </filegroup>
     </legendlayer>
-    <legendlayer open="true" showFeatureCount="0" name="L8_lv_scale_30_2020_01_30_20_15-masked" drawingOrder="-1" checked="Qt::Checked">
+    <legendlayer open="true" showFeatureCount="0" name="L8_lv_scale_30_2020_01_30_20_15-masked" drawingOrder="-1" checked="Qt::Unchecked">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" visible="1" layerid="L8_lv_scale_30_2020_01_30_20_15_masked_0990bffc_3e5c_4cb4_90a6_673945f31d19"/>
+        <legendlayerfile isInOverview="0" visible="0" layerid="L8_lv_scale_30_2020_01_30_20_15_masked_0990bffc_3e5c_4cb4_90a6_673945f31d19"/>
       </filegroup>
     </legendlayer>
-    <legendlayer open="true" showFeatureCount="0" name="L5_LV_scale_30_2020_01_30_20_15" drawingOrder="-1" checked="Qt::Checked">
+    <legendlayer open="true" showFeatureCount="0" name="L5_LV_scale_30_2020_01_30_20_15" drawingOrder="-1" checked="Qt::Unchecked">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" visible="1" layerid="L5_LV_scale_30_2020_01_30_20_15_e078669c_2719_43a2_89f1_4ab860c78bdd"/>
+        <legendlayerfile isInOverview="0" visible="0" layerid="L5_LV_scale_30_2020_01_30_20_15_e078669c_2719_43a2_89f1_4ab860c78bdd"/>
       </filegroup>
     </legendlayer>
   </legend>
