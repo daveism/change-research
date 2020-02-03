@@ -40,14 +40,5 @@
 * /Users/daveism/Github/change-research/dist/maps/lakemead_1
 * /Users/daveism/Github/change-research/dist/maps/lakemead_2
 
-### may need to to do some gdal for LV naip images
-gdalwarp -s_srs EPSG:26917 -t_srs EPSG:4326 -r average -of GTiff naip1_lv_scale_5_2020_01_25_13_46.tif naip1_rp_av.tif
-
-
-
-gdalwarp -s_srs EPSG:4326 -t_srs EPSG:4326 -of GTiff -tr 4.8010738789362284e-05 -4.801073878936242e-05 -tap -cutline square-grid-geojson-third.json -crop_to_cutline -multi naip1_rp_av.tif naip1_cut.tif
-
-gdalwarp -s_srs EPSG:26917 -t_srs EPSG:4326 -r average -of GTiff naip2_lv_scale_5_2020_01_26_09_26.tif naip2_rp_av.tif
-
-
-gdalwarp -s_srs EPSG:4326 -t_srs EPSG:4326 -of GTiff -tr 4.8010738789362284e-05 -4.801073878936242e-05 -tap -cutline square-grid-geojson-third.json -crop_to_cutline -multi naip2_rp_av.tif naip2_cut.tif
+### may need to to do some gdal for LV l8 image to mask it
+gdalwarp -s_srs EPSG:4326 -t_srs EPSG:4326 -of GTiff -cutline /var/folders/l2/wlv_nyls1_b6qgtjxlfmgn2r0000gn/T/processing_974251da339c4455bb95118ff909a92e/c6bf7ddf17c24abe8f4bc745aabc6ec1/MASK.shp -crop_to_cutline -dstnodata 0.0 /Users/daveism/Github/change-research/src/map/geeimages/L8_lv_scale_30_2020_01_30_20_15.tif /Users/daveism/cut-l8.tif
