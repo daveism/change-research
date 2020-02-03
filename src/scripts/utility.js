@@ -131,4 +131,25 @@ export class Utility {
     store.setStateItem('gridanswers-time', datestamp);
     return null;
   }
+
+  // unselects play/pause stop buttons
+  //
+  // @param page - string page to play completed, map
+  // @return null
+  unsetPlayButtons(page = 'completed') {
+    this.page = page;
+    const playElement = document.getElementById(`${page}-play`);
+    if (playElement) {
+      playElement.classList.remove('selected');
+    }
+    const pauseElement = document.getElementById(`${page}-pause`);
+    if (pauseElement) {
+      pauseElement.classList.remove('selected');
+    }
+    const stopElement = document.getElementById(`${page}-stop`);
+    if (stopElement) {
+      stopElement.classList.remove('selected');
+    }
+    return null;
+  }
 }

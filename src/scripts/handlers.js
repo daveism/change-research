@@ -84,6 +84,8 @@ export class Handlers {
         store.setStateItem(`map-${page}-animation`, true);
         store.setStateItem(`map-${page}-animation-stop`, true);
         this.animate = true;
+        utility.unsetPlayButtons(page);
+        element.classList.add('selected');
       });
     }
   }
@@ -101,10 +103,11 @@ export class Handlers {
       element.addEventListener('click', (e) => {
         store.setStateItem(`map-${page}-animation-stop`, false);
         this.animate = true;
+        utility.unsetPlayButtons(page);
+        element.classList.add('selected');
       });
     }
   }
-
 
   // completed-play
   // adds handler for pausing animation
@@ -116,7 +119,15 @@ export class Handlers {
     // ensure element exsists
     if (element) {
       element.addEventListener('click', (e) => {
-        store.setStateItem(`map-${page}-animation`, false);
+        utility.unsetPlayButtons(page);
+        const isPaused = store.getStateItem(`map-${page}-animation`);
+        if (isPaused) {
+          store.setStateItem(`map-${page}-animation`, false);
+          element.classList.add('selected');
+        } else {
+          store.setStateItem(`map-${page}-animation`, true);
+          element.classList.remove('selected');
+        }
         this.animate = false;
       });
     }
