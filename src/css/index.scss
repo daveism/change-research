@@ -80,7 +80,7 @@ html, body {
       height: $mapSmallHeight+24 !important;
     }
     width: $mapFullWidth !important;
-    flex-flow: column;
+    // flex-flow: column;
   }
 
   @media only screen and (max-width: 599px) {
@@ -89,7 +89,7 @@ html, body {
       height: $mapTinyHeight+24 !important;
     }
     width: $mapFullWidth !important;
-    flex-flow: column;
+    // flex-flow: column;
   }
 }
 
@@ -140,7 +140,7 @@ html, body {
   @media only screen and (max-width: 599px) {
     height: $mapTinyHeight;
     width: $mapTinyWidth;
-    flex-flow: column;
+    // flex-flow: column;
     &.endmap {
       height: 275px;
       margin-left: 0 !important;
@@ -151,8 +151,8 @@ html, body {
 
   @media only screen and (max-width: 360px) {
     height: $mapXTinyHeight;
-    width: $mapXTinyWidth+50;
-    flex-flow: column;
+    width: $mapFullWidth;
+    // flex-flow: column;
     &.endmap {
       height: 275px;
       margin-left: 0 !important;
@@ -163,8 +163,8 @@ html, body {
 
   @media only screen and (max-width: 320px) {
     height: $mapXTinyHeight;
-    width: $mapXTinyWidth;
-    flex-flow: column;
+    width: $mapFullWidth;
+    // flex-flow: column;
     &.endmap {
       height: 275px;
       margin-left: 0 !important;
@@ -197,14 +197,14 @@ html, body {
 
   @media only screen and (max-width: 599px) {
     height: $mapTinyHeight;
-    width: $mapTinyWidth;
-    flex-flow: column;
+    width: $mapFullWidth;
+    // flex-flow: column;
   }
 
   @media only screen and (max-width: 320px) {
     height: $mapXTinyHeight;
-    width: $mapXTinyWidth;
-    flex-flow: column;
+    width: $mapFullWidth;
+    // flex-flow: column;
   }
 }
 
@@ -231,14 +231,14 @@ html, body {
 
   @media only screen and (max-width: 599px) {
     height: $mapTinyHeight;
-    width: $mapTinyWidth;
-    flex-flow: column;
+    width: $mapFullWidth;
+    // flex-flow: column;
   }
 
   @media only screen and (max-width: 320px) {
     height: $mapXTinyHeight;
-    width: $mapXTinyWidth;
-    flex-flow: column;
+    width: $mapFullWidth;
+    // flex-flow: column;
   }
 }
 
@@ -266,13 +266,13 @@ html, body {
   @media only screen and (max-width: 599px) {
     height: $mapTinyHeight;
     width: $mapTinyWidth;
-    flex-flow: column;
+    // flex-flow: column;
   }
 
   @media only screen and (max-width: 320px) {
     height: $mapXTinyHeight;
     width: $mapXTinyWidth;
-    flex-flow: column;
+    // flex-flow: column;
   }
 }
 
@@ -299,13 +299,13 @@ html, body {
   @media only screen and (max-width: 599px) {
     height: $mapTinyHeight+40;
     width: $mapTinyWidth;
-    flex-flow: column;
+    // flex-flow: column;
   }
 
   @media only screen and (max-width: 320px) {
     height: $mapXTinyHeight+40;
     width: $mapXTinyWidth;
-    flex-flow: column;
+    // flex-flow: column;
   }
 }
 
