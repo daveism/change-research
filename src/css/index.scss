@@ -149,6 +149,18 @@ html, body {
     }
   }
 
+  @media only screen and (max-width: 360px) {
+    height: $mapXTinyHeight;
+    width: $mapXTinyWidth+50;
+    flex-flow: column;
+    &.endmap {
+      height: 275px;
+      margin-left: 0 !important;
+      max-width: 100%;
+      min-width: 100%;
+    }
+  }
+
   @media only screen and (max-width: 320px) {
     height: $mapXTinyHeight;
     width: $mapXTinyWidth;
@@ -321,7 +333,7 @@ html, body {
   }
 
   @media only screen and (max-width: 768px) {
-    font-size: 14px;
+    font-size: 16px;
   }
 
   &.disabled {
