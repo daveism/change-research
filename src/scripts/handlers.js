@@ -84,7 +84,7 @@ export class Handlers {
         store.setStateItem(`map-${page}-animation`, true);
         store.setStateItem(`map-${page}-animation-stop`, true);
         this.animate = true;
-        utility.unsetPlayButtons(page);
+        utility.unsetPlayButtons(page, true);
         element.classList.add('selected');
       });
     }

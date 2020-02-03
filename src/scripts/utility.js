@@ -136,7 +136,7 @@ export class Utility {
   //
   // @param page - string page to play completed, map
   // @return null
-  unsetPlayButtons(page = 'completed') {
+  unsetPlayButtons(page = 'completed', doStop = false) {
     this.page = page;
     const playElement = document.getElementById(`${page}-play`);
     if (playElement) {
@@ -147,8 +147,10 @@ export class Utility {
       pauseElement.classList.remove('selected');
     }
     const stopElement = document.getElementById(`${page}-stop`);
-    if (stopElement) {
-      stopElement.classList.remove('selected');
+    if (doStop) {
+      if (stopElement) {
+        stopElement.classList.remove('selected');
+      }
     }
     return null;
   }

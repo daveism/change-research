@@ -42,22 +42,6 @@ if (utility.checkValidObject(store.getStateItem('map-version'))) {
   store.setStateItem('map-version', mapVersion);
 }
 
-if (!utility.checkValidObject(store.getStateItem('map-completed-animation-stop'))) {
-  store.setStateItem('map-completed-animation-stop', true);
-}
-
-if (!utility.checkValidObject(store.getStateItem('map-study-animation-stop'))) {
-  store.setStateItem('map-study-animation-stop', true);
-}
-
-if (!utility.checkValidObject(store.getStateItem('map-completed-animation'))) {
-  store.setStateItem('map-completed-animation', true);
-}
-
-if (!utility.checkValidObject(store.getStateItem('map-study-animation'))) {
-  store.setStateItem('map-study-animation', true);
-}
-
 if (!utility.checkValidObject(store.getStateItem('uuid'))) {
   store.setStateItem('uuid', utility.uuid().toString());
 }
@@ -245,6 +229,66 @@ handlers.addHandlerPlayClick('study', 'study-play');
 handlers.addHandlerPauseClick('study', 'study-pause');
 handlers.addHandlerLayersOffClick('study', 'study-stop');
 
+
+if (!utility.checkValidObject(store.getStateItem('map-completed-animation'))) {
+  store.setStateItem('map-completed-animation', true);
+} else {
+  const isAnimated = store.getStateItem('map-completed-animation');
+  if (isAnimated) {
+    const playElement = document.getElementById('completed-play');
+    if (playElement) {
+      playElement.classList.add('selected');
+    }
+  } else {
+    const pauseElement = document.getElementById('completed-pause');
+    if (pauseElement) {
+      pauseElement.classList.add('selected');
+    }
+  }
+}
+
+if (!utility.checkValidObject(store.getStateItem('map-completed-animation-stop'))) {
+  store.setStateItem('map-completed-animation-stop', true);
+} else {
+  const isAnimated = store.getStateItem('map-completed-animation-stop');
+  if (!isAnimated) {
+    const stopElement = document.getElementById('completed-stop');
+    if (stopElement) {
+      utility.unsetPlayButtons('completed');
+      stopElement.classList.add('selected');
+    }
+  }
+}
+
+if (!utility.checkValidObject(store.getStateItem('map-study-animation'))) {
+  store.setStateItem('map-study-animation', true);
+} else {
+  const isAnimated = store.getStateItem('map-study-animation');
+  if (isAnimated) {
+    const playElement = document.getElementById('study-play');
+    if (playElement) {
+      playElement.classList.add('selected');
+    }
+  } else {
+    const pauseElement = document.getElementById('study-pause');
+    if (pauseElement) {
+      pauseElement.classList.add('selected');
+    }
+  }
+}
+
+if (!utility.checkValidObject(store.getStateItem('map-study-animation-stop'))) {
+  store.setStateItem('map-study-animation-stop', true);
+} else {
+  const isAnimated = store.getStateItem('map-study-animation-stop');
+  if (!isAnimated) {
+    const stopElement = document.getElementById('study-stop');
+    if (stopElement) {
+      utility.unsetPlayButtons('study');
+      stopElement.classList.add('selected');
+    }
+  }
+}
 
 // only updates one map how do get every map
 document.addEventListener('grid-update', () => {
