@@ -87,7 +87,7 @@ export class MapBoxConfig {
           {
             url: 'https://daveism.github.io/change-research/dist/maps/iknow_1/{z}/{x}/{y}.png',
             minzoom: 1,
-            maxzoom: 14,
+            maxzoom: 13,
             scheme: 'tms',
             tileSize: 256,
             bounds: ikBox,
@@ -96,7 +96,7 @@ export class MapBoxConfig {
           {
             url: 'https://daveism.github.io/change-research/dist/maps/iknow_2/{z}/{x}/{y}.png',
             minzoom: 1,
-            maxzoom: 14,
+            maxzoom: 13,
             scheme: 'tms',
             tileSize: 256,
             bounds: ikBox,
