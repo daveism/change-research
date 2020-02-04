@@ -1825,7 +1825,9 @@ def my_form_open(dialog, layer, feature):
         <sizescale/>
       </renderer-v2>
       <customproperties>
-        <property value="id" key="dualview/previewExpressions"/>
+        <property key="dualview/previewExpressions">
+          <value>id</value>
+        </property>
         <property value="0" key="embeddedWidgets/count"/>
         <property key="variableNames"/>
         <property key="variableValues"/>
@@ -2116,7 +2118,9 @@ def my_form_open(dialog, layer, feature):
         <sizescale/>
       </renderer-v2>
       <customproperties>
-        <property value="id" key="dualview/previewExpressions"/>
+        <property key="dualview/previewExpressions">
+          <value>id</value>
+        </property>
         <property value="0" key="embeddedWidgets/count"/>
         <property key="variableNames"/>
         <property key="variableValues"/>
@@ -2460,7 +2464,9 @@ def my_form_open(dialog, layer, feature):
         <labelformat format="%1 - %2" trimtrailingzeroes="false" decimalplaces="1"/>
       </renderer-v2>
       <customproperties>
-        <property value="id" key="dualview/previewExpressions"/>
+        <property key="dualview/previewExpressions">
+          <value>id</value>
+        </property>
         <property value="0" key="embeddedWidgets/count"/>
         <property key="variableNames"/>
         <property key="variableValues"/>
@@ -2580,7 +2586,7 @@ def my_form_open(dialog, layer, feature):
       <attributeactions>
         <defaultAction value="{00000000-0000-0000-0000-000000000000}" key="Canvas"/>
       </attributeactions>
-      <attributetableconfig sortExpression="" sortOrder="0" actionWidgetStyle="dropDown">
+      <attributetableconfig sortExpression="&quot;id&quot;" sortOrder="0" actionWidgetStyle="dropDown">
         <columns>
           <column hidden="0" name="id" width="-1" type="field"/>
           <column hidden="0" name="val" width="-1" type="field"/>
