@@ -197,6 +197,16 @@ export class Handlers {
     const gridanswersRec = store.getStateItem('gridanswers');
     const gridcorrectRec = store.getStateItem('squareGridGeoJSON');
     const studyCompletedRec = store.getStateItem('study-completed');
+    const innerWidth = window.innerWidth; // eslint-disable-line
+    const innerHeight = window.innerHeight; // eslint-disable-line
+    const availWidth = window.screen.availWidth; // eslint-disable-line
+    const availHeight = window.screen.availHeight; // eslint-disable-line
+    const screenSizeRec = [
+      innerWidth,
+      innerHeight,
+      availWidth,
+      availHeight
+    ];
 
     const gridcorrectRecProps = [];
 
@@ -224,7 +234,8 @@ export class Handlers {
       study_question: studyQuestionRec,
       sus_answers: JSON.stringify(susanswersRec),
       susanswers_time: '',
-      study_completed: studyCompletedRec
+      study_completed: studyCompletedRec,
+      screen_size: JSON.stringify(screenSizeRec)
     };
 
     recordStudyData.setEventAll(jsonData);
@@ -248,6 +259,16 @@ export class Handlers {
     const gridanswersDateRec = store.getStateItem('gridanswers-time');
     const gridcorrectRec = store.getStateItem('squareGridGeoJSON');
     const studyCompletedRec = store.getStateItem('study-completed');
+    const innerWidth = window.innerWidth; // eslint-disable-line
+    const innerHeight = window.innerHeight; // eslint-disable-line
+    const availWidth = window.screen.availWidth; // eslint-disable-line
+    const availHeight = window.screen.availHeight; // eslint-disable-line
+    const screenSizeRec = [
+      innerWidth,
+      innerHeight,
+      availWidth,
+      availHeight
+    ];
 
     const gridcorrectRecProps = [];
 
@@ -275,7 +296,8 @@ export class Handlers {
       study_question: studyQuestionRec,
       sus_answers: JSON.stringify(susanswersRec),
       susanswers_time: susanswersDateRec,
-      study_completed: studyCompletedRec
+      study_completed: studyCompletedRec,
+      screen_size: JSON.stringify(screenSizeRec)
     };
 
     recordStudyData.setEventAll(jsonData);
