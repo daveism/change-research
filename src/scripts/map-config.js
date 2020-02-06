@@ -85,7 +85,7 @@ export class MapBoxConfig {
       layers: [
         [ // avl 0
           {
-            url: 'https://daveism.github.io/change-research/dist/maps/lakemead_1/{z}/{x}/{y}.png',
+            url: 'https://daveism.github.io/change-research/dist/maps/lakelure_1/{z}/{x}/{y}.png',
             minzoom: 1,
             maxzoom: 14,
             scheme: 'tms',
@@ -94,7 +94,7 @@ export class MapBoxConfig {
             maxbounds: ikMaxBox
           },
           {
-            url: 'https://daveism.github.io/change-research/dist/maps/lakemead_2/{z}/{x}/{y}.png',
+            url: 'https://daveism.github.io/change-research/dist/maps/lakelure_2/{z}/{x}/{y}.png',
             minzoom: 1,
             maxzoom: 14,
             scheme: 'tms',
