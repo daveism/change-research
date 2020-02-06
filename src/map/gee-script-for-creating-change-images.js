@@ -96,73 +96,73 @@ Map.addLayer(RGBImageL8, {}, 'RGB 2016');
 
 Map.addLayer(tableLV, {}, 'clipGeometryHSTN grid');
 
-var scale = 30;
-var maxPixels = 1e9;
+// var scale = 30;
+// var maxPixels = 1e9;
 
-var naip1ID = ee.data.newTaskId();
-var naip1 = {
-    crs: 'EPSG:4326',
-    element: RGBImageL5,
-    type: 'EXPORT_IMAGE',
-    fileFormat: 'GEO_TIFF',
-    description: 'L5_LV_scale_'+scale+rundate,
-    region: clipGeometryLV,
-    driveFileNamePrefix: 'L5_LV_scale_'+scale+rundate,
-    driveFolder: 'gee-temp',
-    maxPixels: maxPixels,
-    scale: scale,
-};
+// var naip1ID = ee.data.newTaskId();
+// var naip1 = {
+//     crs: 'EPSG:4326',
+//     element: RGBImageL5,
+//     type: 'EXPORT_IMAGE',
+//     fileFormat: 'GEO_TIFF',
+//     description: 'L5_LV_scale_'+scale+rundate,
+//     region: clipGeometryLV,
+//     driveFileNamePrefix: 'L5_LV_scale_'+scale+rundate,
+//     driveFolder: 'gee-temp',
+//     maxPixels: maxPixels,
+//     scale: scale,
+// };
 
-var msg = ee.data.startProcessing(naip1ID, naip1);
+// var msg = ee.data.startProcessing(naip1ID, naip1);
 
-var naip2ID = ee.data.newTaskId();
-var naip2 = {
-    crs: 'EPSG:4326',
-    element: RGBImageL8,
-    type: 'EXPORT_IMAGE',
-    fileFormat: 'GEO_TIFF',
-    description: 'L8_lv_scale_'+scale+rundate,
-    region: clipGeometryLV,
-    driveFileNamePrefix: 'L8_lv_scale_'+scale+rundate,
-    driveFolder: 'gee-temp',
-    maxPixels: maxPixels,
-    scale: scale,
-};
-var msg = ee.data.startProcessing(naip2ID, naip2);
+// var naip2ID = ee.data.newTaskId();
+// var naip2 = {
+//     crs: 'EPSG:4326',
+//     element: RGBImageL8,
+//     type: 'EXPORT_IMAGE',
+//     fileFormat: 'GEO_TIFF',
+//     description: 'L8_lv_scale_'+scale+rundate,
+//     region: clipGeometryLV,
+//     driveFileNamePrefix: 'L8_lv_scale_'+scale+rundate,
+//     driveFolder: 'gee-temp',
+//     maxPixels: maxPixels,
+//     scale: scale,
+// };
+// var msg = ee.data.startProcessing(naip2ID, naip2);
 
-var scale = 60;
-var maxPixels = 1e9;
+// var scale = 60;
+// var maxPixels = 1e9;
 
-var tidnlcd1_AVL = ee.data.newTaskId();
-var nlcd1_landcover_task_AVL = {
-      crs: 'EPSG:4326',
-      element: nlcd1_landcover_img,
-      type: 'EXPORT_IMAGE',
-      fileFormat: 'GEO_TIFF',
-      description: 'Landcover_2016_AVL'+scale+rundate,
-      region: clipGeometryAVL,
-      driveFileNamePrefix: 'Landcover_2016_AVL_scale_'+scale+rundate,
-      driveFolder: 'gee-temp',
-      maxPixels: maxPixels,
-      scale: scale,
-};
-var msg = ee.data.startProcessing(tidnlcd1_AVL, nlcd1_landcover_task_AVL);
+// var tidnlcd1_AVL = ee.data.newTaskId();
+// var nlcd1_landcover_task_AVL = {
+//       crs: 'EPSG:4326',
+//       element: nlcd1_landcover_img,
+//       type: 'EXPORT_IMAGE',
+//       fileFormat: 'GEO_TIFF',
+//       description: 'Landcover_2016_AVL'+scale+rundate,
+//       region: clipGeometryAVL,
+//       driveFileNamePrefix: 'Landcover_2016_AVL_scale_'+scale+rundate,
+//       driveFolder: 'gee-temp',
+//       maxPixels: maxPixels,
+//       scale: scale,
+// };
+// var msg = ee.data.startProcessing(tidnlcd1_AVL, nlcd1_landcover_task_AVL);
 
-var tidnlcd2_AVL = ee.data.newTaskId();
-var nlcd2_landcover_task_AVL = {
-    crs: 'EPSG:4326',
-    element: nlcd2_landcover_img,
-    type: 'EXPORT_IMAGE',
-    fileFormat: 'GEO_TIFF',
-    description: 'Landcover_2001_AVL_scale_'+scale+rundate,
-    region: clipGeometryAVL,
-    driveFileNamePrefix: 'Landcover_2001_AVL_scale_'+scale+rundate,
-    driveFolder: 'gee-temp',
-    maxPixels: maxPixels,
-    scale: scale,
-};
+// var tidnlcd2_AVL = ee.data.newTaskId();
+// var nlcd2_landcover_task_AVL = {
+//     crs: 'EPSG:4326',
+//     element: nlcd2_landcover_img,
+//     type: 'EXPORT_IMAGE',
+//     fileFormat: 'GEO_TIFF',
+//     description: 'Landcover_2001_AVL_scale_'+scale+rundate,
+//     region: clipGeometryAVL,
+//     driveFileNamePrefix: 'Landcover_2001_AVL_scale_'+scale+rundate,
+//     driveFolder: 'gee-temp',
+//     maxPixels: maxPixels,
+//     scale: scale,
+// };
 
-var msg = ee.data.startProcessing(tidnlcd2_AVL, nlcd2_landcover_task_AVL);
+// var msg = ee.data.startProcessing(tidnlcd2_AVL, nlcd2_landcover_task_AVL);
 
 var scale = 120;
 var maxPixels = 1e9;
