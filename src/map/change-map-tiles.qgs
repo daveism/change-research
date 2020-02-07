@@ -46,19 +46,22 @@
     <layer-tree-layer id="square_grid_geojson_orig_iknow_0ab6bc21_bb0e_452c_b8d7_e625f3d7ac72" checked="Qt::Unchecked" source="../scripts/square-grid-geojson-orig-iknow.json|layername=square-grid-geojson-orig-iknow" providerKey="ogr" expanded="0" name="iknow_2">
       <customproperties/>
     </layer-tree-layer>
+    <layer-tree-group checked="Qt::Unchecked" expanded="0" name="group1">
+      <customproperties/>
+      <layer-tree-layer id="swir2_scale_30_2020_02_05_21_22_masked_cbd7de56_4e75_4185_b1f0_ff9c1246d980" checked="Qt::Unchecked" source="./geeimages/swir2_scale_30_2020_02_05_21_22-masked.tif" providerKey="gdal" expanded="0" name="swir2_scale_30_2020_02_05_21_22-masked">
+        <customproperties/>
+      </layer-tree-layer>
+      <layer-tree-layer id="swir1_scale_30_2020_02_05_21_22_72130c44_70d0_449c_8391_a763206e41fb" checked="Qt::Unchecked" source="./geeimages/swir1_scale_30_2020_02_05_21_22.tif" providerKey="gdal" expanded="0" name="swir1_scale_30_2020_02_05_21_22">
+        <customproperties/>
+      </layer-tree-layer>
+      <layer-tree-layer id="swir1_scale_30_2020_02_05_21_22_27615868_5d2c_4515_af4d_4adcc8ca624f" checked="Qt::Unchecked" source="./geeimages/swir1_scale_30_2020_02_05_21_22.tif" providerKey="gdal" expanded="0" name="swir1_scale_30_2020_02_05_21_22 copy">
+        <customproperties/>
+      </layer-tree-layer>
+    </layer-tree-group>
     <layer-tree-layer id="cut_swir1_dae47180_9838_4b0f_a9d5_036168cbb924" checked="Qt::Unchecked" source="./geeimages/cut-swir1.tif" providerKey="gdal" expanded="0" name="cut-swir1">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer id="swir2_scale_30_2020_02_05_21_22_masked_cbd7de56_4e75_4185_b1f0_ff9c1246d980" checked="Qt::Unchecked" source="./geeimages/swir2_scale_30_2020_02_05_21_22-masked.tif" providerKey="gdal" expanded="0" name="swir2_scale_30_2020_02_05_21_22-masked">
-      <customproperties/>
-    </layer-tree-layer>
-    <layer-tree-layer id="swir1_scale_30_2020_02_05_21_22_72130c44_70d0_449c_8391_a763206e41fb" checked="Qt::Unchecked" source="./geeimages/swir1_scale_30_2020_02_05_21_22.tif" providerKey="gdal" expanded="0" name="swir1_scale_30_2020_02_05_21_22">
-      <customproperties/>
-    </layer-tree-layer>
-    <layer-tree-layer id="swir1_scale_30_2020_02_05_21_22_27615868_5d2c_4515_af4d_4adcc8ca624f" checked="Qt::Unchecked" source="./geeimages/swir1_scale_30_2020_02_05_21_22.tif" providerKey="gdal" expanded="0" name="swir1_scale_30_2020_02_05_21_22 copy">
-      <customproperties/>
-    </layer-tree-layer>
-    <layer-tree-layer id="swir2_scale_30_2020_02_05_21_22_bc6f856a_4848_4cbd_8f79_45b839379371" checked="Qt::Unchecked" source="./geeimages/swir2_scale_30_2020_02_05_21_22.tif" providerKey="gdal" expanded="0" name="swir2_scale_30_2020_02_05_21_22">
+    <layer-tree-layer id="swir2_scale_30_2020_02_05_21_22_bc6f856a_4848_4cbd_8f79_45b839379371" checked="Qt::Checked" source="./geeimages/swir2_scale_30_2020_02_05_21_22.tif" providerKey="gdal" expanded="0" name="swir2_scale_30_2020_02_05_21_22">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer id="square_grid_geojson_second_mask_d6b6b172_9d5b_4884_baad_d744427f2092" checked="Qt::Unchecked" source="../scripts/square-grid-geojson-second-mask.geojson|layername=square-grid-geojson-second-mask" providerKey="ogr" expanded="1" name="square-grid-geojson-second-mask">
@@ -188,29 +191,31 @@
         <legendlayerfile layerid="square_grid_geojson_orig_iknow_0ab6bc21_bb0e_452c_b8d7_e625f3d7ac72" visible="0" isInOverview="0"/>
       </filegroup>
     </legendlayer>
+    <legendgroup checked="Qt::Unchecked" open="false" name="group1">
+      <legendlayer drawingOrder="-1" checked="Qt::Unchecked" open="false" name="swir2_scale_30_2020_02_05_21_22-masked" showFeatureCount="0">
+        <filegroup open="false" hidden="false">
+          <legendlayerfile layerid="swir2_scale_30_2020_02_05_21_22_masked_cbd7de56_4e75_4185_b1f0_ff9c1246d980" visible="0" isInOverview="0"/>
+        </filegroup>
+      </legendlayer>
+      <legendlayer drawingOrder="-1" checked="Qt::Unchecked" open="false" name="swir1_scale_30_2020_02_05_21_22" showFeatureCount="0">
+        <filegroup open="false" hidden="false">
+          <legendlayerfile layerid="swir1_scale_30_2020_02_05_21_22_72130c44_70d0_449c_8391_a763206e41fb" visible="0" isInOverview="0"/>
+        </filegroup>
+      </legendlayer>
+      <legendlayer drawingOrder="-1" checked="Qt::Unchecked" open="false" name="swir1_scale_30_2020_02_05_21_22 copy" showFeatureCount="0">
+        <filegroup open="false" hidden="false">
+          <legendlayerfile layerid="swir1_scale_30_2020_02_05_21_22_27615868_5d2c_4515_af4d_4adcc8ca624f" visible="0" isInOverview="0"/>
+        </filegroup>
+      </legendlayer>
+    </legendgroup>
     <legendlayer drawingOrder="-1" checked="Qt::Unchecked" open="false" name="cut-swir1" showFeatureCount="0">
       <filegroup open="false" hidden="false">
         <legendlayerfile layerid="cut_swir1_dae47180_9838_4b0f_a9d5_036168cbb924" visible="0" isInOverview="0"/>
       </filegroup>
     </legendlayer>
-    <legendlayer drawingOrder="-1" checked="Qt::Unchecked" open="false" name="swir2_scale_30_2020_02_05_21_22-masked" showFeatureCount="0">
+    <legendlayer drawingOrder="-1" checked="Qt::Checked" open="false" name="swir2_scale_30_2020_02_05_21_22" showFeatureCount="0">
       <filegroup open="false" hidden="false">
-        <legendlayerfile layerid="swir2_scale_30_2020_02_05_21_22_masked_cbd7de56_4e75_4185_b1f0_ff9c1246d980" visible="0" isInOverview="0"/>
-      </filegroup>
-    </legendlayer>
-    <legendlayer drawingOrder="-1" checked="Qt::Unchecked" open="false" name="swir1_scale_30_2020_02_05_21_22" showFeatureCount="0">
-      <filegroup open="false" hidden="false">
-        <legendlayerfile layerid="swir1_scale_30_2020_02_05_21_22_72130c44_70d0_449c_8391_a763206e41fb" visible="0" isInOverview="0"/>
-      </filegroup>
-    </legendlayer>
-    <legendlayer drawingOrder="-1" checked="Qt::Unchecked" open="false" name="swir1_scale_30_2020_02_05_21_22 copy" showFeatureCount="0">
-      <filegroup open="false" hidden="false">
-        <legendlayerfile layerid="swir1_scale_30_2020_02_05_21_22_27615868_5d2c_4515_af4d_4adcc8ca624f" visible="0" isInOverview="0"/>
-      </filegroup>
-    </legendlayer>
-    <legendlayer drawingOrder="-1" checked="Qt::Unchecked" open="false" name="swir2_scale_30_2020_02_05_21_22" showFeatureCount="0">
-      <filegroup open="false" hidden="false">
-        <legendlayerfile layerid="swir2_scale_30_2020_02_05_21_22_bc6f856a_4848_4cbd_8f79_45b839379371" visible="0" isInOverview="0"/>
+        <legendlayerfile layerid="swir2_scale_30_2020_02_05_21_22_bc6f856a_4848_4cbd_8f79_45b839379371" visible="1" isInOverview="0"/>
       </filegroup>
     </legendlayer>
     <legendlayer drawingOrder="-1" checked="Qt::Unchecked" open="true" name="square-grid-geojson-second-mask" showFeatureCount="0">
