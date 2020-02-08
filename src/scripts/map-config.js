@@ -200,6 +200,11 @@ export class MapBoxConfig {
       setTimeout(() => { map.resize(); }, 10);
     };
     map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), 'top-left');
+    // disable map rotation using right click + drag
+    map.dragRotate.disable();
+    map.keyboard.disable();
+    // disable map rotation using touch rotation gesture
+    map.touchZoomRotate.disableRotation();
     return map;
   }
 
@@ -288,6 +293,12 @@ export class MapBoxConfig {
     };
     // Add zoom and rotation controls to the map.
     map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), 'top-left');
+    // disable map rotation using right click + drag
+    map.dragRotate.disable();
+    map.keyboard.disable();
+
+    // disable map rotation using touch rotation gesture
+    map.touchZoomRotate.disableRotation();
     return map;
   }
 
@@ -338,6 +349,25 @@ export class MapBoxConfig {
       beforeMap.setZoom(this.defaultMapZoom);
       beforeMap.resize();
       compare.setSlider(150);
+      beforeMap.addControl(new mapboxgl.NavigationControl({ showCompass: false }), 'top-left');
+
+      // wierd hack to fix _noEase function errors that stop zooming from working
+      // might be mapbox-compate package bug version mismatch
+      let zoomin = document.querySelector('#map-3a button.mapboxgl-ctrl-zoom-in');
+      zoomin.parentNode.replaceChild(zoomin.cloneNode(1), zoomin);
+      zoomin = document.querySelector('#map-3a button.mapboxgl-ctrl-zoom-in');
+      zoomin.addEventListener('click', (event) => {
+        beforeMap.zoomIn({ duration: 0 });
+      });
+
+      // wierd hack to fix _noEase function errors that stop zooming from working
+      // might be mapbox-compate package bug version mismatch
+      let zoomout = document.querySelector('#map-3a button.mapboxgl-ctrl-zoom-out');
+      zoomout.parentNode.replaceChild(zoomout.cloneNode(1), zoomout);
+      zoomout = document.querySelector('#map-3a button.mapboxgl-ctrl-zoom-out');
+      zoomout.addEventListener('click', (event) => {
+        beforeMap.zoomOut({ duration: 0 });
+      });
     });
 
     afterMap.on('load', (e) => {
@@ -355,6 +385,25 @@ export class MapBoxConfig {
       afterMap.setZoom(this.defaultMapZoom);
       afterMap.resize();
       compare.setSlider(150);
+      afterMap.addControl(new mapboxgl.NavigationControl({ showCompass: false }), 'top-left');
+
+      // wierd hack to fix _noEase function errors that stop zooming from working
+      // might be mapbox-compate package bug version mismatch
+      let zoomin = document.querySelector('#map-3b button.mapboxgl-ctrl-zoom-in');
+      zoomin.parentNode.replaceChild(zoomin.cloneNode(1), zoomin);
+      zoomin = document.querySelector('#map-3b button.mapboxgl-ctrl-zoom-in');
+      zoomin.addEventListener('click', (event) => {
+        afterMap.zoomIn({ duration: 0 });
+      });
+
+      // wierd hack to fix _noEase function errors that stop zooming from working
+      // might be mapbox-compate package bug version mismatch
+      let zoomout = document.querySelector('#map-3b button.mapboxgl-ctrl-zoom-out');
+      zoomout.parentNode.replaceChild(zoomout.cloneNode(1), zoomout);
+      zoomout = document.querySelector('#map-3b button.mapboxgl-ctrl-zoom-out');
+      zoomout.addEventListener('click', (event) => {
+        afterMap.zoomOut({ duration: 0 });
+      });
     });
 
     window.onload = (e) => {
@@ -362,9 +411,16 @@ export class MapBoxConfig {
       beforeMap.resize();
       compare.setSlider(150);
     };
-    // Add zoom and rotation controls to the map.
-    beforeMap.addControl(new mapboxgl.NavigationControl({ showCompass: false }), 'top-left');
-    afterMap.addControl(new mapboxgl.NavigationControl({ showCompass: false }), 'top-left');
+    // disable map rotation using right click + drag
+    beforeMap.dragRotate.disable();
+    afterMap.dragRotate.disable();
+
+    beforeMap.keyboard.disable();
+    afterMap.keyboard.disable();
+
+    // disable map rotation using touch rotation gesture
+    beforeMap.touchZoomRotate.disableRotation();
+    afterMap.touchZoomRotate.disableRotation();
     return [beforeMap, afterMap];
   }
 
@@ -586,6 +642,6 @@ export class MapBoxConfig {
     const mapVersion = store.getStateItem('map-version');
     const mapSetup = this.mapChangeLayers.layers[mapVersion];
     const bounds = mapSetup[0].maxbounds;
-    map.fitBounds(bounds, { padding: 100 });
+    map.fitBounds(bounds, { duration: 0 });
   }
 }
