@@ -201,12 +201,12 @@ export class Handlers {
     const innerHeight = window.innerHeight; // eslint-disable-line
     const availWidth = window.screen.availWidth; // eslint-disable-line
     const availHeight = window.screen.availHeight; // eslint-disable-line
-    const screenSizeRec = [
+    const screenSizeRec = {
       innerWidth,
       innerHeight,
       availWidth,
       availHeight
-    ];
+    };
 
     const gridcorrectRecProps = [];
 
@@ -263,12 +263,12 @@ export class Handlers {
     const innerHeight = window.innerHeight; // eslint-disable-line
     const availWidth = window.screen.availWidth; // eslint-disable-line
     const availHeight = window.screen.availHeight; // eslint-disable-line
-    const screenSizeRec = [
+    const screenSizeRec = {
       innerWidth,
       innerHeight,
       availWidth,
       availHeight
-    ];
+    };
 
     const gridcorrectRecProps = [];
 
@@ -290,7 +290,7 @@ export class Handlers {
       campaign: JSON.stringify(campaignRec),
       mobile: JSON.stringify(mobileRec),
       map_version: mapVersionRec,
-      grid_correct: JSON.stringify(gridcorrectRecProps),
+      // grid_correct: JSON.stringify(gridcorrectRecProps),
       grid_answers: JSON.stringify(gridanswersRec),
       gridanswers_time: gridanswersDateRec,
       study_question: studyQuestionRec,
