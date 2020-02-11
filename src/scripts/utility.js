@@ -1,6 +1,8 @@
 import { Store } from './store';
+import { RecordStudyData } from './record-study-data';
 
 const store = new Store({});
+const recordStudyData = new RecordStudyData();
 
 export class Utility {
   constructor() {
@@ -129,6 +131,9 @@ export class Utility {
     store.setStateItem('grid-submited', true);
     store.setStateItem('gridanswers', valueArray);
     store.setStateItem('gridanswers-time', datestamp);
+    recordStudyData.setEvent('grid-submited', true);
+    recordStudyData.setEvent('gridanswers', JSON.stringify(valueArray));
+    recordStudyData.setEvent('gridanswers-time', datestamp);
     return null;
   }
 

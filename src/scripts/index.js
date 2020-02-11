@@ -6,6 +6,7 @@ import { Store } from './store';
 import { MapBoxConfig } from './map-config';
 import { Utility } from './utility';
 import { Handlers } from './handlers';
+import { RecordStudyData } from './record-study-data';
 
 import blockStudyAggreement from '../content-blocks/block-study-aggreement.html';
 import blockStudyDissaggree from '../content-blocks/block-study-dissaggree.html';
@@ -17,8 +18,17 @@ import blockStudyCompleted from '../content-blocks/block-study-completed.html';
 
 const store = new Store({});
 const utility = new Utility();
+const recordStudyData = new RecordStudyData();
 
 const URLPath = window.location.hash;
+const datestamp = new Date().toISOString();
+const innerWidth = window.innerWidth; // eslint-disable-line
+const innerHeight = window.innerHeight; // eslint-disable-line
+const availWidth = window.screen.availWidth; // eslint-disable-line
+const availHeight = window.screen.availHeight; // eslint-disable-line
+const urlString = window.location.href;
+const url = new URL(urlString);
+const campaign = url.searchParams.get('campaign');
 
 // study constraints number of questions starts with 0
 let studyVersion = 0; // default study version
@@ -44,6 +54,16 @@ if (utility.checkValidObject(store.getStateItem('map-version'))) {
 
 if (!utility.checkValidObject(store.getStateItem('uuid'))) {
   store.setStateItem('uuid', utility.uuid().toString());
+  recordStudyData.setEvent('study started', true);
+  recordStudyData.setEvent('study started time', datestamp);
+  recordStudyData.setEvent('campaign', campaign);
+  recordStudyData.setEvent('is mobile', utility.isMobileDevice());
+  recordStudyData.setEvent('screen size', JSON.stringify({
+    innerWidth,
+    innerHeight,
+    availWidth,
+    availHeight
+  }));
 }
 
 if (!utility.checkValidObject(store.getStateItem('study-completed'))) {
@@ -173,12 +193,7 @@ document.addEventListener('disaggree-clicked', () => {
   resizeAllMaps();
 });
 
-const urlString = window.location.href;
-const url = new URL(urlString);
-const campaign = url.searchParams.get('campaign');
-
 // ga event action, category, label
-const datestamp = new Date().toISOString();
 store.setStateItem('study started', true);
 store.setStateItem('study started time', datestamp);
 store.setStateItem('campaign', campaign);
@@ -434,5 +449,10 @@ window.addEventListener('hashchange', (event) => {
 if (studyCompleted) {
   if (completedSubmitElement) {
     completedSubmitElement.click();
+  }
+
+  const questionElement = document.getElementById(`block-study-question-${studyVersion + 1}-holder`);
+  if (questionElement) {
+    questionElement.classList.add('d-none');
   }
 }

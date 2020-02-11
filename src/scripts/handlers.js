@@ -168,13 +168,18 @@ export class Handlers {
         store.setStateItem('susanswers', susValueArray);
         store.setStateItem('susanswers-time', datestamp);
         store.setStateItem('study-completed', true);
+        recordStudyData.setEvent('susanswers-submited', true);
+        recordStudyData.setEvent('susanswers', JSON.stringify(susValueArray));
+        recordStudyData.setEvent('susanswers-time', datestamp);
+        recordStudyData.setEvent('study-completed', true);
+
         Handlers.recordAggreed();
         history.pushState({ page: 3 }, '#study-completed', '#study-completed'); // eslint-disable-line
 
         // temp get rid of state items
         // REMOVE FOR RELEASE
-        const storage = window['localStorage']; // eslint-disable-line
-        storage.removeItem('state');
+        // const storage = window['localStorage']; // eslint-disable-line
+        // storage.removeItem('state');
       });
     }
 
@@ -333,6 +338,8 @@ export class Handlers {
         store.setStateItem('study-agreement', true);
         store.setStateItem('study-agreement-time', agreementTimeStamp);
         history.pushState({ page: 1 }, '#map', '#map'); // eslint-disable-line
+        recordStudyData.setEvent('study-agreement', true);
+        recordStudyData.setEvent('study-agreement-time', agreementTimeStamp);
       });
     }
     return null;
@@ -367,6 +374,8 @@ export class Handlers {
         store.setStateItem('study-agreement-time', agreementTimeStamp);
         Handlers.recordDisaggreed();
         history.pushState({ page: 1 }, '#disaggree', '#disaggree'); // eslint-disable-line
+        recordStudyData.setEvent('study-agreement', false);
+        recordStudyData.setEvent('study-agreement-time', agreementTimeStamp);
       });
     }
     return null;
