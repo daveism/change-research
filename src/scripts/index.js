@@ -30,28 +30,6 @@ const urlString = window.location.href;
 const url = new URL(urlString);
 const campaign = url.searchParams.get('campaign');
 
-// study constraints number of questions starts with 0
-let studyVersion = 0; // default study version
-if (utility.checkValidObject(store.getStateItem('study-question'))) {
-  studyVersion = store.getStateItem('study-question');
-} else {
-  const studyMinOne = 0;
-  const studyMaxOne = 2;
-  studyVersion = Math.floor(Math.random() * (studyMaxOne - studyMinOne + 1) + studyMinOne);
-  store.setStateItem('study-question', studyVersion);
-}
-
-// study constraints number of questions starts with 0
-let mapVersion = 0; // default study version
-if (utility.checkValidObject(store.getStateItem('map-version'))) {
-  mapVersion = store.getStateItem('map-version');
-} else {
-  const mapMinOne = 0;
-  const mapMaxOne = 2;
-  mapVersion = Math.floor(Math.random() * (mapMaxOne - mapMinOne + 1) + mapMinOne);
-  store.setStateItem('map-version', mapVersion);
-}
-
 if (!utility.checkValidObject(store.getStateItem('uuid'))) {
   store.setStateItem('uuid', utility.uuid().toString());
   recordStudyData.setEvent('study started', true);
@@ -64,6 +42,30 @@ if (!utility.checkValidObject(store.getStateItem('uuid'))) {
     availWidth,
     availHeight
   }));
+}
+
+// study constraints number of questions starts with 0
+let studyVersion = 0; // default study version
+if (utility.checkValidObject(store.getStateItem('study-question'))) {
+  studyVersion = store.getStateItem('study-question');
+} else {
+  const studyMinOne = 0;
+  const studyMaxOne = 2;
+  studyVersion = Math.floor(Math.random() * (studyMaxOne - studyMinOne + 1) + studyMinOne);
+  store.setStateItem('study-question', studyVersion);
+  recordStudyData.setEvent('study-question', studyVersion);
+}
+
+// study constraints number of questions starts with 0
+let mapVersion = 0; // default study version
+if (utility.checkValidObject(store.getStateItem('map-version'))) {
+  mapVersion = store.getStateItem('map-version');
+} else {
+  const mapMinOne = 0;
+  const mapMaxOne = 2;
+  mapVersion = Math.floor(Math.random() * (mapMaxOne - mapMinOne + 1) + mapMinOne);
+  store.setStateItem('map-version', mapVersion);
+  recordStudyData.setEvent('map-version', mapVersion);
 }
 
 if (!utility.checkValidObject(store.getStateItem('study-completed'))) {
